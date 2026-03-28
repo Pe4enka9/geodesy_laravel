@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CalibrationController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\EquipmentModelController;
 use App\Http\Controllers\EquipmentTypeController;
@@ -36,4 +37,7 @@ Route::middleware('auth')->group(function () {
 
     // Пользователи
     Route::resource('/users', UserController::class)->except('show');
+
+    // Поверки
+    Route::resource('/calibrations', CalibrationController::class)->except('show');
 });
