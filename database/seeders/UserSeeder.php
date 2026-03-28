@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Enums\Users\Position;
-use App\Enums\Users\Role;
-use App\Models\User;
+use App\Models\Users\Enums\UserPositionEnum;
+use App\Models\Users\Enums\UserRoleEnum;
+use App\Models\Users\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,35 +17,35 @@ class UserSeeder extends Seeder
                 'name' => 'Иван Тихонов',
                 'login' => 'admin',
                 'password' => Hash::make('admin'),
-                'role' => Role::ADMIN,
+                'role' => UserRoleEnum::ADMIN,
             ],
             [
                 'name' => 'Петров Сергей',
                 'login' => 'petrov',
                 'password' => Hash::make('password'),
-                'role' => Role::MANAGER,
-                'position' => Position::FOREMAN,
+                'role' => UserRoleEnum::MANAGER,
+                'position' => UserPositionEnum::FOREMAN,
             ],
             [
                 'name' => 'Сидоров Алексей',
                 'login' => 'sidorov',
                 'password' => Hash::make('password'),
-                'role' => Role::EMPLOYEE,
-                'position' => Position::SURVEYOR,
+                'role' => UserRoleEnum::EMPLOYEE,
+                'position' => UserPositionEnum::SURVEYOR,
             ],
             [
                 'name' => 'Кузнецова Мария',
                 'login' => 'kuznetsova',
                 'password' => Hash::make('password'),
-                'role' => Role::EMPLOYEE,
-                'position' => Position::SURVEYOR,
+                'role' => UserRoleEnum::EMPLOYEE,
+                'position' => UserPositionEnum::SURVEYOR,
             ],
             [
                 'name' => 'Волков Дмитрий',
                 'login' => 'volkov',
                 'password' => Hash::make('password'),
-                'role' => Role::EMPLOYEE,
-                'position' => Position::SURVEYOR,
+                'role' => UserRoleEnum::EMPLOYEE,
+                'position' => UserPositionEnum::SURVEYOR,
             ],
         ];
 

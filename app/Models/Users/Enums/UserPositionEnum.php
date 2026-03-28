@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Enums\Users;
+namespace App\Models\Users\Enums;
 
-enum Position: string
+enum UserPositionEnum: string
 {
     case SURVEYOR = 'SURVEYOR';
     case FOREMAN = 'FOREMAN';

@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Enums\Equipments\Status;
-use App\Enums\Users\Role;
-use App\Models\Equipment;
 use App\Models\EquipmentModel;
+use App\Models\Equipments\Enums\EquipmentStatusEnum;
+use App\Models\Equipments\Equipment;
 use App\Models\EquipmentType;
-use App\Models\User;
+use App\Models\Users\Enums\UserRoleEnum;
+use App\Models\Users\User;
 use Illuminate\Database\Seeder;
 
 class EquipmentSeeder extends Seeder
@@ -16,8 +16,8 @@ class EquipmentSeeder extends Seeder
     {
         $types = EquipmentType::all();
         $models = EquipmentModel::all();
-        $holders = User::whereNot('role', Role::ADMIN)->get();
-        $statuses = Status::cases();
+        $holders = User::whereNot('role', UserRoleEnum::ADMIN)->get();
+        $statuses = EquipmentStatusEnum::cases();
 
         $equipments = [
             ['inventory_number' => 'TACHEO-001', 'serial_number' => 'SN-964122'],

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\TransferRequests;
 
-use App\Enums\TransferRequests\Status;
+use App\Models\TransferRequests\Enums\TransferRequestStatusEnum;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class TransferRequest extends Model
 {
     protected $casts = [
-        'status' => Status::class,
+        'status' => TransferRequestStatusEnum::class,
         'resolved_at' => 'timestamp',
     ];
 }

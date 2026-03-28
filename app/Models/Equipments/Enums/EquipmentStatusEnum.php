@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Enums\Equipments;
+namespace App\Models\Equipments\Enums;
 
-enum Status: string
+enum EquipmentStatusEnum: string
 {
     case ACTIVE = 'active';
     case MAINTENANCE = 'maintenance';

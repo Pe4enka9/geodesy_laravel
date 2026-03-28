@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Calibration;
-use App\Models\Equipment;
-use App\Models\User;
+use App\Models\Calibrations\Calibration;
+use App\Models\Equipments\Equipment;
+use App\Models\Users\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 

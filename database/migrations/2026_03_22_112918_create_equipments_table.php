@@ -1,9 +1,9 @@
 <?php
 
-use App\Enums\Equipments\Status;
 use App\Models\EquipmentModel;
+use App\Models\Equipments\Enums\EquipmentStatusEnum;
 use App\Models\EquipmentType;
-use App\Models\User;
+use App\Models\Users\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('inventory_number')->unique();
             $table->string('serial_number')->nullable();
             $table->foreignIdFor(EquipmentModel::class)->nullable();
-            $table->string('status')->default(Status::ACTIVE);
+            $table->string('status')->default(EquipmentStatusEnum::ACTIVE);
             $table->foreignIdFor(User::class, 'current_holder_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();

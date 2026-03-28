@@ -23,5 +23,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
 
     // Оборудование
-    Route::resource('/equipments', EquipmentController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    Route::resource('/equipments', EquipmentController::class)->except(['show']);
 });

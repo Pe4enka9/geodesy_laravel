@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Users;
 
-use App\Enums\Users\Position;
-use App\Enums\Users\Role;
+use App\Models\Users\Enums\UserPositionEnum;
+use App\Models\Users\Enums\UserRoleEnum;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     protected $casts = [
         'password' => 'hashed',
-        'position' => Position::class,
-        'role' => Role::class,
+        'position' => UserPositionEnum::class,
+        'role' => UserRoleEnum::class,
     ];
 }

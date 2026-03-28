@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\Users\Role;
+use App\Models\Users\Enums\UserRoleEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('login')->unique();
             $table->string('password');
             $table->string('position')->nullable();
-            $table->string('role')->default(Role::EMPLOYEE);
+            $table->string('role')->default(UserRoleEnum::EMPLOYEE);
             $table->rememberToken();
             $table->timestamps();
         });

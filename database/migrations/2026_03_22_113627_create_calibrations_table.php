@@ -1,8 +1,8 @@
 <?php
 
-use App\Enums\Calibrations\Status;
-use App\Models\Equipment;
-use App\Models\User;
+use App\Models\Calibrations\Enums\CalibrationStatusEnum;
+use App\Models\Equipments\Equipment;
+use App\Models\Users\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('verification_url');
             $table->date('issued_at');
             $table->date('expires_at');
-            $table->string('status')->default(Status::ACTIVE);
+            $table->string('status')->default(CalibrationStatusEnum::ACTIVE);
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Enums\TransferRequests;
+namespace App\Models\TransferRequests\Enums;
 
-enum Status: string
+enum TransferRequestStatusEnum: string
 {
     case PENDING = 'pending';
     case ACCEPTED = 'accepted';

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Enums\Calibrations;
+namespace App\Models\Calibrations\Enums;
 
-enum Status: string
+enum CalibrationStatusEnum: string
 {
     case ACTIVE = 'active';
     case EXPIRED = 'expired';

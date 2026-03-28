@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Dtos\Equipments\CreateDto;
-use App\Dtos\Equipments\UpdateDto;
-use App\Enums\Equipments\Status;
-use App\Models\Equipment;
+use App\Http\Requests\Equipment\CreateDto;
+use App\Http\Requests\Equipment\UpdateDto;
 use App\Models\EquipmentModel;
+use App\Models\Equipments\Equipment;
 use App\Models\EquipmentType;
-use App\Queries\Equipments\EquipmentQuery;
+use App\Queries\Equipment\EquipmentQuery;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -26,10 +25,7 @@ class EquipmentController extends Controller
     {
         $equipments = Equipment::latest()->get();
 
-        return view('equipments.index', [
-            'equipments' => $equipments,
-            'statuses' => Status::class,
-        ]);
+        return view('equipments.index', ['equipments' => $equipments]);
     }
 
     // Форма добавления оборудование

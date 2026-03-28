@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Enums\Transactions;
+namespace App\Models\Transactions\Enums;
 
-enum Type: string
+enum TransactionTypeEnum: string
 {
     case CHECKOUT = 'checkout';
     case RETURN = 'return';

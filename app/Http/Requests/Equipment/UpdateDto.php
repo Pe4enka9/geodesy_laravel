@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Dtos\Equipments;
+namespace App\Http\Requests\Equipment;
 
-use App\Models\Equipment;
 use App\Models\EquipmentModel;
+use App\Models\Equipments\Equipment;
 use App\Models\EquipmentType;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Attributes\Validation\Exists;

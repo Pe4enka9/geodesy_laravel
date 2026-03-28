@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Queries\Equipments;
+namespace App\Queries\Equipment;
 
-use App\Models\Equipment;
+use App\Models\Equipments\Equipment;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 

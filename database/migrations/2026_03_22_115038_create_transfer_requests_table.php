@@ -1,8 +1,8 @@
 <?php
 
-use App\Enums\TransferRequests\Status;
-use App\Models\Equipment;
-use App\Models\User;
+use App\Models\Equipments\Equipment;
+use App\Models\TransferRequests\Enums\TransferRequestStatusEnum;
+use App\Models\Users\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class, 'sender_id')->constrained();
             $table->foreignIdFor(User::class, 'receiver_id')->constrained();
 
-            $table->string('status')->default(Status::PENDING);
+            $table->string('status')->default(TransferRequestStatusEnum::PENDING);
 
             $table->text('comment')->nullable();
             $table->timestamp('resolved_at')->nullable();

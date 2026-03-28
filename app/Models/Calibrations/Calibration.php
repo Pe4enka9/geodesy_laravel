@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Calibrations;
 
-use App\Enums\Calibrations\Status;
+use App\Models\Calibrations\Enums\CalibrationStatusEnum;
 use Illuminate\Database\Eloquent\Model;
 
 class Calibration extends Model
@@ -12,6 +12,6 @@ class Calibration extends Model
     protected $casts = [
         'issued_at' => 'date',
         'expires_at' => 'date',
-        'status' => Status::class,
+        'status' => CalibrationStatusEnum::class,
     ];
 }

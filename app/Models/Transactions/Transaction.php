@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Transactions;
 
-use App\Enums\Transactions\Type;
+use App\Models\Transactions\Enums\TransactionTypeEnum;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     protected $casts = [
-        'type' => Type::class,
+        'type' => TransactionTypeEnum::class,
         'occurred_at' => 'timestamp',
     ];
 }

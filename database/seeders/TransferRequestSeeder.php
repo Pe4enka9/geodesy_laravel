@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Equipment;
-use App\Models\TransferRequest;
-use App\Models\User;
+use App\Models\Equipments\Equipment;
+use App\Models\TransferRequests\TransferRequest;
+use App\Models\Users\User;
 use Illuminate\Database\Seeder;
 
 class TransferRequestSeeder extends Seeder
