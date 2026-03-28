@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\EquipmentModelController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,9 @@ Route::middleware('auth')->group(function () {
 
     // Дашборд
     Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
+
+    // Модели оборудования
+    Route::resource('/models', EquipmentModelController::class)->except('show');
 
     // Оборудование
     Route::resource('/equipments', EquipmentController::class);
