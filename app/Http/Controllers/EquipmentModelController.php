@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Model\ModelDto;
+use App\Http\Requests\Model\TypeDto;
 use App\Models\EquipmentModel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -24,7 +24,7 @@ class EquipmentModelController extends Controller
     }
 
     // Создание модели
-    public function store(ModelDto $modelDto): RedirectResponse
+    public function store(TypeDto $modelDto): RedirectResponse
     {
         EquipmentModel::create(['name' => $modelDto->name]);
 
@@ -38,7 +38,7 @@ class EquipmentModelController extends Controller
     }
 
     // Обновление модели
-    public function update(EquipmentModel $model, ModelDto $modelDto): RedirectResponse
+    public function update(EquipmentModel $model, TypeDto $modelDto): RedirectResponse
     {
         $model->update(['name' => $modelDto->name]);
 
