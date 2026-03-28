@@ -1,5 +1,4 @@
 @use(App\Models\Users\Enums\UserPositionEnum,Position)
-@use(App\Models\Users\Enums\UserRoleEnum, Role)
 @extends('theme')
 @section('title', 'Изменить сотрудника')
 @section('content')
@@ -30,7 +29,7 @@
             <label for="role">Роль</label>
             <select name="role" id="role">
                 <option value="" hidden>Выберите роль</option>
-                @foreach(Role::cases() as $role)
+                @foreach($roles as $role)
                     <option
                         value="{{ $role }}"
                         @selected(old('role', $user->role->value) == $role->value)

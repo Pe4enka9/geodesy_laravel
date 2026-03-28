@@ -20,6 +20,16 @@ class User extends Authenticatable
         'role' => UserRoleEnum::class,
     ];
 
+    public function isAdmin(): bool
+    {
+        return $this->role === UserRoleEnum::ADMIN;
+    }
+
+    public function isOwner(): bool
+    {
+        return $this->role === UserRoleEnum::OWNER;
+    }
+
     public function newEloquentBuilder($query): Builder
     {
         return new UserQueryBuilder($query);

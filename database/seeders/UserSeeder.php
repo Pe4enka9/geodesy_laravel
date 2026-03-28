@@ -17,14 +17,13 @@ class UserSeeder extends Seeder
                 'name' => 'Иван Тихонов',
                 'login' => 'admin',
                 'password' => Hash::make('admin'),
-                'role' => UserRoleEnum::ADMIN,
+                'role' => UserRoleEnum::OWNER,
             ],
             [
                 'name' => 'Петров Сергей',
                 'login' => 'petrov',
                 'password' => Hash::make('password'),
-                'role' => UserRoleEnum::MANAGER,
-                'position' => UserPositionEnum::FOREMAN,
+                'role' => UserRoleEnum::ADMIN,
             ],
             [
                 'name' => 'Сидоров Алексей',

@@ -6,6 +6,7 @@ use App\Http\Requests\User\CreateDto;
 use App\Http\Requests\User\UpdateDto;
 use App\Models\Users\User;
 use App\Services\User\Actions\ChangePasswordAction;
+use App\Services\User\Actions\GetRolesExceptOwnerAction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
@@ -21,9 +22,13 @@ class UserController extends Controller
     }
 
     // Форма создания пользователя
-    public function create(): View
+    public function create(
+        GetRolesExceptOwnerAction $getRolesExceptOwnerAction,
+    ): View
     {
-        return view('users.create');
+        $roles = $getRolesExceptOwnerAction();
+
+        return view('users.create', ['roles' => $roles]);
     }
 
     // Создание пользователя
@@ -41,9 +46,17 @@ class UserController extends Controller
     }
 
     // Форма редактирования пользователя
-    public function edit(User $user): View
+    public function edit(
+        User                      $user,
+        GetRolesExceptOwnerAction $getRolesExceptOwnerAction,
+    ): View
     {
-        return view('users.edit', ['user' => $user]);
+        $roles = $getRolesExceptOwnerAction();
+
+        return view('users.edit', [
+            'user' => $user,
+            'roles' => $roles,
+        ]);
     }
 
     // Обновления пользователя

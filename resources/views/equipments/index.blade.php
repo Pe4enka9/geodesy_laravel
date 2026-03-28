@@ -13,7 +13,9 @@
         <button type="submit">Найти</button>
     </form>
 
+    @admin
     <a href="{{ route('equipments.create') }}">Добавить</a>
+    @endadmin
 
     <div style="display:flex; flex-direction: column; gap: 10px">
         @forelse($equipments as $equipment)
@@ -34,12 +36,14 @@
                     <div>Поверка закончится: {{ $equipment->lastCalibration->expires_at->format('d.m.Y') }}</div>
                 @endisset
 
+                @admin()
                 <a href="{{ route('equipments.edit', $equipment) }}">Редактировать</a>
                 <form action="{{ route('equipments.destroy', $equipment) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button type="submit">Удалить</button>
                 </form>
+                @endadmin
             </div>
         @empty
             <h2>Ничего не найдено</h2>
