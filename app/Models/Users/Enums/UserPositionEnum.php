@@ -4,8 +4,8 @@ namespace App\Models\Users\Enums;
 
 enum UserPositionEnum: string
 {
-    case SURVEYOR = 'SURVEYOR';
-    case FOREMAN = 'FOREMAN';
+    case SURVEYOR = 'surveyor';
+    case FOREMAN = 'foreman';
 
     public function label(): string
     {

@@ -2,6 +2,7 @@
     @auth
         <a href="{{ route('dashboard') }}">Главная</a>
         <a href="{{ route('equipments.index') }}">Оборудование</a>
+        <a href="{{ route('users.index') }}">Персонал</a>
 
         <form action="{{ route('logout') }}" method="post">
             @csrf

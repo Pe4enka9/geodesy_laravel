@@ -4,8 +4,10 @@ namespace App\Models\Users;
 
 use App\Models\Users\Enums\UserPositionEnum;
 use App\Models\Users\Enums\UserRoleEnum;
+use App\QueryBuilders\UserQueryBuilder;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 #[Guarded(['id'])]
@@ -17,4 +19,9 @@ class User extends Authenticatable
         'position' => UserPositionEnum::class,
         'role' => UserRoleEnum::class,
     ];
+
+    public function newEloquentBuilder($query): Builder
+    {
+        return new UserQueryBuilder($query);
+    }
 }

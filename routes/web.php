@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -23,5 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
 
     // Оборудование
-    Route::resource('/equipments', EquipmentController::class)->except(['show']);
+    Route::resource('/equipments', EquipmentController::class);
+
+    // Пользователи
+    Route::resource('/users', UserController::class)->except('show');
 });
