@@ -5,6 +5,7 @@ namespace App\Models\Equipments;
 use App\Models\Calibrations\Calibration;
 use App\Models\EquipmentModel;
 use App\Models\Equipments\Enums\EquipmentStatusEnum;
+use App\Models\EquipmentType;
 use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Model;
@@ -21,9 +22,14 @@ class Equipment extends Model
         'status' => EquipmentStatusEnum::class,
     ];
 
-    public function equipmentModel(): BelongsTo
+    public function model(): BelongsTo
     {
         return $this->belongsTo(EquipmentModel::class);
+    }
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(EquipmentType::class);
     }
 
     public function calibrations(): HasMany

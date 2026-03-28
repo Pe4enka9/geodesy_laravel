@@ -17,12 +17,12 @@ class UpdateDto extends Data
 {
     public function __construct(
         #[Exists(EquipmentType::class, 'id')]
-        public int     $equipmentType,
+        public int     $type,
         #[Unique(Equipment::class, 'inventory_number', ignore: new RouteParameterReference('equipment', 'id'))]
         public string  $inventoryNumber,
         public ?string $serialNumber,
         #[Exists(EquipmentModel::class, 'id')]
-        public ?int    $equipmentModel,
+        public ?int    $model,
     )
     {
     }

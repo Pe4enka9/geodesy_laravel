@@ -26,8 +26,8 @@
                     <div>Серийный номер: {{ $equipment->serial_number }}</div>
                 @endisset
 
-                @isset($equipment->equipmentModel)
-                    <div>Модель: {{ $equipment->equipmentModel->name }}</div>
+                @isset($equipment->model)
+                    <div>Модель: {{ $equipment->model->name }}</div>
                 @endisset
 
                 @isset($equipment->lastCalibration)

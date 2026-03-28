@@ -14,10 +14,10 @@ return new class extends Migration
     {
         Schema::create('equipments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(EquipmentType::class)->constrained();
+            $table->foreignIdFor(EquipmentType::class, 'type_id')->constrained();
             $table->string('inventory_number')->unique();
             $table->string('serial_number')->nullable();
-            $table->foreignIdFor(EquipmentModel::class)->nullable();
+            $table->foreignIdFor(EquipmentModel::class, 'model_id')->nullable();
             $table->string('status')->default(EquipmentStatusEnum::ACTIVE);
             $table->foreignIdFor(User::class, 'current_holder_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();

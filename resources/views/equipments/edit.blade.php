@@ -7,20 +7,20 @@
         <h1>Редактировать оборудование</h1>
 
         <div>
-            <label for="equipment_type">Тип</label>
-            <select name="equipment_type" id="equipment_type">
+            <label for="type">Тип</label>
+            <select name="type" id="type">
                 <option value="" hidden>Выберите тип</option>
                 @foreach($types as $type)
                     <option
                         value="{{ $type->id }}"
-                        @selected(old('equipment_type', $equipment->equipment_type_id) == $type->id)
+                        @selected(old('equipment_type', $equipment->type_id) == $type->id)
                     >
                         {{ $type->name }}
                     </option>
                 @endforeach
             </select>
 
-            @error('equipment_type')
+            @error('type')
             <div>{{ $message }}</div>
             @enderror
         </div>
@@ -47,94 +47,23 @@
 
         <div>
             <label for="model">Модель</label>
-            <select name="equipment_model" id="equipment_model">
+            <select name="model" id="model">
                 <option value="">Выберите модель</option>
                 @foreach($models as $model)
                     <option
                         value="{{ $model->id }}"
-                        @selected(old('equipment_model', $equipment->equipment_model_id) == $model->id)
+                        @selected(old('model', $equipment->model_id) == $model->id)
                     >
                         {{ $model->name }}
                     </option>
                 @endforeach
             </select>
 
-            @error('equipment_model')
+            @error('model')
             <div>{{ $message }}</div>
             @enderror
-        </div>
-
-        <button type="button" id="add">Добавить поверку</button>
-
-        <div style="display:none;" id="calibration">
-            <h2>Поверка</h2>
-            <input type="hidden" name="has_calibration" id="has_calibration" value="0">
-
-            <div>
-                <label for="certificate_number">Номер свидетельства</label>
-                <input type="text" name="certificate_number" id="certificate_number" placeholder="Номер свидетельства"
-                       value="{{ old('certificate_number', $equipment->lastCalibration->certificate_number ?? null) }}">
-
-                @error('certificate_number')
-                <div>{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div>
-                <label for="verification_url">Ссылка на реестр</label>
-                <input type="url" name="verification_url" id="verification_url" placeholder="Ссылка на реестр"
-                       value="{{ old('verification_url', $equipment->lastCalibration->verification_url ?? null) }}">
-
-                @error('verification_url')
-                <div>{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div>
-                <label for="issued_at">Дата выдачи</label>
-                <input type="date" name="issued_at" id="issued_at"
-                       value="{{ old('issued_at', $equipment->lastCalibration?->issued_at->format('Y-m-d') ?? null) }}">
-
-                @error('issued_at')
-                <div>{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div>
-                <label for="expires_at">Дата истечения срока действия</label>
-                <input type="date" name="expires_at" id="expires_at"
-                       value="{{ old('expires_at', $equipment->lastCalibration?->expires_at->format('Y-m-d') ?? null) }}">
-
-                @error('expires_at')
-                <div>{{ $message }}</div>
-                @enderror
-            </div>
         </div>
 
         <button type="submit">Редактировать</button>
     </form>
 @endsection
-
-@push('scripts')
-    <script>
-        const calibration = document.getElementById('calibration');
-        const hasCalibration = document.getElementById('has_calibration');
-
-        @isset($equipment->lastCalibration)
-            calibration.style.display = 'block';
-        hasCalibration.value = '1';
-        @endisset
-
-        document.getElementById('add').addEventListener('click', function () {
-            if (calibration.style.display === 'none') {
-                calibration.style.display = 'block';
-                this.textContent = 'Удалить поверку';
-                hasCalibration.value = '1';
-            } else {
-                calibration.style.display = 'none';
-                this.textContent = 'Добавить поверку';
-                hasCalibration.value = '0';
-            }
-        });
-    </script>
-@endpush

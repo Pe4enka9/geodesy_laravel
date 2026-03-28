@@ -7,18 +7,11 @@ use App\Http\Requests\Equipment\UpdateDto;
 use App\Models\EquipmentModel;
 use App\Models\Equipments\Equipment;
 use App\Models\EquipmentType;
-use App\Queries\Equipment\EquipmentQuery;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class EquipmentController extends Controller
 {
-    public function __construct(
-        private EquipmentQuery $equipmentQuery,
-    )
-    {
-    }
 
     // Всё оборудование
     public function index(): View
@@ -41,38 +34,14 @@ class EquipmentController extends Controller
     }
 
     // Добавление оборудования
-    public function store(
-        CreateDto $dto,
-        Request   $request,
-    ): RedirectResponse
+    public function store(CreateDto $createDto): RedirectResponse
     {
-        $hasCalibration = $request->boolean('has_calibration');
-
-        if ($hasCalibration) {
-            $request->validate([
-                'certificate_number' => ['required', 'string'],
-                'verification_url' => ['required', 'string', 'url'],
-                'issued_at' => ['required', 'date:Y-m-d'],
-                'expires_at' => ['required', 'date:Y-m-d', 'after:issued_at'],
-            ]);
-        }
-
-        $equipment = Equipment::create([
-            'equipment_type_id' => $dto->equipmentType,
-            'inventory_number' => $dto->inventoryNumber,
-            'serial_number' => $dto->serialNumber,
-            'equipment_model_id' => $dto->equipmentModel,
+        Equipment::create([
+            'type_id' => $createDto->type,
+            'inventory_number' => $createDto->inventoryNumber,
+            'serial_number' => $createDto->serialNumber,
+            'model_id' => $createDto->model,
         ]);
-
-        if ($hasCalibration) {
-            $equipment->calibrations()->create([
-                'certificate_number' => $request->input('certificate_number'),
-                'verification_url' => $request->input('verification_url'),
-                'issued_at' => $request->input('issued_at'),
-                'expires_at' => $request->input('expires_at'),
-                'created_by' => auth()->id(),
-            ]);
-        }
 
         return redirect()->route('equipments.index');
     }
@@ -91,39 +60,14 @@ class EquipmentController extends Controller
     }
 
     // Обновление оборудования
-    public function update(
-        Equipment $equipment,
-        UpdateDto $dto,
-        Request   $request,
-    ): RedirectResponse
+    public function update(Equipment $equipment, UpdateDto $updateDto): RedirectResponse
     {
-        $hasCalibration = $request->boolean('has_calibration');
-
-        if ($hasCalibration) {
-            $request->validate([
-                'certificate_number' => ['required', 'string'],
-                'verification_url' => ['required', 'string', 'url'],
-                'issued_at' => ['required', 'date:Y-m-d'],
-                'expires_at' => ['required', 'date:Y-m-d', 'after:issued_at'],
-            ]);
-        }
-
         $equipment->update([
-            'equipment_type_id' => $dto->equipmentType,
-            'inventory_number' => $dto->inventoryNumber,
-            'serial_number' => $dto->serialNumber,
-            'equipment_model_id' => $dto->equipmentModel,
+            'type_id' => $updateDto->type,
+            'inventory_number' => $updateDto->inventoryNumber,
+            'serial_number' => $updateDto->serialNumber,
+            'model_id' => $updateDto->model,
         ]);
-
-        if ($hasCalibration) {
-            $equipment->lastCalibration()->update([
-                'certificate_number' => $request->input('certificate_number'),
-                'verification_url' => $request->input('verification_url'),
-                'issued_at' => $request->input('issued_at'),
-                'expires_at' => $request->input('expires_at'),
-                'created_by' => auth()->id(),
-            ]);
-        }
 
         return redirect()->route('equipments.index');
     }

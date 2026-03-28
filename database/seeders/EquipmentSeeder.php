@@ -54,10 +54,10 @@ class EquipmentSeeder extends Seeder
             $serialNumber = rand(1, 100) <= 10 ? null : $data['serial_number'];
 
             Equipment::create([
-                'equipment_type_id' => $types->random()->id,
+                'type_id' => $types->random()->id,
                 'inventory_number' => $data['inventory_number'],
                 'serial_number' => $serialNumber,
-                'equipment_model_id' => $modelId,
+                'model_id' => $modelId,
                 'status' => $statuses[array_rand($statuses)],
                 'current_holder_id' => $holderId,
             ]);
