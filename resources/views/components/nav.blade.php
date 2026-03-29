@@ -6,6 +6,7 @@
         <a href="{{ route('models.index') }}">Модели</a>
         <a href="{{ route('types.index') }}">Типы</a>
         <a href="{{ route('calibrations.index') }}">Поверки</a>
+        <a href="{{ route('transfers.index') }}">Передачи</a>
 
         <form action="{{ route('logout') }}" method="post">
             @csrf

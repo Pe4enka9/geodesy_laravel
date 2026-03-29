@@ -7,7 +7,9 @@ use App\Models\EquipmentModel;
 use App\Models\Equipments\Enums\EquipmentStatusEnum;
 use App\Models\EquipmentType;
 use App\Models\Users\User;
+use App\QueryBuilders\EquipmentQueryBuilder;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -45,5 +47,10 @@ class Equipment extends Model
     public function lastCalibration(): HasOne
     {
         return $this->hasOne(Calibration::class)->latest();
+    }
+
+    public function newEloquentBuilder($query): Builder
+    {
+        return new EquipmentQueryBuilder($query);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\EquipmentModelController;
 use App\Http\Controllers\EquipmentTypeController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\TransferRequestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,12 @@ Route::middleware('owner_or_admin')->group(function () {
 Route::middleware('auth')->group(function () {
     // Выход
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    // Передачи
+    Route::resource('/transfers', TransferRequestController::class)->only(['index', 'create', 'store']);
+    Route::post('/transfers/{transfer}/accept', [TransferRequestController::class, 'accept'])->name('transfers.accept');
+    Route::post('/transfers/{transfer}/cancel', [TransferRequestController::class, 'cancel'])->name('transfers.cancel');
+    Route::post('/transfers/{transfer}/reject', [TransferRequestController::class, 'reject'])->name('transfers.reject');
 });
 
 // Админ
