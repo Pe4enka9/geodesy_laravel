@@ -21,6 +21,12 @@ class EquipmentController extends Controller
         return view('equipments.index', ['equipments' => $equipments]);
     }
 
+    // Просмотр оборудования
+    public function show(Equipment $equipment): View
+    {
+        return view('equipments.show', ['equipment' => $equipment]);
+    }
+
     // Форма добавления оборудование
     public function create(): View
     {

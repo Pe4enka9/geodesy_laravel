@@ -36,6 +36,8 @@
                     <div>Поверка закончится: {{ $equipment->lastCalibration->expires_at->format('d.m.Y') }}</div>
                 @endisset
 
+                <a href="{{ route('equipments.show', $equipment) }}">Посмотреть</a>
+
                 @admin()
                 <a href="{{ route('equipments.edit', $equipment) }}">Редактировать</a>
                 <form action="{{ route('equipments.destroy', $equipment) }}" method="post">

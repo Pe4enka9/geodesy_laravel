@@ -24,7 +24,7 @@ Route::middleware('owner_or_admin')->group(function () {
     Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
 
     // Оборудование
-    Route::resource('/equipments', EquipmentController::class)->only('index');
+    Route::resource('/equipments', EquipmentController::class)->only(['index', 'show']);
 
     // Пользователи
     Route::resource('/users', UserController::class)->except('show');
@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
 // Админ
 Route::middleware('admin')->group(function () {
     // Оборудование
-    Route::resource('/equipments', EquipmentController::class)->except('index');
+    Route::resource('/equipments', EquipmentController::class)->except(['index', 'show']);
 
     // Модели оборудования
     Route::resource('/models', EquipmentModelController::class)->except(['index', 'show']);
