@@ -1,3 +1,54 @@
+@use "variables" as *;
+@use "input";
+@use "btn";
+@use "aside";
+@use "logo";
+@use "nav";
+@use "login-form";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    color: $color-text;
+
+    font: 10px "Inter", sans-serif;
+}
+
 body {
-    background-color: #fafafa;
+    min-height: 100vh;
+
+    @include flex();
+
+    //background: $gradient-bg no-repeat;
+    background-color: $color-bg;
+}
+
+main {
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+
+    &--contain {
+        object-fit: contain;
+    }
+}
+
+.error {
+    color: $color-red;
+
+    font-size: $fs-md;
+    font-weight: 400;
+}
+
+a {
+    display: block;
+
+    text-decoration: none;
 }

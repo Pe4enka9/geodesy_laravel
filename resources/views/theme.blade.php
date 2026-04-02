@@ -10,7 +10,9 @@
 </head>
 <body>
 
-@include('components.header')
+@auth
+    @include('components.aside')
+@endauth
 
 <main>
     @yield('content')

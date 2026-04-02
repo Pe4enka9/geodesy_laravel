@@ -1,16 +1,11 @@
-<nav>
+<nav class="nav">
     @auth
-        <a href="{{ route('dashboard') }}">Главная</a>
-        <a href="{{ route('equipments.index') }}">Оборудование</a>
-        <a href="{{ route('users.index') }}">Персонал</a>
-        <a href="{{ route('models.index') }}">Модели</a>
-        <a href="{{ route('types.index') }}">Типы</a>
-        <a href="{{ route('calibrations.index') }}">Поверки</a>
-        <a href="{{ route('transfers.index') }}">Передачи</a>
-
-        <form action="{{ route('logout') }}" method="post">
-            @csrf
-            <button type="submit">Выйти</button>
-        </form>
+        @include('components.nav-link', ['route' => route('dashboard'), 'routeName' => 'dashboard', 'name' => 'Дашборд', 'icon' => 'icons/dashboard.svg'])
+        @include('components.nav-link', ['route' => route('equipments.index'), 'routeName' => 'equipments.*', 'name' => 'Оборудование', 'icon' => 'icons/equipments.svg'])
+        @include('components.nav-link', ['route' => route('users.index'), 'routeName' => 'users.*', 'name' => 'Персонал', 'icon' => 'icons/users.svg'])
+        @include('components.nav-link', ['route' => route('models.index'), 'routeName' => 'models.*', 'name' => 'Модели', 'icon' => 'icons/models.svg'])
+        @include('components.nav-link', ['route' => route('types.index'), 'routeName' => 'types.*', 'name' => 'Типы', 'icon' => 'icons/types.svg'])
+        @include('components.nav-link', ['route' => route('calibrations.index'), 'routeName' => 'calibrations.*', 'name' => 'Поверки', 'icon' => 'icons/calibrations.svg'])
+        @include('components.nav-link', ['route' => route('transfers.index'), 'routeName' => 'transfers.*', 'name' => 'Передачи', 'icon' => 'icons/transfers.svg'])
     @endauth
 </nav>

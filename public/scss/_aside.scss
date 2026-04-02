@@ -1,0 +1,86 @@
+@use "variables" as *;
+
+.aside {
+    width: 25rem;
+    height: 100vh;
+
+    @include flex($fd: column);
+
+    background: linear-gradient(to bottom, #1e3a5f, #152a45);
+
+    &__header {
+        padding: 2rem 1.5rem;
+
+        @include flex($ai: center, $g: 1rem);
+
+        border-bottom: .1rem solid rgba(255, 255, 255, .1);
+    }
+
+    &__title-wrapper {
+        @include flex($fd: column, $g: .3rem);
+    }
+
+    &__title {
+        color: $color-white;
+
+        font-size: $fs-xl;
+        font-weight: 700;
+    }
+
+    &__subtitle {
+        color: $color-text-secondary;
+
+        font-size: $fs-sm;
+        font-weight: 400;
+    }
+
+    &__actions {
+        margin-top: auto;
+        padding: 2rem 1.5rem;
+
+        @include flex($fd: column, $g: 1rem);
+
+        border-top: .1rem solid rgba(255, 255, 255, .1);
+    }
+
+    &__user {
+        padding: 1rem;
+
+        @include flex($ai: center, $g: 1rem);
+
+        background-color: rgba(255, 255, 255, .05);
+
+        -webkit-border-radius: $rounded-md;
+        -moz-border-radius: $rounded-md;
+        border-radius: $rounded-md;
+    }
+
+    &__user-info {
+        @include flex($fd: column, $g: .2rem);
+    }
+
+    &__username {
+        color: $color-white;
+
+        font-size: $fs-md;
+        font-weight: 500;
+    }
+
+    &__user-role {
+        color: $color-text-secondary;
+
+        font-size: $fs-sm;
+        font-weight: 400;
+    }
+
+    &__user-img-wrapper {
+        width: 3.6rem;
+        height: 3.6rem;
+
+        background: linear-gradient(to bottom right, #2dd4bf, #0d9488);
+
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+}

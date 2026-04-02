@@ -1,0 +1,37 @@
+@use "variables" as *;
+
+.input-wrapper {
+    width: 100%;
+
+    @include flex($fd: column, $g: .5rem);
+}
+
+label {
+    font-size: $fs-md;
+    font-weight: 500;
+}
+
+input {
+    padding: .5em .8em;
+
+    background-color: $color-white;
+
+    outline: none;
+    border: .2rem solid $color-border;
+    -webkit-border-radius: $rounded-sm;
+    -moz-border-radius: $rounded-sm;
+    border-radius: $rounded-sm;
+
+    font-size: $fs-md;
+
+    box-shadow: $shadow-sm;
+    transition: border-color $transition-md ease;
+
+    &:focus {
+        border-color: $color-border-secondary;
+    }
+
+    &.invalid {
+        border-color: $color-red;
+    }
+}

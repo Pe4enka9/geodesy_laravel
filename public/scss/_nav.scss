@@ -1,0 +1,68 @@
+@use "variables" as *;
+
+.nav {
+    padding: 2rem 1rem;
+
+    @include flex($fd: column, $g: .5rem);
+
+    &__link {
+        padding: 1rem;
+
+        @include flex($ai: center, $g: 1rem);
+
+        -webkit-border-radius: $rounded-md;
+        -moz-border-radius: $rounded-md;
+        border-radius: $rounded-md;
+
+        transition: background-color $transition-md ease;
+        cursor: pointer;
+
+        &--active {
+            background-color: rgba(255, 255, 255, .1);
+
+            border-left: .3rem solid $color-link-border;
+
+            position: relative;
+
+            &::after {
+                width: 1.6rem;
+                height: 1.6rem;
+
+                background: url("/icons/arrow.svg") no-repeat center / contain;
+
+                content: '';
+                transform: translateY(-50%);
+
+                position: absolute;
+                top: 50%;
+                right: .8rem;
+            }
+        }
+
+        &:hover {
+            background-color: rgba(255, 255, 255, .05);
+        }
+
+        &:hover &-text {
+            color: $color-white;
+        }
+    }
+
+    &__link-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    &__link-text {
+        color: $color-link;
+
+        font-size: $fs-md;
+        font-weight: 500;
+
+        transition: color $transition-md ease;
+
+        &--active {
+            color: $color-white;
+        }
+    }
+}

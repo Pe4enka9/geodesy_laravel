@@ -1,0 +1,19 @@
+@use "variables" as *;
+
+.logo {
+    width: 4rem;
+    height: 4rem;
+
+    @include flex(center, center);
+
+    background: $gradient-primary;
+
+    -webkit-border-radius: $rounded-lg;
+    -moz-border-radius: $rounded-lg;
+    border-radius: $rounded-lg;
+
+    &__img {
+        width: 50%;
+        height: 50%;
+    }
+}
