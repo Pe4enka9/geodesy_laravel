@@ -16,9 +16,15 @@ class EquipmentController extends Controller
     // Всё оборудование
     public function index(): View
     {
+        $types = EquipmentType::all();
+        $models = EquipmentModel::all();
         $equipments = Equipment::latest()->get();
 
-        return view('equipments.index', ['equipments' => $equipments]);
+        return view('equipments.index', [
+            'equipments' => $equipments,
+            'types' => $types,
+            'models' => $models,
+        ]);
     }
 
     // Просмотр оборудования

@@ -1,0 +1,20 @@
+@use "variables" as *;
+
+.tab {
+    &__title {
+        padding: 2rem;
+
+        background-color: $color-white;
+
+        border-bottom: .1rem solid $color-gray3;
+
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    &__content {
+        padding: 2rem;
+
+        @include flex($fd: column, $g: 2rem);
+    }
+}

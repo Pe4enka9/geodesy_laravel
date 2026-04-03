@@ -1,22 +1,30 @@
 @extends('theme')
 @section('title', 'Модели оборудования')
 @section('content')
-    <h1>Модели оборудования</h1>
-    <a href="{{ route('models.create') }}">Добавить</a>
+    <div class="tab">
+        <h2 class="tab__title">Модели оборудования</h2>
 
-    <div style="display:flex; flex-direction: column; gap: 10px">
-        @forelse($models as $model)
-            <div style="background-color: #fff;border: 1px solid #000;">
-                <div>{{ $model->name }}</div>
+        <div class="tab__content">
+            @include('components.tab-actions', ['placeholder' => 'Поиск по названию...', 'btn' => 'Добавить модель'])
 
-                <a href="{{ route('models.edit', $model) }}">Редактировать</a>
-                <form action="{{ route('models.destroy', $model) }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Удалить</button>
-                </form>
+            <div class="cards">
+                @foreach($models as $model)
+                    <div class="card">
+                        <div class="card__header">
+                            <div class="card__img-wrapper">
+                                <img src="{{ asset('icons/models-primary.svg') }}" alt="" class="card__img">
+                            </div>
+
+                            <div class="card__content">
+                                <h3 class="card__title">{{ $model->name }}</h3>
+                                <div class="card__updated-at">Обновлено: {{ $model->updated_at->format('d.m.Y') }}</div>
+                            </div>
+
+                            @include('components.actions')
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        @empty
-            <h2>Ничего не найдено</h2>
-    @endforelse
+        </div>
+    </div>
 @endsection

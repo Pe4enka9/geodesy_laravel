@@ -1,39 +1,70 @@
-// Colors
-$color-primary: #0d9488;
-$color-primary-hover: #0f766e;
-$color-bg: #f9fafb;
-$color-text: #0f1729;
-$color-text-secondary: #fff9;
-$color-link: #ffffffb3;
-$color-link-border: #14b8a6;
+// COLORS
 $color-white: #fff;
 $color-red: #ef4444;
 $color-gray: #65758b;
 $color-gray2: #fff6;
-$color-border: #e1e7ef;
-$color-border-secondary: #1dafa1;
+$color-gray3: #e5e7eb;
+$color-table-th: #6b7280;
 $gradient-bg: linear-gradient(#1e3a5f, #152a45, #0f172a);
 $gradient-primary: linear-gradient(#2dd4bf, #0d9488);
 
-// Rounded
+// Background
+$color-bg: #f9fafb;
+$color-bg-secondary: #f1f5f9;
+
+// Text
+$color-text: #0f1729;
+$color-text-secondary: #fff9;
+
+// Link
+$color-link: #ffffffb3;
+$color-link-border: #14b8a6;
+
+// Border
+$color-border: #e1e7ef;
+$color-border-secondary: #1dafa1;
+
+// Primary
+$color-primary: #0d9488;
+$color-primary-hover: #0f766e;
+
+// Success
+$color-success: #16a34a;
+$color-success-hover: #15803d;
+
+// Danger
+$color-danger: #dc2626;
+$color-danger-hover: #fef2f2;
+$color-border-danger: #fca5a5;
+
+// Disabled
+$color-disabled: #4b5563;
+$color-disabled-hover: #d9dee3;
+$color-border-disabled: #d1d5db;
+// END COLORS
+
+// ROUNDED
 $rounded-sm: .8rem;
 $rounded-md: 1rem;
 $rounded-lg: 1.4rem;
 $rounded-xl: 1.6rem;
 
-// Font sizes
+// FONT SIZES
 $fs-sm: 1.2rem;
 $fs-md: 1.4rem;
 $fs-lg: 1.6rem;
 $fs-xl: 1.8rem;
 
-// Shadows
+// SHADOWS
 $shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, .05);
+$shadow-md: 0 1px 5px 0 rgba(0, 0, 0, .05);
+$shadow-lg: 0 3px 5px 0 rgba(0, 0, 0, .1);
 
-// Transitions
+// TRANSITIONS
 $transition-sm: .2s;
 $transition-md: .3s;
 
+// MIXINS
 @mixin flex($jc: flex-start, $ai: stretch, $fd: row, $g: 0) {
     display: flex;
     justify-content: $jc;

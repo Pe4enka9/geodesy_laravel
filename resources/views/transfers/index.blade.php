@@ -1,48 +1,77 @@
-@use(App\Models\TransferRequests\Enums\TransferRequestStatusEnum, Status)
+@use(App\Models\TransferRequests\Enums\TransferRequestStatusEnum,Status)
+
+@php
+    $statuses = [
+        'pending' => 'pending',
+        'accepted' => 'success',
+        'rejected' => 'decline',
+        'cancelled' => 'cancel',
+];
+@endphp
+
 @extends('theme')
-@section('title', 'Передачи')
+@section('title', 'Передачи оборудования')
 @section('content')
-    <h1>Передачи</h1>
+    <div class="tab">
+        <h2 class="tab__title">Передачи оборудования</h2>
 
-    <a href="{{ route('transfers.create') }}">Добавить</a>
+        <div class="tab__content">
+            @include('components.tab-actions', ['sorts' => Status::cases(), 'placeholder' => 'Поиск по оборудованию...', 'hasBtn' => false])
 
-    <div style="display:flex; flex-direction: column; gap: 10px">
-        @forelse($transfers as $transfer)
-            <div style="background-color: #fff;border: 1px solid #000;">
-                <div>Оборудование: {{ $transfer->equipment->inventory_number }}</div>
-                <div>Отправитель: {{ $transfer->sender->name }}</div>
-                <div>Получатель: {{ $transfer->receiver->name }}</div>
-                <div>Статус: {{ $transfer->status->label() }}</div>
+            <div class="cards cards--column">
+                @foreach($transfers as $transfer)
+                    <div class="card card--no-shadow">
+                        <div class="card__header">
+                            <h3 class="card__title">{{ $transfer->equipment->inventory_number }}</h3>
 
-                @isset($transfer->comment)
-                    <div>Комментарий: {{ $transfer->comment }}</div>
-                @endisset
+                            <div class="status status--{{ $statuses[$transfer->status->value] }}">
+                                {{ $transfer->status->label() }}
+                            </div>
 
-                @isset($transfer->resolved_at)
-                    <div>Решено: {{ $transfer->resolved_at->format('d.m.Y H:i') }}</div>
-                @endisset
+                            <div class="badge badge--pending">Требуется действие</div>
+                        </div>
 
-                @if($transfer->status === Status::PENDING)
-                    @if($transfer->sender_id === auth()->id())
-                        <form action="{{ route('transfers.cancel', $transfer) }}" method="post">
-                            @csrf
-                            <button type="submit">Отменить</button>
-                        </form>
-                    @elseif($transfer->receiver_id === auth()->id())
-                        <form action="{{ route('transfers.accept', $transfer) }}" method="post">
-                            @csrf
-                            <button type="submit">Принять</button>
-                        </form>
+                        <div class="card__body card__body--row">
+                            <div class="card__sender">
+                                <span>От:</span> {{ $transfer->sender->getInitials() }}
+                            </div>
 
-                        <form action="{{ route('transfers.reject', $transfer) }}" method="post">
-                            @csrf
-                            <button type="submit">Отклонить</button>
-                        </form>
-                    @endif
-                @endif
+                            <div class="card__receiver">
+                                <span>Кому:</span> {{ $transfer->receiver->getInitials() }}
+                            </div>
+
+                            <div class="card__created-at">
+                                <span>Создано:</span> {{ $transfer->created_at->format('d.m.Y H:i') }}
+                            </div>
+
+                            @isset($transfer->resolved_at)
+                                <div class="card__resolved-at">
+                                    <span>Решение:</span> {{ $transfer->resolved_at->format('d.m.Y H:i') }}
+                                </div>
+                            @endisset
+                        </div>
+
+                        <div class="card__transfer-comment">{{ $transfer->comment }}</div>
+
+                        <div class="card__actions">
+                            <button type="button" class="btn btn--success btn--sm">
+                                <img src="{{ asset('icons/success-white.svg') }}" alt="" class="btn__icon">
+                                Принять
+                            </button>
+
+                            <button type="button" class="btn btn--outline-danger btn--sm">
+                                <img src="{{ asset('icons/decline.svg') }}" alt="" class="btn__icon">
+                                Отклонить
+                            </button>
+
+                            <button type="button" class="btn btn--outline-disabled btn--sm">
+                                <img src="{{ asset('icons/cancel.svg') }}" alt="" class="btn__icon">
+                                Отменить
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        @empty
-            <h2>Ничего не найдено</h2>
-        @endforelse
+        </div>
     </div>
 @endsection

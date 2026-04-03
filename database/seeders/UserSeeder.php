@@ -14,33 +14,38 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Иван Тихонов',
+                'first_name' => 'Иван',
+                'last_name' => 'Тихонов',
                 'login' => 'admin',
                 'password' => Hash::make('admin'),
                 'role' => UserRoleEnum::OWNER,
             ],
             [
-                'name' => 'Петров Сергей',
+                'first_name' => 'Сергей',
+                'last_name' => 'Петров',
                 'login' => 'petrov',
                 'password' => Hash::make('password'),
                 'role' => UserRoleEnum::ADMIN,
             ],
             [
-                'name' => 'Сидоров Алексей',
+                'first_name' => 'Алексей',
+                'last_name' => 'Сидоров',
                 'login' => 'sidorov',
                 'password' => Hash::make('password'),
                 'role' => UserRoleEnum::EMPLOYEE,
                 'position' => UserPositionEnum::SURVEYOR,
             ],
             [
-                'name' => 'Кузнецова Мария',
+                'first_name' => 'Мария',
+                'last_name' => 'Кузнецова',
                 'login' => 'kuznetsova',
                 'password' => Hash::make('password'),
                 'role' => UserRoleEnum::EMPLOYEE,
                 'position' => UserPositionEnum::SURVEYOR,
             ],
             [
-                'name' => 'Волков Дмитрий',
+                'first_name' => 'Дмитрий',
+                'last_name' => 'Волков',
                 'login' => 'volkov',
                 'password' => Hash::make('password'),
                 'role' => UserRoleEnum::EMPLOYEE,

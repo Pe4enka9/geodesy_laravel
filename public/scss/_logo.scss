@@ -16,4 +16,13 @@
         width: 50%;
         height: 50%;
     }
+
+    &--lg {
+        width: 8rem;
+        height: 8rem;
+
+        -webkit-border-radius: $rounded-xl;
+        -moz-border-radius: $rounded-xl;
+        border-radius: $rounded-xl;
+    }
 }

@@ -1,38 +1,60 @@
+@use(App\Models\Calibrations\Enums\CalibrationStatusEnum, Status)
+
+@php
+    $statuses = [
+        'expired' => 'error',
+        'active' => 'success',
+        'voided' => 'voided',
+];
+@endphp
+
 @extends('theme')
 @section('title', 'Поверки')
 @section('content')
-    <h1>Поверки</h1>
-    <a href="{{ route('calibrations.create') }}">Добавить</a>
+    <div class="tab">
+        <h2 class="tab__title">Поверки</h2>
 
-    <div style="display:flex; flex-direction: column; gap: 10px">
-        @foreach($calibrations as $calibration)
-            <div style="background-color: #fff;border: 1px solid #000;">
-                <div>Оборудование: {{ $calibration->equipment->inventory_number }}</div>
-                <div>Номер сертификата: {{ $calibration->certificate_number }}</div>
+        <div class="tab__content">
+            @include('components.tab-actions', ['sorts' => Status::cases(), 'placeholder' => 'Поиск по номеру сертификата...'])
 
-                <div>
-                    <span>Ссылка на поверку:</span>
+            <div class="table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Оборудование</th>
+                        <th>Сертификат</th>
+                        <th>Получен</th>
+                        <th>Действует до</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($calibrations as $calibration)
+                        <tr>
+                            <td class="table__calibration-td">
+                                <div>{{ $calibration->equipment->inventory_number }}</div>
+                            </td>
 
-                    <a href="{{ $calibration->verification_url }}" target="_blank">
-                        {{ $calibration->verification_url }}
-                    </a>
-                </div>
+                            <td class="table__calibration-td">
+                                <div>{{ $calibration->certificate_number }}</div>
+                            </td>
 
-                <div>Даты: {{ $calibration->issued_at->format('d.m.Y') }}
-                    - {{ $calibration->expires_at->format('d.m.Y') }}</div>
-                <div>Статус: {{ $calibration->status->label() }}</div>
+                            <td>{{ $calibration->issued_at->format('d.m.Y') }}</td>
+                            <td>{{ $calibration->expires_at->format('d.m.Y') }}</td>
 
-                @isset($calibration->created_by)
-                    <div>Добавил: {{ $calibration->createdBy->name }}</div>
-                @endisset
+                            <td>
+                                <div class="status status--{{ $statuses[$calibration->status->value] }}">
+                                    {{ $calibration->status->label() }}
+                                </div>
+                            </td>
 
-                <a href="{{ route('calibrations.edit', $calibration) }}">Редактировать</a>
-                <form action="{{ route('calibrations.destroy', $calibration) }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Удалить</button>
-                </form>
+                            <td>@include('components.actions')</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-        @endforeach
+        </div>
     </div>
 @endsection

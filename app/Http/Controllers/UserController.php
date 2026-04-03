@@ -16,7 +16,8 @@ class UserController extends Controller
     // Все пользователи
     public function index(): View
     {
-        $users = User::exceptMe()->latest()->get();
+//        $users = User::exceptMe()->latest()->get();
+        $users = User::latest()->get();
 
         return view('users.index', ['users' => $users]);
     }
@@ -35,7 +36,8 @@ class UserController extends Controller
     public function store(CreateDto $createDto): RedirectResponse
     {
         User::create([
-            'name' => $createDto->name,
+            'first_name' => $createDto->firstName,
+            'last_name' => $createDto->lastName,
             'login' => $createDto->login,
             'position' => $createDto->position,
             'role' => $createDto->role,
@@ -67,7 +69,8 @@ class UserController extends Controller
     ): RedirectResponse
     {
         $user->update([
-            'name' => $updateDto->name,
+            'first_name' => $updateDto->firstName,
+            'last_name' => $updateDto->lastName,
             'login' => $updateDto->login,
             'position' => $updateDto->position,
             'role' => $updateDto->role,

@@ -34,4 +34,16 @@ class User extends Authenticatable
     {
         return new UserQueryBuilder($query);
     }
+
+    public function getInitials(): string
+    {
+        $initials = mb_substr($this->first_name, 0, 1);
+
+        return "$this->last_name $initials.";
+    }
+
+    public function getFullName(): string
+    {
+        return "$this->last_name $this->first_name";
+    }
 }

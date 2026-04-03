@@ -1,0 +1,19 @@
+@use "variables" as *;
+
+.table {
+    &__equipment-td {
+        @include flex($fd: column, $g: .4rem);
+
+        div:first-child {
+            font-size: $fs-lg;
+            font-weight: 500;
+        }
+
+        div:last-child {
+            color: $color-table-th;
+
+            font-size: $fs-sm;
+            font-weight: 400;
+        }
+    }
+}

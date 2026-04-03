@@ -1,0 +1,63 @@
+@use "variables" as *;
+
+.table {
+    background-color: $color-white;
+
+    -webkit-border-radius: $rounded-lg;
+    -moz-border-radius: $rounded-lg;
+    border-radius: $rounded-lg;
+
+    box-shadow: $shadow-md;
+    overflow: hidden;
+
+    table {
+        width: 100%;
+
+        border-collapse: collapse;
+    }
+
+    tr:not(:last-child) {
+        border-bottom: .1rem solid $color-gray3;
+    }
+
+    thead {
+        tr {
+            background-color: $color-bg;
+
+            border-bottom: .1rem solid $color-gray3;
+        }
+
+        th {
+            color: $color-table-th;
+
+            font-size: $fs-sm;
+            font-weight: 600;
+
+            text-transform: uppercase;
+            text-align: left;
+
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+
+    th, td {
+        padding: 1.5rem 2rem;
+    }
+
+    tr {
+        transition: background-color $transition-sm ease;
+
+        &:hover {
+            background-color: $color-bg;
+        }
+    }
+
+    td {
+        color: $color-disabled;
+
+        font-size: $fs-md;
+        font-weight: 400;
+    }
+}

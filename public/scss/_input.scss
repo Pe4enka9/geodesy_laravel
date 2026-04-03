@@ -1,9 +1,29 @@
 @use "variables" as *;
 
 .input-wrapper {
-    width: 100%;
-
     @include flex($fd: column, $g: .5rem);
+
+    position: relative;
+
+    &--search {
+        &::after {
+            width: 1.6rem;
+            height: 1.6rem;
+
+            background: url("/icons/search.svg") no-repeat center / contain;
+
+            content: '';
+            transform: translateY(-50%);
+
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+        }
+
+        input {
+            padding-left: 2.5em;
+        }
+    }
 }
 
 label {
@@ -11,13 +31,13 @@ label {
     font-weight: 500;
 }
 
-input {
+input, select, option {
     padding: .5em .8em;
 
-    background-color: $color-white;
+    background: transparent;
 
     outline: none;
-    border: .2rem solid $color-border;
+    border: .1rem solid $color-border;
     -webkit-border-radius: $rounded-sm;
     -moz-border-radius: $rounded-sm;
     border-radius: $rounded-sm;

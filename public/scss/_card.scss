@@ -1,0 +1,62 @@
+@use "variables" as *;
+
+.card {
+    padding: 1.5rem;
+
+    @include flex($fd: column, $g: 1.5rem);
+
+    background-color: $color-white;
+
+    border: .1rem solid $color-gray3;
+    -webkit-border-radius: $rounded-lg;
+    -moz-border-radius: $rounded-lg;
+    border-radius: $rounded-lg;
+
+    transition: box-shadow $transition-sm ease;
+
+    &:not(&--no-shadow):hover {
+        box-shadow: $shadow-lg;
+    }
+
+    &__header {
+        @include flex($ai: center, $g: 1.5rem);
+    }
+
+    &__body {
+        @include flex($fd: column, $g: 1rem);
+
+        &--row {
+            flex-direction: row;
+        }
+    }
+
+    &__img-wrapper {
+        width: 4rem;
+        height: 4rem;
+
+        @include flex(center, center);
+
+        background-color: #f0fdfa;
+
+        -webkit-border-radius: $rounded-md;
+        -moz-border-radius: $rounded-md;
+        border-radius: $rounded-md;
+
+        &--purple {
+            background-color: #eef2ff;
+        }
+    }
+
+    &__img {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    &__content {
+        @include flex($fd: column, $g: .5rem);
+    }
+
+    &__actions {
+        @include flex($g: .5rem);
+    }
+}

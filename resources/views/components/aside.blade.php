@@ -17,7 +17,7 @@
             </div>
 
             <div class="aside__user-info">
-                <div class="aside__username">{{ auth()->user()->name }}</div>
+                <div class="aside__username">{{ auth()->user()->getInitials() }}</div>
                 <div class="aside__user-role">{{ auth()->user()->role->label() }}</div>
             </div>
         </div>

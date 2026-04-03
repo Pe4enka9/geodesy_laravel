@@ -1,27 +1,32 @@
 @extends('theme')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+@endpush
+
 @section('title', 'Вход в систему')
 @section('content')
-    <div class="login-form">
-        <div class="login-form__wrapper">
-            <div class="login-form__title-wrapper">
-                @include('components.logo', ['class' => 'login-form__logo'])
+    <div class="login">
+        <div class="login__wrapper">
+            <div class="login__title-wrapper">
+                @include('components.logo', ['class' => 'logo--lg'])
 
-                <h1 class="login-form__title">ГеоКонтроль</h1>
-                <div class="login-form__description">Система учёта геодезического оборудования</div>
+                <h1 class="login__title">ГеоКонтроль</h1>
+                <div class="login__description">Система учёта геодезического оборудования</div>
             </div>
 
-            <form action="{{ route('login') }}" method="post" class="login-form__form">
+            <form action="{{ route('login') }}" method="post" class="login__form">
                 @csrf
 
-                <div class="login-form__form-title-wrapper">
-                    <h2 class="login-form__form-title">Вход в систему</h2>
-                    <div class="login-form__form-subtitle">Введите ваши учётные данные</div>
+                <div class="login__form-title-wrapper">
+                    <h2 class="login__form-title">Вход в систему</h2>
+                    <div class="login__form-subtitle">Введите ваши учётные данные</div>
                 </div>
 
                 <div class="input-wrapper">
                     <label for="login">Логин</label>
                     <input type="text" name="login" id="login" placeholder="Введите ваш логин"
-                           value="{{ old('login') }}" @class(['invalid' => $errors->has('login')])>
+                           value="{{ old('login') }}" @class(['invalid' => $errors->has('login') || $errors->has('auth')])>
 
                     @error('login')
                     <div class="error">{{ $message }}</div>
@@ -31,21 +36,21 @@
                 <div class="input-wrapper">
                     <label for="password">Пароль</label>
                     <input type="password" name="password" id="password"
-                           placeholder="Введите ваш пароль" @class(['invalid' => $errors->has('password')])>
+                           placeholder="Введите ваш пароль" @class(['invalid' => $errors->has('password') || $errors->has('auth')])>
 
                     @error('password')
                     <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <button type="submit" class="login-form__btn btn btn--primary">Войти</button>
+                <button type="submit" class="login__btn btn btn--primary">Войти</button>
 
                 @error('auth')
                 <div class="error">{{ $message }}</div>
                 @enderror
             </form>
 
-            <div class="login-form__copyright">© 2026 ГеоКонтроль. Все права защищены.</div>
+            <div class="login__copyright">© 2026 ГеоКонтроль. Все права защищены.</div>
         </div>
     </div>
 @endsection

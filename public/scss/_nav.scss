@@ -37,20 +37,30 @@
                 top: 50%;
                 right: .8rem;
             }
+
+            .nav__link-icon {
+                stroke: $color-link-border;
+            }
         }
 
-        &:hover {
+        &:hover:not(&--active) {
             background-color: rgba(255, 255, 255, .05);
         }
 
-        &:hover &-text {
+        &:hover:not(&--active) &-text {
             color: $color-white;
+        }
+
+        &:hover:not(&--active) &-icon {
+            stroke: $color-white;
         }
     }
 
     &__link-icon {
         width: 2rem;
         height: 2rem;
+
+        transition: stroke $transition-md ease;
     }
 
     &__link-text {

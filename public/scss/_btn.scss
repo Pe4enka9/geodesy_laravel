@@ -5,6 +5,10 @@
 
     padding: .7em 1em;
 
+    @include flex($jc: center, $ai: center, $g: .8rem);
+
+    background-color: transparent;
+
     outline: none;
     border: none;
     -webkit-border-radius: $rounded-sm;
@@ -21,12 +25,52 @@
         transform: scale(.98);
     }
 
+    &__icon {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+    &--sm {
+        padding: .5em .8em;
+    }
+
     &--primary {
         color: $color-white;
         background-color: $color-primary;
 
         &:hover {
             background-color: $color-primary-hover;
+        }
+    }
+
+    &--success {
+        color: $color-white;
+        background-color: $color-success;
+
+        &:hover {
+            background-color: $color-success-hover;
+        }
+    }
+
+    &--outline-danger {
+        color: $color-danger;
+        background-color: $color-white;
+
+        border: .1rem solid $color-border-danger;
+
+        &:hover {
+            background-color: $color-danger-hover;
+        }
+    }
+
+    &--outline-disabled {
+        color: $color-disabled;
+        background-color: $color-white;
+
+        border: .1rem solid $color-border-disabled;
+
+        &:hover {
+            background-color: $color-disabled-hover;
         }
     }
 }

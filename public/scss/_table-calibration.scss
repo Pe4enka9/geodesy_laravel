@@ -1,0 +1,8 @@
+@use "variables" as *;
+
+.table {
+    &__calibration-td div {
+        font-size: $fs-lg;
+        font-weight: 500;
+    }
+}

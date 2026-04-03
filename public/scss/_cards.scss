@@ -1,0 +1,11 @@
+@use "variables" as *;
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-gap: 1.5rem;
+
+    &--column {
+        @include flex($fd: column, $g: 1.5rem);
+    }
+}

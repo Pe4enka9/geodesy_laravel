@@ -16,7 +16,8 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 class CreateDto extends Data
 {
     public function __construct(
-        public string            $name,
+        public string            $firstName,
+        public string            $lastName,
         #[Unique(User::class, 'login')]
         public string            $login,
         public ?UserPositionEnum $position,

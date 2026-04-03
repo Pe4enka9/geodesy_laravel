@@ -1,0 +1,62 @@
+@use "variables" as *;
+
+.tab-actions {
+    @include flex($g: .7rem);
+
+    &__form {
+        width: 100%;
+
+        @include flex(space-between, center);
+    }
+
+    &__sort-wrapper {
+        padding: .3rem;
+
+        @include flex($g: .7rem);
+
+        background-color: $color-bg-secondary;
+
+        -webkit-border-radius: $rounded-md;
+        -moz-border-radius: $rounded-md;
+        border-radius: $rounded-md;
+    }
+
+    &__sort {
+        padding: .5em .7em;
+
+        background-color: transparent;
+
+        outline: none;
+        border: none;
+        -webkit-border-radius: $rounded-sm;
+        -moz-border-radius: $rounded-sm;
+        border-radius: $rounded-sm;
+
+        font-size: $fs-sm;
+        font-weight: 500;
+
+        cursor: pointer;
+
+        &--active {
+            background-color: $color-white;
+
+            box-shadow: $shadow-sm;
+        }
+    }
+
+    &__search-wrapper {
+        height: 100%;
+
+        &--w100 {
+            width: 100%;
+        }
+    }
+
+    &__search {
+        height: 100%;
+    }
+
+    &__add-btn {
+        flex-shrink: 0;
+    }
+}

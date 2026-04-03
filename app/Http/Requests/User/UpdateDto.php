@@ -17,7 +17,8 @@ use Spatie\LaravelData\Support\Validation\References\RouteParameterReference;
 class UpdateDto extends Data
 {
     public function __construct(
-        public string            $name,
+        public string            $firstName,
+        public string            $lastName,
         #[Unique(User::class, 'login', ignore: new RouteParameterReference('user', 'id'))]
         public string            $login,
         public ?UserPositionEnum $position,

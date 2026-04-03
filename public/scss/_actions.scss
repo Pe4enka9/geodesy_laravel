@@ -1,0 +1,105 @@
+@use "variables" as *;
+
+.actions {
+    position: relative;
+
+    &__btn {
+        margin-left: auto;
+        padding: .8rem 1rem;
+
+        background: none;
+
+        @include flex(center, center);
+
+        outline: none;
+        border: none;
+        -webkit-border-radius: $rounded-sm;
+        -moz-border-radius: $rounded-sm;
+        border-radius: $rounded-sm;
+
+        cursor: pointer;
+        transition: background-color $transition-sm ease;
+
+        &:hover {
+            background-color: $color-border-secondary;
+
+            .actions__btn-icon {
+                stroke: $color-white;
+            }
+        }
+
+        &-icon {
+            width: 1.6rem;
+            height: 1.6rem;
+
+            transition: stroke $transition-sm ease;
+        }
+    }
+
+    &__wrapper {
+        width: fit-content;
+
+        padding: .4rem;
+
+        @include flex($fd: column);
+
+        background-color: $color-white;
+
+        border: .1rem solid $color-border;
+        -webkit-border-radius: $rounded-sm;
+        -moz-border-radius: $rounded-sm;
+        border-radius: $rounded-sm;
+
+        box-shadow: $shadow-md;
+        transform: translate(5%, 90%) scale(.9);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity $transition-sm ease, transform $transition-sm ease;
+        z-index: 1;
+
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        &--active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(0, 100%) scale(1);
+        }
+    }
+
+    &__item {
+        width: 100%;
+
+        padding: .7rem;
+
+        justify-content: flex-start;
+        gap: 1.5rem;
+
+        -webkit-border-radius: .6rem;
+        -moz-border-radius: .6rem;
+        border-radius: .6rem;
+
+        font-size: $fs-md;
+        font-weight: 400;
+
+        transition: background-color $transition-sm ease, color $transition-sm ease;
+
+        &:hover {
+            color: $color-white;
+            background-color: $color-border-secondary;
+
+            .actions__icon {
+                stroke: $color-white;
+            }
+        }
+
+        &--delete {
+            color: $color-danger;
+        }
+    }
+
+    &__icon {
+        transition: stroke $transition-sm ease;
+    }
+}
