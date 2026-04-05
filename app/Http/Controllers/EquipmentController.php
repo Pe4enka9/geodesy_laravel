@@ -12,7 +12,6 @@ use Illuminate\View\View;
 
 class EquipmentController extends Controller
 {
-
     // Всё оборудование
     public function index(): View
     {

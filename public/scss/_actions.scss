@@ -1,6 +1,8 @@
 @use "variables" as *;
 
 .actions {
+    margin-left: auto;
+
     position: relative;
 
     &__btn {

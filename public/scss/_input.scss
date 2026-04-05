@@ -31,8 +31,8 @@ label {
     font-weight: 500;
 }
 
-input, select, option {
-    padding: .5em .8em;
+input, textarea, select, option {
+    padding: .6em .8em;
 
     background: transparent;
 
@@ -54,4 +54,8 @@ input, select, option {
     &.invalid {
         border-color: $color-red;
     }
+}
+
+textarea {
+    resize: vertical;
 }

@@ -31,4 +31,24 @@ class TransferRequest extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function isReceiver(): bool
+    {
+        return $this->receiver_id === auth()->id();
+    }
+
+    public function isSender(): bool
+    {
+        return $this->sender_id === auth()->id();
+    }
+
+    public function isPending(): bool
+    {
+        return $this->status === TransferRequestStatusEnum::PENDING;
+    }
+
+    public function canAction(): bool
+    {
+        return ($this->isSender() || $this->isReceiver()) && $this->isPending();
+    }
 }

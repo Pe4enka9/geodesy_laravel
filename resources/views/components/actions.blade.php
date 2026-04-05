@@ -24,7 +24,7 @@
             Просмотр
         </button>
 
-        <button type="button" class="actions__item btn">
+        <button type="button" class="actions__item actions__edit btn" data-id="{{ $item->id }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                  stroke="#65758b"
                  class="actions__icon btn__icon" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

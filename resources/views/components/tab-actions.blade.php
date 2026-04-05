@@ -1,6 +1,6 @@
 @props(['hasBtn' => true])
 
-<div class="tab-actions">
+<div class="tab-actions" x-data>
     <form class="tab-actions__form">
         @isset($sorts)
             <div class="tab-actions__sort-wrapper">
@@ -18,7 +18,7 @@
     </form>
 
     @if($hasBtn)
-        <button type="button" class="tab-actions__add-btn btn btn--primary">
+        <button type="button" class="tab-actions__add-btn btn btn--primary" @click="$dispatch('open-create')">
             <img src="{{ asset('icons/plus.svg') }}" alt="" class="btn__icon">
             {{ $btn ?? 'Добавить' }}
         </button>

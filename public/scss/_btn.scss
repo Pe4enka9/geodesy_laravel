@@ -7,7 +7,7 @@
 
     @include flex($jc: center, $ai: center, $g: .8rem);
 
-    background-color: transparent;
+    background: none;
 
     outline: none;
     border: none;
@@ -40,6 +40,17 @@
 
         &:hover {
             background-color: $color-primary-hover;
+        }
+    }
+
+    &--outline-primary {
+        border: .1rem solid $color-border;
+
+        box-shadow: $shadow-sm;
+
+        &:hover {
+            color: $color-white;
+            background-color: $color-border-secondary;
         }
     }
 
