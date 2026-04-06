@@ -4,26 +4,31 @@ namespace App\Livewire\Transfers;
 
 use App\Models\TransferRequests\Enums\TransferRequestStatusEnum;
 use App\Models\TransferRequests\TransferRequest;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Index extends Component
 {
+    public string $search = '';
+
     #[On('transfer-updated')]
     public function refreshList(): void
     {
     }
 
-    public function delete(TransferRequest $transfer): void
+    public function delete(int $id): void
     {
-        $transfer->delete();
+        TransferRequest::find($id)->delete();
         $this->dispatch('transfer-updated');
     }
 
     // Принять запрос
-    public function accept(TransferRequest $transfer): void
+    public function accept(int $id): void
     {
+        $transfer = TransferRequest::find($id);
+
         if (!$transfer->isReceiver()) return;
 
         $transfer->equipment->update(['current_holder_id' => auth()->id()]);
@@ -37,8 +42,10 @@ class Index extends Component
     }
 
     // Отклонить запрос
-    public function reject(TransferRequest $transfer): void
+    public function reject(int $id): void
     {
+        $transfer = TransferRequest::find($id);
+
         if (!$transfer->isReceiver()) return;
 
         $transfer->update([
@@ -50,8 +57,10 @@ class Index extends Component
     }
 
     // Отменить запрос
-    public function cancel(TransferRequest $transfer): void
+    public function cancel(int $id): void
     {
+        $transfer = TransferRequest::find($id);
+
         if (!$transfer->isSender()) return;
 
         $transfer->update([
@@ -64,7 +73,14 @@ class Index extends Component
 
     public function render(): View
     {
-        $transfers = TransferRequest::latest()->get();
+        $transfers = TransferRequest::with('equipment')
+            ->when($this->search, function (Builder $query) {
+                $query->whereHas('equipment', function (Builder $q) {
+                    $q->where('inventory_number', 'like', "%$this->search%");
+                });
+            })
+            ->latest()
+            ->get();
 
         $statuses = [
             'pending' => 'pending',

@@ -3,26 +3,33 @@
 namespace App\Livewire\Calibrations;
 
 use App\Models\Calibrations\Calibration;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Index extends Component
 {
+    public string $search = '';
+
     #[On('calibration-updated')]
     public function refreshList(): void
     {
     }
 
-    public function delete(Calibration $calibration): void
+    public function delete(int $id): void
     {
-        $calibration->delete();
+        Calibration::find($id)->delete();
         $this->dispatch('calibration-updated');
     }
 
     public function render(): View
     {
-        $calibrations = Calibration::latest()->get();
+        $calibrations = Calibration::when($this->search, function (Builder $query) {
+            $query->where('certificate_number', 'like', "%$this->search%");
+        })
+            ->latest()
+            ->get();
 
         $statuses = [
             'expired' => 'error',

@@ -20,10 +20,11 @@ class Edit extends Component
         ];
     }
 
-    public function open(EquipmentModel $item): void
+    public function open(int $id): void
     {
-        $this->model = $item;
-        $this->name = $item->name;
+        $model = EquipmentModel::find($id);
+        $this->model = $model;
+        $this->name = $model->name;
     }
 
     public function save(): void

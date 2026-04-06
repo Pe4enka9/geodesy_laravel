@@ -12,8 +12,8 @@
         @endisset
 
         <div @class(['tab-actions__search-wrapper', 'input-wrapper', 'input-wrapper--search', 'tab-actions__search-wrapper--w100' => !isset($sorts)])>
-            <input type="search" name="search" id="search" class="tab-actions__search"
-                   placeholder="{{ $placeholder ?? 'Поиск...' }}">
+            <input type="search" class="tab-actions__search" placeholder="{{ $placeholder ?? 'Поиск...' }}"
+                   wire:model.live.debounce.500ms="search">
         </div>
     </form>
 

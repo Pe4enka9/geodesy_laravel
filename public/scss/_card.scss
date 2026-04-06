@@ -59,4 +59,79 @@
     &__actions {
         @include flex($g: .5rem);
     }
+
+    &__empty {
+        margin-top: 2rem;
+
+        @include flex($ai: center, $fd: column, $g: 1rem);
+    }
+
+    &__empty-icon {
+        width: 4.8rem;
+        height: 4.8rem;
+    }
+
+    &__empty-text {
+        color: $color-table-th;
+
+        font-size: $fs-lg;
+    }
+
+    &__title {
+        font-size: $fs-lg;
+        font-weight: 500;
+    }
+
+    &__updated-at {
+        color: $color-table-th;
+
+        font-size: $fs-sm;
+        font-weight: 400;
+
+        &--light {
+            color: #9ca3af;
+        }
+    }
+
+    &__code {
+        color: $color-table-th;
+
+        font-size: $fs-sm;
+        font-weight: 400;
+    }
+
+    &__description {
+        color: $color-disabled;
+
+        font-size: $fs-md;
+        font-weight: 400;
+    }
+
+    &__sender, &__receiver, &__created-at, &__resolved-at {
+        color: $color-disabled;
+
+        font-size: $fs-md;
+        font-weight: 400;
+
+        span {
+            color: #9ca3af;
+
+            font-size: inherit;
+            font-weight: inherit;
+        }
+    }
+
+    &__transfer-comment {
+        padding: .5em .7em;
+
+        color: $color-disabled;
+        background-color: $color-bg;
+
+        -webkit-border-radius: .4rem;
+        -moz-border-radius: .4rem;
+        border-radius: .4rem;
+
+        font-size: $fs-md;
+        font-weight: 400;
+    }
 }

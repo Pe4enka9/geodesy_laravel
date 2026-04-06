@@ -1,39 +1,35 @@
-<div class="table">
-    <table>
-        <thead>
-        <tr>
-            <th>Инв. номер</th>
-            <th>Тип</th>
-            <th>Модель</th>
-            <th>Статус</th>
-            <th>Держатель</th>
-            <th>Действия</th>
-        </tr>
-        </thead>
-        <tbody>
+@use(App\Models\Equipments\Enums\EquipmentStatusEnum,Status)
+
+<x-tab-content>
+    @include('components.tab-actions', ['sorts' => Status::cases(), 'placeholder' => 'Поиск по номеру...'])
+
+    <x-tables.table
+        :headers="['Инв. номер', 'Тип', 'Модель', 'Статус', 'Держатель']"
+        :items="$equipments"
+        empty-text="Оборудование не найдено"
+    >
         @foreach($equipments as $equipment)
-            <tr wire:key="{{ $equipment->id }}">
-                <td class="table__equipment-td">
+            <x-tables.tr :key="$equipment->id">
+                <x-tables.td mod="equipments">
                     <div>{{ $equipment->inventory_number }}</div>
                     <div>{{ $equipment->serial_number ?? '' }}</div>
-                </td>
+                </x-tables.td>
 
-                <td>{{ $equipment->type->name }}</td>
-                <td>{{ $equipment->model->name ?? '-' }}</td>
-                <td>
+                <x-tables.td>{{ $equipment->type->name }}</x-tables.td>
+                <x-tables.td>{{ $equipment->model->name ?? '-' }}</x-tables.td>
+
+                <x-tables.td>
                     <div class="status status--{{ $statuses[$equipment->status->value] }}">
                         {{ $equipment->status->label() }}
                     </div>
-                </td>
-                <td>{{ $equipment->currentHolder?->getInitials() ?? '-' }}</td>
+                </x-tables.td>
 
-                <td>
-                    <livewire:actions :item="$equipment">
-                        @include('components.delete-btn', ['item' => $equipment])
-                    </livewire:actions>
-                </td>
-            </tr>
+                <x-tables.td>{{ $equipment->currentHolder?->getInitials() ?? '-' }}</x-tables.td>
+
+                <x-tables.td>
+                    <x-actions :id="$equipment->id"/>
+                </x-tables.td>
+            </x-tables.tr>
         @endforeach
-        </tbody>
-    </table>
-</div>
+    </x-tables.table>
+</x-tab-content>

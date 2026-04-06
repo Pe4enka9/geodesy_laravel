@@ -11,16 +11,7 @@
     @include('components.nav')
 
     <div class="aside__actions">
-        <div class="aside__user">
-            <div class="aside__user-img-wrapper">
-                <img src="" alt="" class="aside__user-img">
-            </div>
-
-            <div class="aside__user-info">
-                <div class="aside__username">{{ auth()->user()->getInitials() }}</div>
-                <div class="aside__user-role">{{ auth()->user()->role->label() }}</div>
-            </div>
-        </div>
+        <x-user :user="auth()->user()" mod="padding" initials role/>
 
         <form action="{{ route('logout') }}" method="post" class="aside__exit-form">
             @csrf

@@ -1,42 +1,30 @@
-<div class="table">
-    <table>
-        <thead>
-        <tr>
-            <th>Оборудование</th>
-            <th>Сертификат</th>
-            <th>Получен</th>
-            <th>Действует до</th>
-            <th>Статус</th>
-            <th>Действия</th>
-        </tr>
-        </thead>
-        <tbody>
+@use(App\Models\Calibrations\Enums\CalibrationStatusEnum,Status)
+
+<x-tab-content>
+    @include('components.tab-actions', ['sorts' => Status::cases(), 'placeholder' => 'Поиск по номеру сертификата...'])
+
+    <x-tables.table
+        :headers="['Оборудование', 'Сертификат', 'Получен', 'Действует до', 'Статус']"
+        :items="$calibrations"
+        empty-text="Поверки не найдены"
+    >
         @foreach($calibrations as $calibration)
-            <tr wire:key="{{ $calibration->id }}">
-                <td class="table__calibration-td">
-                    <div>{{ $calibration->equipment->inventory_number }}</div>
-                </td>
+            <x-tables.tr :key="$calibration->id">
+                <x-tables.td mod="calibrations">{{ $calibration->equipment->inventory_number }}</x-tables.td>
+                <x-tables.td mod="calibrations">{{ $calibration->certificate_number }}</x-tables.td>
+                <x-tables.td>{{ $calibration->issued_at->format('d.m.Y') }}</x-tables.td>
+                <x-tables.td>{{ $calibration->expires_at->format('d.m.Y') }}</x-tables.td>
 
-                <td class="table__calibration-td">
-                    <div>{{ $calibration->certificate_number }}</div>
-                </td>
-
-                <td>{{ $calibration->issued_at->format('d.m.Y') }}</td>
-                <td>{{ $calibration->expires_at->format('d.m.Y') }}</td>
-
-                <td>
+                <x-tables.td>
                     <div class="status status--{{ $statuses[$calibration->status->value] }}">
                         {{ $calibration->status->label() }}
                     </div>
-                </td>
+                </x-tables.td>
 
-                <td>
-                    <livewire:actions :item="$calibration">
-                        @include('components.delete-btn', ['item' => $calibration])
-                    </livewire:actions>
-                </td>
-            </tr>
+                <x-tables.td>
+                    <x-actions :id="$calibration->id"/>
+                </x-tables.td>
+            </x-tables.tr>
         @endforeach
-        </tbody>
-    </table>
-</div>
+    </x-tables.table>
+</x-tab-content>

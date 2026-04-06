@@ -43,14 +43,15 @@ class Edit extends Component
         $this->models = EquipmentModel::select('id', 'name')->get();
     }
 
-    public function open(Equipment $item): void
+    public function open(int $id): void
     {
-        $this->equipment = $item;
-        $this->type = $item->type_id;
-        $this->inventory_number = $item->inventory_number;
-        $this->serial_number = $item->serial_number;
-        $this->model = $item->model_id;
-        $this->status = $item->status;
+        $equipment = Equipment::find($id);
+        $this->equipment = $equipment;
+        $this->type = $equipment->type_id;
+        $this->inventory_number = $equipment->inventory_number;
+        $this->serial_number = $equipment->serial_number;
+        $this->model = $equipment->model_id;
+        $this->status = $equipment->status;
     }
 
     public function save(): void

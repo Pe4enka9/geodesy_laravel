@@ -1,28 +1,29 @@
-<div class="cards">
-    @foreach($types as $type)
-        <div class="card" wire:key="{{ $type->id }}">
-            <div class="card__header">
-                <div class="card__img-wrapper card__img-wrapper--purple">
-                    <img src="{{ asset('icons/types-purple.svg') }}" alt="" class="card__img">
-                </div>
+<x-tab-content>
+    @include('components.tab-actions', ['placeholder' => 'Поиск по названию, коду...', 'btn' => 'Добавить тип'])
 
-                <div class="card__content">
+    <x-cards.cards
+        :items="$types"
+        :empty-icon="asset('icons/types-gray.svg')"
+        empty-text="Типы не найдены"
+    >
+        @foreach($types as $type)
+            <x-cards.card
+                :key="$type->id"
+                :item="$type"
+                :img="asset('icons/types-purple.svg')"
+            >
+                <x-slot name="content">
                     <h3 class="card__title">{{ $type->name }}</h3>
                     <div class="card__code">Код: {{ $type->code }}</div>
-                </div>
+                </x-slot>
 
-                <livewire:actions :item="$type">
-                    @include('components.delete-btn', ['item' => $type])
-                </livewire:actions>
-            </div>
-
-            <div class="card__body">
-                <div class="card__description">{{ $type->description }}</div>
-
-                <div class="card__updated-at card__updated-at--light">
-                    Обновлено: {{ $type->updated_at->format('d.m.Y') }}
-                </div>
-            </div>
-        </div>
-    @endforeach
-</div>
+                <x-slot name="body">
+                    <div class="card__description">{{ $type->description }}</div>
+                    <div class="card__updated-at card__updated-at--light">
+                        Обновлено: {{ $type->updated_at->format('d.m.Y') }}
+                    </div>
+                </x-slot>
+            </x-cards.card>
+        @endforeach
+    </x-cards.cards>
+</x-tab-content>

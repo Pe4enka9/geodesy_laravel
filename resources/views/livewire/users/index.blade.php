@@ -1,47 +1,32 @@
-<div class="table">
-    <table>
-        <thead>
-        <tr>
-            <th>Пользователь</th>
-            <th>Логин</th>
-            <th>Должность</th>
-            <th>Роль</th>
-            <th>Действия</th>
-        </tr>
-        </thead>
-        <tbody>
+@use(App\Models\Users\Enums\UserRoleEnum, Role)
+
+<x-tab-content>
+    @include('components.tab-actions', ['sorts' => Role::cases(), 'placeholder' => 'Поиск по ФИО, логину...'])
+
+    <x-tables.table
+        :headers="['Пользователь', 'Логин', 'Должность', 'Роль']"
+        :items="$users"
+        empty-text="Пользователи не найдены"
+    >
         @foreach($users as $user)
-            <tr wire:key="{{ $user->id }}">
-                <td class="table__user-td">
-                    <div class="table__user-img-wrapper">
-                        <img src="" alt="" class="table__user-img">
-                    </div>
+            <x-tables.tr :key="$user->id">
+                <x-tables.td mod="users">
+                    <x-user :user="$user"/>
+                </x-tables.td>
 
-                    <div class="table__user-info">
-                        <div class="table__username">{{ $user->getFullName() }}</div>
+                <x-tables.td>{{ $user->login }}</x-tables.td>
+                <x-tables.td>{{ $user->position?->label() ?? '-' }}</x-tables.td>
 
-                        @if($user->id === auth()->id())
-                            <div class="table__user-me">(Вы)</div>
-                        @endif
-                    </div>
-                </td>
-
-                <td>{{ $user->login }}</td>
-                <td>{{ $user->position?->label() ?? '-' }}</td>
-
-                <td>
+                <x-tables.td>
                     <div class="badge badge--{{ $user->role->value }}">
                         {{ $user->role->label() }}
                     </div>
-                </td>
+                </x-tables.td>
 
-                <td>
-                    <livewire:actions :item="$user">
-                        @include('components.delete-btn', ['item' => $user])
-                    </livewire:actions>
-                </td>
-            </tr>
+                <x-tables.td>
+                    <x-actions :id="$user->id"/>
+                </x-tables.td>
+            </x-tables.tr>
         @endforeach
-        </tbody>
-    </table>
-</div>
+    </x-tables.table>
+</x-tab-content>

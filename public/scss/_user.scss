@@ -1,0 +1,51 @@
+@use "variables" as *;
+
+.user {
+    @include flex($ai: center, $g: 1rem);
+
+    background-color: rgba(255, 255, 255, .05);
+
+    -webkit-border-radius: $rounded-md;
+    -moz-border-radius: $rounded-md;
+    border-radius: $rounded-md;
+
+    &--padding {
+        padding: 1rem;
+    }
+
+    &__img-wrapper {
+        width: 3.6rem;
+        height: 3.6rem;
+
+        background: linear-gradient(to bottom right, #2dd4bf, #0d9488);
+
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+
+    &__info {
+        @include flex($fd: column, $g: .2rem);
+    }
+
+    &__name {
+        color: $color-white;
+
+        font-size: $fs-md;
+        font-weight: 500;
+    }
+
+    &__role {
+        color: $color-text-secondary;
+
+        font-size: $fs-sm;
+        font-weight: 400;
+    }
+
+    &__me {
+        color: $color-primary;
+
+        font-size: $fs-sm;
+        font-weight: 400;
+    }
+}

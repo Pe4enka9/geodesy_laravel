@@ -1,20 +1,22 @@
-<div class="cards">
-    @foreach($models as $model)
-        <div class="card" wire:key="{{ $model->id }}">
-            <div class="card__header">
-                <div class="card__img-wrapper">
-                    <img src="{{ asset('icons/models-primary.svg') }}" alt="" class="card__img">
-                </div>
+<x-tab-content>
+    @include('components.tab-actions', ['placeholder' => 'Поиск по названию...', 'btn' => 'Добавить модель'])
 
-                <div class="card__content">
+    <x-cards.cards
+        :items="$models"
+        :empty-icon="asset('icons/models-gray.svg')"
+        empty-text="Модели не найдены"
+    >
+        @foreach($models as $model)
+            <x-cards.card
+                :key="$model->id"
+                :item="$model"
+                :img="asset('icons/models-primary.svg')"
+            >
+                <x-slot name="content">
                     <h3 class="card__title">{{ $model->name }}</h3>
                     <div class="card__updated-at">Обновлено: {{ $model->updated_at->format('d.m.Y') }}</div>
-                </div>
-
-                <livewire:actions :item="$model">
-                    @include('components.delete-btn', ['item' => $model])
-                </livewire:actions>
-            </div>
-        </div>
-    @endforeach
-</div>
+                </x-slot>
+            </x-cards.card>
+        @endforeach
+    </x-cards.cards>
+</x-tab-content>

@@ -1,5 +1,12 @@
-<div class="actions">
-    <button type="button" class="actions__btn">
+@props(['id'])
+
+<div
+    class="actions"
+    x-data="{ open: false }"
+    x-effect="document.body.style.pointerEvents = open ? 'none' : ''"
+    @click.outside="open = false"
+>
+    <button type="button" class="actions__btn" @click="open = !open">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
              fill="none"
              stroke="#0f1729" class="actions__btn-icon" stroke-width="2"
@@ -11,8 +18,8 @@
         </svg>
     </button>
 
-    <div class="actions__wrapper">
-        <button type="button" class="actions__item btn">
+    <div class="actions__wrapper" :class="{ 'actions__wrapper--active' : open }">
+        <button type="button" class="actions__item btn" @click="open = false">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                  stroke="#65758b"
                  class="actions__icon btn__icon" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -24,7 +31,8 @@
             Просмотр
         </button>
 
-        <button type="button" class="actions__item actions__edit btn" data-id="{{ $item->id }}">
+        <button type="button" class="actions__item btn"
+                @click="open = false; $dispatch('open-edit', { id: {{ $id }} })">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                  stroke="#65758b"
                  class="actions__icon btn__icon" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -36,7 +44,7 @@
             Редактировать
         </button>
 
-        <button type="button" class="actions__item btn">
+        <button type="button" class="actions__item btn" @click="open = false">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                  stroke="#65758b"
                  class="actions__icon btn__icon" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -49,22 +57,19 @@
             Передать
         </button>
 
-        <form action="{{ route("$route.destroy", $item) }}" method="post">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="actions__item actions__item--delete btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                     stroke="#65758b"
-                     class="actions__icon btn__icon" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                     aria-hidden="true">
-                    <path d="M10 11v6"/>
-                    <path d="M14 11v6"/>
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
-                    <path d="M3 6h18"/>
-                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                </svg>
-                Удалить
-            </button>
-        </form>
+        <button type="submit" class="actions__item actions__item--delete btn" @click="open = false"
+                wire:click="delete({{ $id }})">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="#65758b"
+                 class="actions__icon btn__icon" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+                <path d="M10 11v6"/>
+                <path d="M14 11v6"/>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+                <path d="M3 6h18"/>
+                <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            </svg>
+            Удалить
+        </button>
     </div>
 </div>

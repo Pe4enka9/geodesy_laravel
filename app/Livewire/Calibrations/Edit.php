@@ -34,14 +34,15 @@ class Edit extends Component
         ];
     }
 
-    public function open(Calibration $item): void
+    public function open(int $id): void
     {
-        $this->calibration = $item;
-        $this->equipment = $item->equipment_id;
-        $this->certificate_number = $item->certificate_number;
-        $this->verification_url = $item->verification_url;
-        $this->issued_at = $item->issued_at->format('Y-m-d');
-        $this->expires_at = $item->expires_at->format('Y-m-d');
+        $calibration = Calibration::find($id);
+        $this->calibration = $calibration;
+        $this->equipment = $calibration->equipment_id;
+        $this->certificate_number = $calibration->certificate_number;
+        $this->verification_url = $calibration->verification_url;
+        $this->issued_at = $calibration->issued_at->format('Y-m-d');
+        $this->expires_at = $calibration->expires_at->format('Y-m-d');
     }
 
     public function save(): void

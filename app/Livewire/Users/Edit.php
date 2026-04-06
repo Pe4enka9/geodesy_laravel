@@ -36,14 +36,15 @@ class Edit extends Component
         ];
     }
 
-    public function open(User $item): void
+    public function open(int $id): void
     {
-        $this->user = $item;
-        $this->last_name = $item->last_name;
-        $this->first_name = $item->first_name;
-        $this->login = $item->login;
-        $this->position = $item->position;
-        $this->role = $item->role;
+        $user = User::find($id);
+        $this->user = $user;
+        $this->last_name = $user->last_name;
+        $this->first_name = $user->first_name;
+        $this->login = $user->login;
+        $this->position = $user->position;
+        $this->role = $user->role;
     }
 
     public function save(ChangePasswordAction $changePasswordAction): void

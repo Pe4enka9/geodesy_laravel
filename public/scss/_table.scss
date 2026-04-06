@@ -1,6 +1,6 @@
 @use "variables" as *;
 
-.table {
+.table-wrapper {
     background-color: $color-white;
 
     -webkit-border-radius: $rounded-lg;
@@ -10,24 +10,20 @@
     box-shadow: $shadow-md;
     overflow: hidden;
 
-    table {
+    &__table {
         width: 100%;
 
         border-collapse: collapse;
     }
 
-    tr:not(:last-child) {
-        border-bottom: .1rem solid $color-gray3;
-    }
-
-    thead {
-        tr {
+    &__thead {
+        .table-wrapper__tr {
             background-color: $color-bg;
 
             border-bottom: .1rem solid $color-gray3;
         }
 
-        th {
+        .table-wrapper__th {
             color: $color-table-th;
 
             font-size: $fs-sm;
@@ -42,22 +38,65 @@
         }
     }
 
-    th, td {
-        padding: 1.5rem 2rem;
-    }
-
-    tr {
+    &__tr {
         transition: background-color $transition-sm ease;
 
         &:hover {
             background-color: $color-bg;
         }
+
+        &:not(:last-child) {
+            border-bottom: .1rem solid $color-gray3;
+        }
     }
 
-    td {
+    &__th, &__td {
+        padding: 1.5rem 2rem;
+    }
+
+    &__td {
         color: $color-disabled;
 
         font-size: $fs-md;
         font-weight: 400;
+
+        &--equipments {
+            @include flex($fd: column, $g: .4rem);
+
+            div:first-child {
+                font-size: $fs-lg;
+                font-weight: 500;
+            }
+
+            div:last-child {
+                color: $color-table-th;
+
+                font-size: $fs-sm;
+                font-weight: 400;
+            }
+        }
+
+        &--users .user__name {
+            color: #111827;
+
+            font-size: $fs-lg;
+        }
+
+        &--calibrations {
+            color: $color-text;
+
+            font-size: $fs-lg;
+            font-weight: 500;
+        }
+    }
+
+    &__empty {
+        padding: 3rem;
+
+        color: $color-table-th;
+
+        font-size: $fs-lg;
+
+        text-align: center;
     }
 }
