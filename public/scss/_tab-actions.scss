@@ -36,6 +36,7 @@
         font-weight: 500;
 
         cursor: pointer;
+        transition: background-color $transition-sm, box-shadow $transition-sm;
 
         &--active {
             background-color: $color-white;

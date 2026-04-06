@@ -1,9 +1,19 @@
-@props(['key', 'item', 'img' => null, 'mod' => '', 'header' => null, 'content' => null, 'body' => null, 'bodyRow' => false])
+@props([
+    'key',
+    'item',
+    'img' => null,
+    'mod' => '',
+    'header' => null,
+    'content' => null,
+    'body' => null,
+    'bodyRow' => false,
+    'purpleImgWrapper' => false,
+])
 
 <div @class(['card', "card--$mod" => $mod]) wire:key="{{ $key }}">
     <div class="card__header">
         @if($img)
-            <div class="card__img-wrapper">
+            <div @class(['card__img-wrapper', 'card__img-wrapper--purple' => $purpleImgWrapper])>
                 <img src="{{ $img }}" alt="" class="card__img">
             </div>
         @endif

@@ -1,5 +1,5 @@
 <x-tab-content>
-    @include('components.tab-actions', ['placeholder' => 'Поиск по названию, коду...', 'btn' => 'Добавить тип'])
+    <x-tab-actions placeholder="Поиск по названию, коду..." btn="Добавить тип"/>
 
     <x-cards.cards
         :items="$types"
@@ -11,6 +11,7 @@
                 :key="$type->id"
                 :item="$type"
                 :img="asset('icons/types-purple.svg')"
+                purple-img-wrapper
             >
                 <x-slot name="content">
                     <h3 class="card__title">{{ $type->name }}</h3>

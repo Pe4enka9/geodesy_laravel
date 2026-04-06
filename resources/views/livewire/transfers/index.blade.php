@@ -1,7 +1,12 @@
 @use(App\Models\TransferRequests\Enums\TransferRequestStatusEnum,Status)
 
 <x-tab-content>
-    @include('components.tab-actions', ['sorts' => Status::cases(), 'placeholder' => 'Поиск по оборудованию...', 'hasBtn' => false])
+    <x-tab-actions
+        :current-filter="$currentFilter"
+        :filters="Status::cases()"
+        placeholder="Поиск по оборудованию..."
+        :has-btn="false"
+    />
 
     <x-cards.cards
         :items="$transfers"

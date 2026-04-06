@@ -1,5 +1,5 @@
 <x-tab-content>
-    @include('components.tab-actions', ['placeholder' => 'Поиск по названию...', 'btn' => 'Добавить модель'])
+    <x-tab-actions placeholder="Поиск по названию..." btn="Добавить модель"/>
 
     <x-cards.cards
         :items="$models"

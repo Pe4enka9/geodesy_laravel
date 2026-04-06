@@ -524,6 +524,7 @@ textarea {
   font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 .tab-actions__sort--active {
   background-color: #fff;

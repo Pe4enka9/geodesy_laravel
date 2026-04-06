@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Equipments;
 
+use App\Models\Equipments\Enums\EquipmentStatusEnum;
 use App\Models\Equipments\Equipment;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
@@ -11,6 +12,7 @@ use Livewire\Component;
 class Index extends Component
 {
     public string $search = '';
+    public ?EquipmentStatusEnum $currentFilter = null;
 
     #[On('equipment-updated')]
     public function refreshList(): void
@@ -19,15 +21,29 @@ class Index extends Component
 
     public function delete(int $id): void
     {
-        $equipment = Equipment::find($id)->delete();
+        Equipment::find($id)->delete();
         $this->dispatch('equipment-updated');
+    }
+
+    public function setFilter(?EquipmentStatusEnum $currentFilter): void
+    {
+        if (!$currentFilter) {
+            $this->currentFilter = null;
+            return;
+        }
+
+        $this->currentFilter = $currentFilter;
     }
 
     public function render(): View
     {
-        $equipments = Equipment::when($this->search, function (Builder $query) {
-            $query->where('inventory_number', 'like', "%$this->search%");
-        })
+        $equipments = Equipment::with(['type', 'model'])
+            ->when($this->search, function (Builder $query) {
+                $query->where('inventory_number', 'like', "%$this->search%");
+            })
+            ->when($this->currentFilter, function (Builder $query) {
+                $query->where('status', $this->currentFilter);
+            })
             ->latest()
             ->get();
 

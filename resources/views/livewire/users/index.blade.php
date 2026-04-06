@@ -1,7 +1,7 @@
 @use(App\Models\Users\Enums\UserRoleEnum, Role)
 
 <x-tab-content>
-    @include('components.tab-actions', ['sorts' => Role::cases(), 'placeholder' => 'Поиск по ФИО, логину...'])
+    <x-tab-actions :current-filter="$currentFilter" :filters="Role::cases()" placeholder="Поиск по ФИО, логину..."/>
 
     <x-tables.table
         :headers="['Пользователь', 'Логин', 'Должность', 'Роль']"

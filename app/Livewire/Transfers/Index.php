@@ -12,6 +12,7 @@ use Livewire\Component;
 class Index extends Component
 {
     public string $search = '';
+    public ?TransferRequestStatusEnum $currentFilter = null;
 
     #[On('transfer-updated')]
     public function refreshList(): void
@@ -22,6 +23,16 @@ class Index extends Component
     {
         TransferRequest::find($id)->delete();
         $this->dispatch('transfer-updated');
+    }
+
+    public function setFilter(?TransferRequestStatusEnum $currentFilter): void
+    {
+        if (!$currentFilter) {
+            $this->currentFilter = null;
+            return;
+        }
+
+        $this->currentFilter = $currentFilter;
     }
 
     // Принять запрос
@@ -73,11 +84,14 @@ class Index extends Component
 
     public function render(): View
     {
-        $transfers = TransferRequest::with('equipment')
+        $transfers = TransferRequest::with(['equipment', 'sender', 'receiver'])
             ->when($this->search, function (Builder $query) {
                 $query->whereHas('equipment', function (Builder $q) {
                     $q->where('inventory_number', 'like', "%$this->search%");
                 });
+            })
+            ->when($this->currentFilter, function (Builder $query) {
+                $query->where('status', $this->currentFilter);
             })
             ->latest()
             ->get();

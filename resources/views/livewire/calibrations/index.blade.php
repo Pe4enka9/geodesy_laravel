@@ -1,7 +1,11 @@
 @use(App\Models\Calibrations\Enums\CalibrationStatusEnum,Status)
 
 <x-tab-content>
-    @include('components.tab-actions', ['sorts' => Status::cases(), 'placeholder' => 'Поиск по номеру сертификата...'])
+    <x-tab-actions
+        :current-filter="$currentFilter"
+        :filters="Status::cases()"
+        placeholder="Поиск по номеру сертификата..."
+    />
 
     <x-tables.table
         :headers="['Оборудование', 'Сертификат', 'Получен', 'Действует до', 'Статус']"

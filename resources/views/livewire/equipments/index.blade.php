@@ -1,7 +1,7 @@
 @use(App\Models\Equipments\Enums\EquipmentStatusEnum,Status)
 
 <x-tab-content>
-    @include('components.tab-actions', ['sorts' => Status::cases(), 'placeholder' => 'Поиск по номеру...'])
+    <x-tab-actions :current-filter="$currentFilter" :filters="Status::cases()" placeholder="Поиск по номеру..."/>
 
     <x-tables.table
         :headers="['Инв. номер', 'Тип', 'Модель', 'Статус', 'Держатель']"
