@@ -4,6 +4,7 @@ namespace App\Livewire\Equipments;
 
 use App\Livewire\Forms\EquipmentForm;
 use App\Models\EquipmentModel;
+use App\Models\Equipments\Equipment;
 use App\Models\EquipmentType;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -18,6 +19,7 @@ class Create extends Component
 
     public function save(): void
     {
+        $this->authorize('create', Equipment::class);
         $this->form->store();
         $this->form->reset();
 
@@ -33,6 +35,6 @@ class Create extends Component
 
     public function render(): View
     {
-        return view('components.equipments.create');
+        return view('components.forms.equipments.create');
     }
 }

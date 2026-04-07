@@ -30,6 +30,11 @@ class User extends Authenticatable
         return $this->role === UserRoleEnum::OWNER;
     }
 
+    public function isEmployee(): bool
+    {
+        return $this->role === UserRoleEnum::EMPLOYEE;
+    }
+
     public function newEloquentBuilder($query): Builder
     {
         return new UserQueryBuilder($query);

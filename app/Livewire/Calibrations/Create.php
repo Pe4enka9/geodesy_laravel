@@ -3,6 +3,7 @@
 namespace App\Livewire\Calibrations;
 
 use App\Livewire\Forms\CalibrationForm;
+use App\Models\Calibrations\Calibration;
 use App\Models\Equipments\Equipment;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -16,6 +17,7 @@ class Create extends Component
 
     public function save(): void
     {
+        $this->authorize('create', Calibration::class);
         $this->form->store();
         $this->form->reset();
 
@@ -30,6 +32,6 @@ class Create extends Component
 
     public function render(): View
     {
-        return view('components.calibrations.create');
+        return view('components.forms.calibrations.create');
     }
 }

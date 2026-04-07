@@ -26,6 +26,7 @@ class Edit extends Component
     public function save(): void
     {
         $calibration = Calibration::findOrFail($this->form->editId);
+        $this->authorize('update', $calibration);
         $this->form->update($calibration);
         $this->form->reset();
 
@@ -40,6 +41,6 @@ class Edit extends Component
 
     public function render(): View
     {
-        return view('components.calibrations.edit');
+        return view('components.forms.calibrations.edit');
     }
 }

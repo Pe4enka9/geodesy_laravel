@@ -36,11 +36,6 @@ class extends Component {
             ->get();
     }
 
-    public function delete(int $id): void
-    {
-        TransferRequest::findOrFail($id)->delete();
-    }
-
     public function setFilter(?TransferRequestStatusEnum $currentFilter): void
     {
         $this->currentFilter = $currentFilter;
@@ -50,9 +45,7 @@ class extends Component {
     public function accept(int $id): void
     {
         $transfer = TransferRequest::find($id);
-
-        if (!$transfer->isReceiver()) return;
-
+        $this->authorize('accept', $transfer);
         $transfer->equipment->update(['current_holder_id' => auth()->id()]);
 
         $transfer->update([
@@ -67,8 +60,7 @@ class extends Component {
     public function reject(int $id): void
     {
         $transfer = TransferRequest::find($id);
-
-        if (!$transfer->isReceiver()) return;
+        $this->authorize('reject', $transfer);
 
         $transfer->update([
             'status' => TransferRequestStatusEnum::REJECTED,
@@ -82,8 +74,7 @@ class extends Component {
     public function cancel(int $id): void
     {
         $transfer = TransferRequest::find($id);
-
-        if (!$transfer->isSender()) return;
+        $this->authorize('cancel', $transfer);
 
         $transfer->update([
             'status' => TransferRequestStatusEnum::CANCELLED,
@@ -127,7 +118,6 @@ class extends Component {
                     mod="no-shadow"
                     :key="$transfer->id"
                     :item="$transfer"
-                    :has-actions="false"
                     body-row
                 >
                     <x-slot name="header">
@@ -168,25 +158,29 @@ class extends Component {
 
                     @if($transfer->canAction())
                         <div class="card__actions">
-                            @if($transfer->isSender())
+                            @can('cancel', $transfer)
                                 <button type="button" class="btn btn--outline-disabled btn--sm"
                                         wire:click="cancel({{ $transfer->id }})">
                                     <img src="{{ asset('icons/cancel.svg') }}" alt="" class="btn__icon">
                                     Отменить
                                 </button>
-                            @elseif($transfer->isReceiver())
+                            @endcan
+
+                            @can('accept', $transfer)
                                 <button type="button" class="btn btn--success btn--sm"
                                         wire:click="accept({{ $transfer->id }})">
                                     <img src="{{ asset('icons/success-white.svg') }}" alt="" class="btn__icon">
                                     Принять
                                 </button>
+                            @endcan
 
+                            @can('reject', $transfer)
                                 <button type="button" class="btn btn--outline-danger btn--sm"
                                         wire:click="reject({{ $transfer->id }})">
                                     <img src="{{ asset('icons/decline.svg') }}" alt="" class="btn__icon">
                                     Отклонить
                                 </button>
-                            @endif
+                            @endcan
                         </div>
                     @endif
                 </x-cards.card>

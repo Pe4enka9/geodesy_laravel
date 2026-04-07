@@ -13,7 +13,7 @@ class LoginController extends Controller
     // Форма авторизации
     public function loginForm(): View
     {
-        return view('auth.login');
+        return view('login');
     }
 
     // Авторизация

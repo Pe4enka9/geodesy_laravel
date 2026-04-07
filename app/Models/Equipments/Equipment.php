@@ -45,6 +45,11 @@ class Equipment extends Model
         return $this->belongsTo(User::class, 'current_holder_id');
     }
 
+    public function isCurrentHolder(User $user): bool
+    {
+        return $this->current_holder_id === $user->id;
+    }
+
     public function lastCalibration(): HasOne
     {
         return $this->hasOne(Calibration::class)->latest();

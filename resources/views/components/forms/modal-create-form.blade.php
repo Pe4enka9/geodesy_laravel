@@ -10,7 +10,6 @@
     @click="open = false"
 >
     <form
-        method="post"
         class="modal__form"
         :class="{ 'modal__form--active' : open }"
         wire:submit.prevent="save"
@@ -23,7 +22,6 @@
                 <img src="{{ asset('icons/cross.svg') }}" alt="" class="modal__cross-img img img--contain">
             </button>
         </div>
-        @csrf
 
         {{ $slot }}
 

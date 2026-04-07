@@ -4,6 +4,7 @@
     'placeholder' => 'Поиск...',
     'hasBtn' => true,
     'btn' => 'Добавить',
+    'model' => null,
 ])
 
 <div class="tab-actions" x-data>
@@ -36,9 +37,11 @@
     </form>
 
     @if($hasBtn)
-        <button type="button" class="tab-actions__add-btn btn btn--primary" @click="$dispatch('open-create')">
-            <img src="{{ asset('icons/plus.svg') }}" alt="" class="btn__icon">
-            {{ $btn }}
-        </button>
+        @can('create', $model)
+            <button type="button" class="tab-actions__add-btn btn btn--primary" @click="$dispatch('open-create')">
+                <img src="{{ asset('icons/plus.svg') }}" alt="" class="btn__icon">
+                {{ $btn }}
+            </button>
+        @endcan
     @endif
 </div>

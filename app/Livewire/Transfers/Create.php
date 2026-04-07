@@ -29,6 +29,8 @@ class Create extends Component
 
     public function save(): void
     {
+        $equipment = Equipment::findOrFail($this->form->equipmentId);
+        $this->authorize('transfer', $equipment);
         $this->form->store();
         $this->form->reset();
         $this->currentEquipmentId = null;
@@ -48,6 +50,6 @@ class Create extends Component
             ? Equipment::findOrFail($this->currentEquipmentId)
             : null;
 
-        return view('components.transfers.create', ['equipment' => $equipment]);
+        return view('components.forms.transfers.create', ['equipment' => $equipment]);
     }
 }

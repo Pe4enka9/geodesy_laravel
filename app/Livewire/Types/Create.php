@@ -3,6 +3,7 @@
 namespace App\Livewire\Types;
 
 use App\Livewire\Forms\TypeForm;
+use App\Models\EquipmentType;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -12,6 +13,7 @@ class Create extends Component
 
     public function save(): void
     {
+        $this->authorize('create', EquipmentType::class);
         $this->form->store();
         $this->form->reset();
 
@@ -21,6 +23,6 @@ class Create extends Component
 
     public function render(): View
     {
-        return view('components.types.create');
+        return view('components.forms.types.create');
     }
 }

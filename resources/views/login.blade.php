@@ -1,11 +1,17 @@
-@extends('theme')
-
-@push('styles')
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-@endpush
+    <title>Вход в систему</title>
+</head>
+<body>
 
-@section('title', 'Вход в систему')
-@section('content')
+<main>
     <div class="login">
         <div class="login__wrapper">
             <div class="login__title-wrapper">
@@ -53,4 +59,4 @@
             <div class="login__copyright">© 2026 ГеоКонтроль. Все права защищены.</div>
         </div>
     </div>
-@endsection
+</main>

@@ -36,7 +36,9 @@ class extends Component {
 
     public function delete(int $id): void
     {
-        Calibration::findOrFail($id)->delete();
+        $calibration = Calibration::findOrFail($id);
+        $this->authorize('delete', $calibration);
+        $calibration->delete();
     }
 
     public function setFilter(?CalibrationStatusEnum $currentFilter): void
@@ -64,6 +66,7 @@ class extends Component {
             :current-filter="$currentFilter"
             :filters="CalibrationStatusEnum::cases()"
             placeholder="Поиск по номеру сертификата..."
+            :model="Calibration::class"
         />
 
         <x-tables.table
@@ -97,7 +100,7 @@ class extends Component {
                     </x-tables.td>
 
                     <x-tables.td>
-                        <x-actions :id="$calibration->id" edit delete/>
+                        <x-actions :model="$calibration"/>
                     </x-tables.td>
                 </x-tables.tr>
             @endforeach

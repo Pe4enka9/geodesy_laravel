@@ -36,7 +36,23 @@ class extends Component {
 
     public function delete(int $id): void
     {
-        Equipment::findOrFail($id)->delete();
+        $equipment = Equipment::findOrFail($id);
+        $this->authorize('delete', $equipment);
+        $equipment->delete();
+    }
+
+    public function take(int $id): void
+    {
+        $equipment = Equipment::findOrFail($id);
+        $this->authorize('take', $equipment);
+        $equipment->update(['current_holder_id' => auth()->id()]);
+    }
+
+    public function release(int $id): void
+    {
+        $equipment = Equipment::findOrFail($id);
+        $this->authorize('release', $equipment);
+        $equipment->update(['current_holder_id' => null]);
     }
 
     public function setFilter(?EquipmentStatusEnum $currentFilter): void
@@ -68,6 +84,7 @@ class extends Component {
             :current-filter="$currentFilter"
             :filters="EquipmentStatusEnum::cases()"
             placeholder="Поиск по номеру..."
+            :model="Equipment::class"
         />
 
         <x-tables.table
@@ -96,12 +113,7 @@ class extends Component {
                     <x-tables.td>{{ $equipment->currentHolder?->getInitials() ?? '-' }}</x-tables.td>
 
                     <x-tables.td>
-                        <x-actions
-                            :id="$equipment->id"
-                            edit
-                            transfer
-                            delete
-                        />
+                        <x-actions :model="$equipment"/>
                     </x-tables.td>
                 </x-tables.tr>
             @endforeach

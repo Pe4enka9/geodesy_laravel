@@ -23,6 +23,7 @@ class Edit extends Component
     public function save(ChangePasswordAction $changePasswordAction): void
     {
         $user = User::findOrFail($this->form->editId);
+        $this->authorize('update', $user);
         $this->form->update($user, $changePasswordAction);
         $this->form->reset();
 
@@ -32,6 +33,6 @@ class Edit extends Component
 
     public function render(): View
     {
-        return view('components.users.edit');
+        return view('components.forms.users.edit');
     }
 }

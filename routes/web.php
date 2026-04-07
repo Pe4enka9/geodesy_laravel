@@ -20,28 +20,8 @@ Route::middleware('guest')->group(function () {
 
 // Владелец и админ
 Route::middleware('owner_or_admin')->group(function () {
-    // Дашборд
-    Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
-
-    // Оборудование
-//    Route::resource('/equipments', EquipmentController::class)->only(['index', 'show']);
-    Route::livewire('/equipments', 'pages::equipments')->name('equipments.index');
-
-    // Пользователи
-//    Route::resource('/users', UserController::class)->except('show');
+    // Персонал
     Route::livewire('/users', 'pages::users')->name('users.index');
-
-    // Модели оборудования
-//    Route::resource('/models', EquipmentModelController::class)->only('index');
-    Route::livewire('/models', 'pages::models')->name('models.index');
-
-    // Типы оборудования
-//    Route::resource('/types', EquipmentTypeController::class)->only('index');
-    Route::livewire('/types', 'pages::types')->name('types.index');
-
-    // Поверки
-//    Route::resource('/calibrations', CalibrationController::class)->only('index');
-    Route::livewire('/calibrations', 'pages::calibrations')->name('calibrations.index');
 });
 
 // Авторизованный пользователь
@@ -49,8 +29,22 @@ Route::middleware('auth')->group(function () {
     // Выход
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+    // Дашборд
+    Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
+
+    // Оборудование
+    Route::livewire('/equipments', 'pages::equipments')->name('equipments.index');
+
+    // Модели оборудования
+    Route::livewire('/models', 'pages::models')->name('models.index');
+
+    // Типы оборудования
+    Route::livewire('/types', 'pages::types')->name('types.index');
+
+    // Поверки
+    Route::livewire('/calibrations', 'pages::calibrations')->name('calibrations.index');
+
     // Передачи
-//    Route::resource('/transfers', TransferRequestController::class)->only(['index', 'create', 'store']);
     Route::livewire('/transfers', 'pages::transfers')->name('transfers.index');
     Route::post('/transfers/{transfer}/accept', [TransferRequestController::class, 'accept'])->name('transfers.accept');
     Route::post('/transfers/{transfer}/cancel', [TransferRequestController::class, 'cancel'])->name('transfers.cancel');

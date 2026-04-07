@@ -22,6 +22,7 @@ class Edit extends Component
     public function save(): void
     {
         $model = EquipmentModel::findOrFail($this->form->editId);
+        $this->authorize('update', $model);
         $this->form->update($model);
         $this->form->reset();
 
@@ -31,6 +32,6 @@ class Edit extends Component
 
     public function render(): View
     {
-        return view('components.models.edit');
+        return view('components.forms.models.edit');
     }
 }

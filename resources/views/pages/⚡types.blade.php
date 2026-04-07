@@ -30,7 +30,9 @@ class extends Component {
 
     public function delete(int $id): void
     {
-        EquipmentType::findOrFail($id)->delete();
+        $type = EquipmentType::findOrFail($id);
+        $this->authorize('delete', $type);
+        $type->delete();
     }
 };
 ?>
@@ -40,7 +42,11 @@ class extends Component {
     <livewire:types.edit/>
 
     <x-tab-content>
-        <x-tab-actions placeholder="Поиск по названию, коду..." btn="Добавить тип"/>
+        <x-tab-actions
+            placeholder="Поиск по названию, коду..."
+            btn="Добавить тип"
+            :model="EquipmentType::class"
+        />
 
         <x-cards.cards
             :items="$this->types"
@@ -69,6 +75,10 @@ class extends Component {
                         <div class="card__updated-at card__updated-at--light">
                             Обновлено: {{ $type->updated_at->format('d.m.Y') }}
                         </div>
+                    </x-slot>
+
+                    <x-slot name="actions">
+                        <x-actions :model="$type"/>
                     </x-slot>
                 </x-cards.card>
             @endforeach

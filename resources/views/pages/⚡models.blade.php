@@ -29,7 +29,9 @@ class extends Component {
 
     public function delete(int $id): void
     {
-        EquipmentModel::findOrFail($id)->delete();
+        $model = EquipmentModel::findOrFail($id);
+        $this->authorize('delete', $model);
+        $model->delete();
     }
 };
 ?>
@@ -39,7 +41,11 @@ class extends Component {
     <livewire:models.edit/>
 
     <x-tab-content>
-        <x-tab-actions placeholder="Поиск по названию..." btn="Добавить модель"/>
+        <x-tab-actions
+            placeholder="Поиск по названию..."
+            btn="Добавить модель"
+            :model="EquipmentModel::class"
+        />
 
         <x-cards.cards
             :items="$this->models"
@@ -57,6 +63,10 @@ class extends Component {
                     <x-slot name="content">
                         <h3 class="card__title">{{ $model->name }}</h3>
                         <div class="card__updated-at">Обновлено: {{ $model->updated_at->format('d.m.Y') }}</div>
+                    </x-slot>
+
+                    <x-slot name="actions">
+                        <x-actions :model="$model"/>
                     </x-slot>
                 </x-cards.card>
             @endforeach

@@ -36,6 +36,7 @@ class Edit extends Component
     public function save(): void
     {
         $equipment = Equipment::findOrFail($this->form->editId);
+        $this->authorize('update', $equipment);
         $this->form->update($equipment);
         $this->form->reset();
 
@@ -45,6 +46,6 @@ class Edit extends Component
 
     public function render(): View
     {
-        return view('components.equipments.edit');
+        return view('components.forms.equipments.edit');
     }
 }

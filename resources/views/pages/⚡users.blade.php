@@ -38,7 +38,9 @@ class extends Component {
 
     public function delete(int $id): void
     {
-        User::findOrFail($id)->delete();
+        $user = User::findOrFail($id);
+        $this->authorize('delete', $user);
+        $user->delete();
     }
 
     public function setFilter(?UserRoleEnum $currentFilter): void
@@ -57,6 +59,7 @@ class extends Component {
             :current-filter="$currentFilter"
             :filters="UserRoleEnum::cases()"
             placeholder="Поиск по ФИО, логину..."
+            :model="User::class"
         />
 
         <x-tables.table
@@ -82,11 +85,7 @@ class extends Component {
                     </x-tables.td>
 
                     <x-tables.td>
-                        <x-actions
-                            :id="$user->id"
-                            edit
-                            delete
-                        />
+                        <x-actions :model="$user"/>
                     </x-tables.td>
                 </x-tables.tr>
             @endforeach
