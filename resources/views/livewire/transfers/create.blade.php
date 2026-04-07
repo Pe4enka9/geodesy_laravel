@@ -1,29 +1,30 @@
-<x-forms.modal-create-form title="Добавить тип">
-    <div class="input-wrapper">
-        <label for="name">Название</label>
-        <input type="text" @class(['invalid' => $errors->has('name')]) placeholder="Например: Тахеометр"
-               wire:model="name">
+<x-forms.modal-create-form title="Передача оборудования" custom-event="create-transfer">
+    <div class="input-wrapper input-wrapper--equipment">
+        <label>Оборудование</label>
+        <div>{{ $equipment?->inventory_number }}</div>
+        <input type="hidden" wire:model="equipmentId">
+    </div>
 
-        @error('name')
+    <div class="input-wrapper">
+        <label>Получатель</label>
+        <select @class(['invalid' => $errors->has('user')]) wire:model="user">
+            <option value="" hidden>Выберите получателя</option>
+            @foreach($users as $user)
+                <option value="{{ $user->id }}">{{ $user->getFullName() }}</option>
+            @endforeach
+        </select>
+
+        @error('user')
         <div class="error">{{ $message }}</div>
         @enderror
     </div>
 
     <div class="input-wrapper">
-        <label for="code">Код</label>
-        <input type="text" @class(['invalid' => $errors->has('code')]) placeholder="Например: TAH" wire:model="code">
+        <label>Комментарий</label>
+        <textarea @class(['invalid' => $errors->has('comment')]) placeholder="Необязательный комментарий к передаче"
+                  wire:model="comment"></textarea>
 
-        @error('code')
-        <div class="error">{{ $message }}</div>
-        @enderror
-    </div>
-
-    <div class="input-wrapper">
-        <label for="description">Описание</label>
-        <textarea @class(['invalid' => $errors->has('description')]) placeholder="Необязательное описание"
-                  wire:model="description"></textarea>
-
-        @error('description')
+        @error('comment')
         <div class="error">{{ $message }}</div>
         @enderror
     </div>

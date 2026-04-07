@@ -25,10 +25,12 @@ Route::middleware('owner_or_admin')->group(function () {
     Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
 
     // Оборудование
-    Route::resource('/equipments', EquipmentController::class)->only(['index', 'show']);
+//    Route::resource('/equipments', EquipmentController::class)->only(['index', 'show']);
+    Route::livewire('/equipments', 'pages::equipments')->name('equipments.index');
 
     // Пользователи
-    Route::resource('/users', UserController::class)->except('show');
+//    Route::resource('/users', UserController::class)->except('show');
+    Route::livewire('/users', 'pages::users')->name('users.index');
 
     // Модели оборудования
     Route::resource('/models', EquipmentModelController::class)->only('index');

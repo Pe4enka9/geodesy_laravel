@@ -53,7 +53,9 @@
                     @endisset
                 </x-slot>
 
-                <div class="card__transfer-comment">{{ $transfer->comment }}</div>
+                @if($transfer->comment)
+                    <div class="card__transfer-comment">{{ $transfer->comment }}</div>
+                @endif
 
                 @if($transfer->canAction())
                     <div class="card__actions">

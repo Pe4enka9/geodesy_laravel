@@ -24,11 +24,37 @@
             padding-left: 2.5em;
         }
     }
+
+    &--equipment {
+        padding: 1.5rem;
+
+        background-color: $color-bg;
+
+        -webkit-border-radius: $rounded-md;
+        -moz-border-radius: $rounded-md;
+        border-radius: $rounded-md;
+
+        label {
+            color: $color-table-th;
+        }
+
+        div {
+            font-size: $fs-lg;
+            font-weight: 500;
+        }
+    }
 }
 
 label {
     font-size: $fs-md;
     font-weight: 500;
+
+    .required {
+        color: $color-red;
+
+        font-size: inherit;
+        font-weight: inherit;
+    }
 }
 
 input, textarea, select, option {

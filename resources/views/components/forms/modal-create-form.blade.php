@@ -1,10 +1,12 @@
+@props(['customEvent' => 'create', 'title' => 'Добавить'])
+
 <div
     class="modal"
     :class="{ 'modal--active' : open }"
     x-data="{ open: false }"
     x-effect="document.body.style.overflow = open ? 'hidden' : ''"
-    @open-create.window="open = true"
-    @close-create.window="open = false"
+    @open-{{ $customEvent }}.window="open = true"
+    @close-{{ $customEvent }}.window="open = false"
     @click="open = false"
 >
     <form
@@ -15,7 +17,7 @@
         @click.stop
     >
         <div class="modal__title-wrapper">
-            <h2 class="modal__title">{{ $title ?? 'Добавить' }}</h2>
+            <h2 class="modal__title">{{ $title }}</h2>
 
             <button type="button" class="modal__cross-btn" @click="open = false">
                 <img src="{{ asset('icons/cross.svg') }}" alt="" class="modal__cross-img img img--contain">

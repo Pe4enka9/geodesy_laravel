@@ -14,7 +14,7 @@
         <tbody class="table-wrapper__tbody">
         @if($items->isEmpty())
             <tr>
-                <td class="table-wrapper__empty" colspan="{{ count($headers) }}">{{ $emptyText }}</td>
+                <td class="table-wrapper__empty" colspan="{{ count($headers) + 1 }}">{{ $emptyText }}</td>
             </tr>
         @else
             {{ $slot }}

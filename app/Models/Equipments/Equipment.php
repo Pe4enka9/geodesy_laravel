@@ -6,6 +6,7 @@ use App\Models\Calibrations\Calibration;
 use App\Models\EquipmentModel;
 use App\Models\Equipments\Enums\EquipmentStatusEnum;
 use App\Models\EquipmentType;
+use App\Models\TransferRequests\TransferRequest;
 use App\Models\Users\User;
 use App\QueryBuilders\EquipmentQueryBuilder;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
@@ -52,5 +53,10 @@ class Equipment extends Model
     public function newEloquentBuilder($query): Builder
     {
         return new EquipmentQueryBuilder($query);
+    }
+
+    public function transfers(): HasMany
+    {
+        return $this->hasMany(TransferRequest::class);
     }
 }

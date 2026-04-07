@@ -20,10 +20,29 @@
 .input-wrapper--search input {
   padding-left: 2.5em;
 }
+.input-wrapper--equipment {
+  padding: 1.5rem;
+  background-color: #f9fafb;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  border-radius: 1rem;
+}
+.input-wrapper--equipment label {
+  color: #6b7280;
+}
+.input-wrapper--equipment div {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
 
 label {
   font-size: 1.4rem;
   font-weight: 500;
+}
+label .required {
+  color: #ef4444;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 input, textarea, select, option {
