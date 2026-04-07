@@ -1,4 +1,4 @@
-@props(['label', 'type', 'id', 'name', 'placeholder' => '', 'required' => false])
+@props(['label', 'id', 'name', 'placeholder', 'required' => false])
 
 <div class="input-wrapper">
     <label for="{{ $id }}">
@@ -9,13 +9,12 @@
         @endif
     </label>
 
-    <input
-        type="{{ $type }}"
+    <textarea
         id="{{ $id }}"
         @class(['invalid' => $errors->has($name)])
         placeholder="{{ $placeholder }}"
         wire:model.live.blur="{{ $name }}"
-    >
+    ></textarea>
 
     @error($name)
     <div class="error">{{ $message }}</div>

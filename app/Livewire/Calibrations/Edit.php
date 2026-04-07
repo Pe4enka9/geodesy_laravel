@@ -2,73 +2,44 @@
 
 namespace App\Livewire\Calibrations;
 
+use App\Livewire\Forms\CalibrationForm;
 use App\Models\Calibrations\Calibration;
 use App\Models\Equipments\Equipment;
 use Illuminate\Support\Collection;
-use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Edit extends Component
 {
-    protected $listeners = ['open-edit' => 'open'];
+    public CalibrationForm $form;
 
     public Collection $equipments;
 
-    public Calibration $calibration;
-
-    public int $equipment;
-    public string $certificate_number;
-    public string $verification_url;
-    public string $issued_at;
-    public string $expires_at;
-
-    protected function rules(): array
-    {
-        return [
-            'equipment' => ['required', 'integer', Rule::exists(Equipment::class, 'id')],
-            'certificate_number' => ['required', 'string'],
-            'verification_url' => ['required', 'string', 'url'],
-            'issued_at' => ['required', 'date'],
-            'expires_at' => ['required', 'date', 'after:issued_at'],
-        ];
-    }
-
+    #[On('open-edit')]
     public function open(int $id): void
     {
-        $calibration = Calibration::find($id);
-        $this->calibration = $calibration;
-        $this->equipment = $calibration->equipment_id;
-        $this->certificate_number = $calibration->certificate_number;
-        $this->verification_url = $calibration->verification_url;
-        $this->issued_at = $calibration->issued_at->format('Y-m-d');
-        $this->expires_at = $calibration->expires_at->format('Y-m-d');
+        $calibration = Calibration::findOrFail($id);
+        $this->form->setCalibration($calibration);
     }
 
     public function save(): void
     {
-        $this->validate();
+        $calibration = Calibration::findOrFail($this->form->editId);
+        $this->form->update($calibration);
+        $this->form->reset();
 
-        $this->calibration->update([
-            'equipment_id' => $this->equipment,
-            'certificate_number' => $this->certificate_number,
-            'verification_url' => $this->verification_url,
-            'issued_at' => $this->issued_at,
-            'expires_at' => $this->expires_at,
-        ]);
-
-        $this->reset(['equipment', 'certificate_number', 'verification_url', 'issued_at', 'expires_at']);
         $this->dispatch('calibration-updated');
         $this->dispatch('close-edit');
     }
 
     public function mount(): void
     {
-        $this->equipments = Equipment::all();
+        $this->equipments = Equipment::select('id', 'inventory_number')->latest()->get();
     }
 
     public function render(): View
     {
-        return view('livewire.calibrations.edit');
+        return view('components.calibrations.edit');
     }
 }

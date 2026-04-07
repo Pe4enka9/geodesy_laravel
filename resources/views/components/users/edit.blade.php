@@ -5,7 +5,7 @@
     <x-forms.input
         label="Фамилия"
         type="text"
-        id="create_last_name"
+        id="edit_last_name"
         name="form.last_name"
         placeholder="Иванов"
         required
@@ -14,7 +14,7 @@
     <x-forms.input
         label="Имя"
         type="text"
-        id="create_first_name"
+        id="edit_first_name"
         name="form.first_name"
         placeholder="Иван"
         required
@@ -23,7 +23,7 @@
     <x-forms.input
         label="Логин"
         type="text"
-        id="create_login"
+        id="edit_login"
         name="form.login"
         placeholder="ivanov"
         required
@@ -32,7 +32,7 @@
     <x-forms.input
         label="Пароль"
         type="password"
-        id="create_password"
+        id="edit_password"
         name="form.password"
         placeholder="Минимум 6 символов"
         required
@@ -40,7 +40,7 @@
 
     <x-forms.select
         label="Должность"
-        id="create_position"
+        id="edit_position"
         name="form.position"
         placeholder="Не указана"
     >
@@ -51,7 +51,7 @@
 
     <x-forms.select
         label="Роль"
-        id="create_role"
+        id="edit_role"
         name="form.role"
         required
     >

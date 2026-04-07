@@ -2,34 +2,25 @@
 
 namespace App\Livewire\Models;
 
-use App\Models\EquipmentModel;
+use App\Livewire\Forms\ModelForm;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class Create extends Component
 {
-    public string $name;
-
-    protected function rules(): array
-    {
-        return [
-            'name' => ['required', 'string'],
-        ];
-    }
+    public ModelForm $form;
 
     public function save(): void
     {
-        $this->validate();
+        $this->form->store();
+        $this->form->reset();
 
-        EquipmentModel::create(['name' => $this->name]);
-
-        $this->reset();
         $this->dispatch('model-updated');
         $this->dispatch('close-create');
     }
 
     public function render(): View
     {
-        return view('livewire.models.create');
+        return view('components.models.create');
     }
 }

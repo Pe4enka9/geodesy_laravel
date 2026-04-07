@@ -61,6 +61,7 @@ class extends Component {
 <x-tab title="Оборудование">
     <livewire:equipments.create/>
     <livewire:equipments.edit/>
+    <livewire:transfers.create/>
 
     <x-tab-content>
         <x-tab-actions

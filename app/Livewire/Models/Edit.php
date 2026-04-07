@@ -2,44 +2,35 @@
 
 namespace App\Livewire\Models;
 
+use App\Livewire\Forms\ModelForm;
 use App\Models\EquipmentModel;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Edit extends Component
 {
-    protected $listeners = ['open-edit' => 'open'];
+    public ModelForm $form;
 
-    public EquipmentModel $model;
-    public string $name;
-
-    protected function rules(): array
-    {
-        return [
-            'name' => ['required', 'string'],
-        ];
-    }
-
+    #[On('open-edit')]
     public function open(int $id): void
     {
-        $model = EquipmentModel::find($id);
-        $this->model = $model;
-        $this->name = $model->name;
+        $model = EquipmentModel::findOrFail($id);
+        $this->form->setModel($model);
     }
 
     public function save(): void
     {
-        $this->validate();
+        $model = EquipmentModel::findOrFail($this->form->editId);
+        $this->form->update($model);
+        $this->form->reset();
 
-        $this->model->update(['name' => $this->name]);
-
-        $this->reset();
         $this->dispatch('model-updated');
         $this->dispatch('close-edit');
     }
 
     public function render(): View
     {
-        return view('livewire.models.edit');
+        return view('components.models.edit');
     }
 }

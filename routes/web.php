@@ -7,7 +7,6 @@ use App\Http\Controllers\EquipmentModelController;
 use App\Http\Controllers\EquipmentTypeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\TransferRequestController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -33,13 +32,16 @@ Route::middleware('owner_or_admin')->group(function () {
     Route::livewire('/users', 'pages::users')->name('users.index');
 
     // Модели оборудования
-    Route::resource('/models', EquipmentModelController::class)->only('index');
+//    Route::resource('/models', EquipmentModelController::class)->only('index');
+    Route::livewire('/models', 'pages::models')->name('models.index');
 
     // Типы оборудования
-    Route::resource('/types', EquipmentTypeController::class)->only('index');
+//    Route::resource('/types', EquipmentTypeController::class)->only('index');
+    Route::livewire('/types', 'pages::types')->name('types.index');
 
     // Поверки
-    Route::resource('/calibrations', CalibrationController::class)->only('index');
+//    Route::resource('/calibrations', CalibrationController::class)->only('index');
+    Route::livewire('/calibrations', 'pages::calibrations')->name('calibrations.index');
 });
 
 // Авторизованный пользователь
@@ -48,7 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     // Передачи
-    Route::resource('/transfers', TransferRequestController::class)->only(['index', 'create', 'store']);
+//    Route::resource('/transfers', TransferRequestController::class)->only(['index', 'create', 'store']);
+    Route::livewire('/transfers', 'pages::transfers')->name('transfers.index');
     Route::post('/transfers/{transfer}/accept', [TransferRequestController::class, 'accept'])->name('transfers.accept');
     Route::post('/transfers/{transfer}/cancel', [TransferRequestController::class, 'cancel'])->name('transfers.cancel');
     Route::post('/transfers/{transfer}/reject', [TransferRequestController::class, 'reject'])->name('transfers.reject');

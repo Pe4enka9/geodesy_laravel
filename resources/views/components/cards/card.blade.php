@@ -28,7 +28,7 @@
             </div>
         @endif
 
-        <x-actions :id="$item->id"/>
+        <x-actions :id="$item->id" edit delete/>
     </div>
 
     @if($body)
