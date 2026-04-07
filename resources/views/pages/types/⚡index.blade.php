@@ -62,7 +62,10 @@ class extends Component {
                     </x-slot>
 
                     <x-slot name="body">
-                        <div class="card__description">{{ $type->description }}</div>
+                        @if($type->description)
+                            <div class="card__description">{{ $type->description }}</div>
+                        @endif
+
                         <div class="card__updated-at card__updated-at--light">
                             Обновлено: {{ $type->updated_at->format('d.m.Y') }}
                         </div>

@@ -2,23 +2,25 @@
 @use(App\Models\Users\Enums\UserRoleEnum,Role)
 
 <x-forms.modal-create-form title="Добавить пользователя">
-    <x-forms.input
-        label="Фамилия"
-        type="text"
-        id="create_last_name"
-        name="form.last_name"
-        placeholder="Иванов"
-        required
-    />
+    <div class="input-wrapper-row">
+        <x-forms.input
+            label="Фамилия"
+            type="text"
+            id="create_last_name"
+            name="form.last_name"
+            placeholder="Иванов"
+            required
+        />
 
-    <x-forms.input
-        label="Имя"
-        type="text"
-        id="create_first_name"
-        name="form.first_name"
-        placeholder="Иван"
-        required
-    />
+        <x-forms.input
+            label="Имя"
+            type="text"
+            id="create_first_name"
+            name="form.first_name"
+            placeholder="Иван"
+            required
+        />
+    </div>
 
     <x-forms.input
         label="Логин"

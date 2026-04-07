@@ -8,6 +8,7 @@
     'body' => null,
     'bodyRow' => false,
     'purpleImgWrapper' => false,
+    'hasActions' => true,
 ])
 
 <div @class(['card', "card--$mod" => $mod]) wire:key="{{ $key }}">
@@ -28,7 +29,9 @@
             </div>
         @endif
 
-        <x-actions :id="$item->id" edit delete/>
+        @if($hasActions)
+            <x-actions :id="$item->id" edit delete/>
+        @endif
     </div>
 
     @if($body)

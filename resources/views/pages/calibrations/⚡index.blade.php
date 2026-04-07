@@ -74,9 +74,19 @@ class extends Component {
             @php /** @var Calibration $calibration */ @endphp
 
             @foreach($this->calibrations as $calibration)
-                <x-tables.tr :key="$calibration->id">
-                    <x-tables.td mod="calibrations">{{ $calibration->equipment->inventory_number }}</x-tables.td>
-                    <x-tables.td mod="calibrations">{{ $calibration->certificate_number }}</x-tables.td>
+                <x-tables.tr :key="$calibration->id" :mod="$statuses[$calibration->status->value]">
+                    <x-tables.td mod="calibrations-equipment">
+                        {{ $calibration->equipment->inventory_number }}
+                    </x-tables.td>
+
+                    <x-tables.td mod="calibrations-certificate">
+                        <div class="table-wrapper__certificate">{{ $calibration->certificate_number }}</div>
+
+                        <a href="{{ $calibration->verification_url }}" target="_blank" class="table-wrapper__link">
+                            <img src="{{ asset('icons/link.svg') }}" alt="" class="table-wrapper__link-icon">
+                            Ссылка
+                        </a>
+                    </x-tables.td>
                     <x-tables.td>{{ $calibration->issued_at->format('d.m.Y') }}</x-tables.td>
                     <x-tables.td>{{ $calibration->expires_at->format('d.m.Y') }}</x-tables.td>
 

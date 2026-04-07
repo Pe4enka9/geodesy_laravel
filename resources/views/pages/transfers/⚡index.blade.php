@@ -127,6 +127,7 @@ class extends Component {
                     mod="no-shadow"
                     :key="$transfer->id"
                     :item="$transfer"
+                    :has-actions="false"
                     body-row
                 >
                     <x-slot name="header">

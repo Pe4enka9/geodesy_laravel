@@ -1,7 +1,17 @@
 @use "variables" as *;
 
+.input-wrapper-row {
+    @include flex($g: 1rem);
+
+    .input-wrapper {
+        min-width: 0;
+
+        flex: 1;
+    }
+}
+
 .input-wrapper {
-    @include flex($fd: column, $g: .5rem);
+    @include flex($fd: column, $g: .8rem);
 
     position: relative;
 
@@ -43,9 +53,18 @@
             font-weight: 500;
         }
     }
+
+    &__password {
+        color: #9ca3af;
+
+        font-size: $fs-md;
+        font-weight: 500;
+    }
 }
 
 label {
+    @include flex($ai: center, $g: .5rem);
+
     font-size: $fs-md;
     font-weight: 500;
 

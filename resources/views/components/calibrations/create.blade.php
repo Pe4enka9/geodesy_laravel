@@ -32,19 +32,21 @@
         required
     />
 
-    <x-forms.input
-        label="Дата получения"
-        type="date"
-        id="create_issued_at"
-        name="form.issued_at"
-        required
-    />
+    <div class="input-wrapper-row">
+        <x-forms.input
+            label="Дата получения"
+            type="date"
+            id="create_issued_at"
+            name="form.issued_at"
+            required
+        />
 
-    <x-forms.input
-        label="Действует до"
-        type="date"
-        id="create_expires_at"
-        name="form.expires_at"
-        required
-    />
+        <x-forms.input
+            label="Действует до"
+            type="date"
+            id="create_expires_at"
+            name="form.expires_at"
+            required
+        />
+    </div>
 </x-forms.modal-create-form>

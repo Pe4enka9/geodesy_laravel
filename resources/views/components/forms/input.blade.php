@@ -1,4 +1,4 @@
-@props(['label', 'type', 'id', 'name', 'placeholder' => '', 'required' => false])
+@props(['label', 'type', 'id', 'name', 'placeholder' => '', 'required' => false, 'password' => false])
 
 <div class="input-wrapper">
     <label for="{{ $id }}">
@@ -6,6 +6,10 @@
 
         @if($required)
             <span class="required">*</span>
+        @endif
+
+        @if($password)
+            <div class="input-wrapper__password">(оставьте пустым, чтобы не менять)</div>
         @endif
     </label>
 

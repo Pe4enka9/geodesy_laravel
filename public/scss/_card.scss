@@ -23,9 +23,12 @@
     }
 
     &__body {
-        @include flex($fd: column, $g: 1rem);
+        height: 100%;
+
+        @include flex($jc: flex-end, $fd: column, $g: 1rem);
 
         &--row {
+            justify-content: flex-start;
             flex-direction: row;
         }
     }
@@ -105,6 +108,8 @@
 
         font-size: $fs-md;
         font-weight: 400;
+
+        word-wrap: break-word;
     }
 
     &__sender, &__receiver, &__created-at, &__resolved-at {

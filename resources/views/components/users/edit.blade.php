@@ -2,23 +2,25 @@
 @use(App\Models\Users\Enums\UserRoleEnum,Role)
 
 <x-forms.modal-edit-form title="Изменить пользователя">
-    <x-forms.input
-        label="Фамилия"
-        type="text"
-        id="edit_last_name"
-        name="form.last_name"
-        placeholder="Иванов"
-        required
-    />
+    <div class="input-wrapper-row">
+        <x-forms.input
+            label="Фамилия"
+            type="text"
+            id="edit_last_name"
+            name="form.last_name"
+            placeholder="Иванов"
+            required
+        />
 
-    <x-forms.input
-        label="Имя"
-        type="text"
-        id="edit_first_name"
-        name="form.first_name"
-        placeholder="Иван"
-        required
-    />
+        <x-forms.input
+            label="Имя"
+            type="text"
+            id="edit_first_name"
+            name="form.first_name"
+            placeholder="Иван"
+            required
+        />
+    </div>
 
     <x-forms.input
         label="Логин"
@@ -35,7 +37,7 @@
         id="edit_password"
         name="form.password"
         placeholder="Минимум 6 символов"
-        required
+        password
     />
 
     <x-forms.select

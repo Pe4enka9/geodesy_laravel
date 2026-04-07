@@ -48,6 +48,10 @@
         &:not(:last-child) {
             border-bottom: .1rem solid $color-gray3;
         }
+
+        &--error {
+            background-color: #fef8f8;
+        }
     }
 
     &__th, &__td {
@@ -82,11 +86,15 @@
             font-size: $fs-lg;
         }
 
-        &--calibrations {
+        &--calibrations-equipment {
             color: $color-text;
 
             font-size: $fs-lg;
             font-weight: 500;
+        }
+
+        &--calibrations-certificate {
+            @include flex($fd: column, $g: .5rem);
         }
     }
 
@@ -98,5 +106,26 @@
         font-size: $fs-lg;
 
         text-align: center;
+    }
+
+    &__certificate {
+        color: $color-text;
+
+        font-size: $fs-lg;
+        font-weight: 500;
+    }
+
+    &__link {
+        @include flex($ai: center, $g: .5rem);
+
+        color: $color-primary;
+
+        font-size: $fs-sm;
+        font-weight: 400;
+    }
+
+    &__link-icon {
+        width: 1.2rem;
+        height: 1.2rem;
     }
 }
