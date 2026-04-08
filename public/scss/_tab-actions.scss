@@ -14,7 +14,7 @@
 
         @include flex($g: .7rem);
 
-        background-color: $color-bg-secondary;
+        background-color: $gray-100;
 
         -webkit-border-radius: $rounded-md;
         -moz-border-radius: $rounded-md;
@@ -39,7 +39,7 @@
         transition: background-color $transition-sm, box-shadow $transition-sm;
 
         &--active {
-            background-color: $color-white;
+            background-color: $white;
 
             box-shadow: $shadow-sm;
         }

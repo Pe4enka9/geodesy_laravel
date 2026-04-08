@@ -3,7 +3,7 @@
 body {
     display: block;
 
-    background: $gradient-bg no-repeat;
+    background: $gradient-dark no-repeat;
 }
 
 main {
@@ -30,14 +30,14 @@ main {
     }
 
     &__title {
-        color: $color-white;
+        color: $white;
 
         font-size: 3rem;
         font-weight: 700;
     }
 
     &__description {
-        color: $color-text-secondary;
+        color: $white-60;
 
         font-size: $fs-lg;
         font-weight: 400;
@@ -50,7 +50,7 @@ main {
 
         @include flex($ai: center, $fd: column, $g: 1.5rem);
 
-        background-color: $color-white;
+        background-color: $white;
 
         -webkit-border-radius: $rounded-xl;
         -moz-border-radius: $rounded-xl;
@@ -67,7 +67,7 @@ main {
     }
 
     &__form-subtitle {
-        color: $color-gray;
+        color: $gray-600;
 
         font-size: $fs-md;
         font-weight: 400;
@@ -78,7 +78,7 @@ main {
     }
 
     &__copyright {
-        color: $color-gray2;
+        color: $white-40;
 
         font-size: $fs-md;
         font-weight: 400;

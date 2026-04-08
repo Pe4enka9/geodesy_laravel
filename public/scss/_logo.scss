@@ -6,7 +6,7 @@
 
     @include flex(center, center);
 
-    background: $gradient-primary;
+    background: $gradient-primary-v;
 
     -webkit-border-radius: $rounded-lg;
     -moz-border-radius: $rounded-lg;
@@ -16,7 +16,7 @@
         width: 50%;
         height: 50%;
 
-        color: $color-white;
+        color: $white;
     }
 
     &--lg {

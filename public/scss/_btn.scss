@@ -35,53 +35,53 @@
     }
 
     &--primary {
-        color: $color-white;
-        background-color: $color-primary;
+        color: $white;
+        background-color: $teal-600;
 
         &:hover {
-            background-color: $color-primary-hover;
+            background-color: #0f766e;
         }
     }
 
     &--outline-primary {
-        border: .1rem solid $color-border;
+        border: .1rem solid #e1e7ef;
 
         box-shadow: $shadow-sm;
 
         &:hover {
-            color: $color-white;
-            background-color: $color-border-secondary;
+            color: $white;
+            background-color: $teal-650;
         }
     }
 
     &--success {
-        color: $color-white;
-        background-color: $color-success;
+        color: $white;
+        background-color: $green-600;
 
         &:hover {
-            background-color: $color-success-hover;
+            background-color: $green-700;
         }
     }
 
     &--outline-danger {
-        color: $color-danger;
-        background-color: $color-white;
+        color: $red-600;
+        background-color: $white;
 
-        border: .1rem solid $color-border-danger;
+        border: .1rem solid $red-300;
 
         &:hover {
-            background-color: $color-danger-hover;
+            background-color: $red-50;
         }
     }
 
     &--outline-disabled {
-        color: $color-disabled;
-        background-color: $color-white;
+        color: #4b5563;
+        background-color: $white;
 
-        border: .1rem solid $color-border-disabled;
+        border: .1rem solid $gray-300;
 
         &:hover {
-            background-color: $color-disabled-hover;
+            background-color: $gray-350;
         }
     }
 }

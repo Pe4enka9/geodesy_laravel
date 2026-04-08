@@ -13,29 +13,29 @@
     font-weight: 500;
 
     &--owner {
-        color: #7e22ce;
-        background-color: #f3e8ff;
+        color: $purple-700;
+        background-color: $purple-100;
 
-        border: .1rem solid #e9d5ff;
+        border: .1rem solid $purple-200;
     }
 
     &--admin {
-        color: #1d4ed8;
-        background-color: #dbeafe;
+        color: $blue-700;
+        background-color: $blue-100;
 
-        border: .1rem solid #bfdbfe;
+        border: .1rem solid $blue-200;
     }
 
     &--employee {
-        color: #374151;
+        color: $gray-800;
         background-color: #f3f4f6;
 
-        border: .1rem solid #e5e7eb;
+        border: .1rem solid $gray-200;
     }
 
     &--pending {
-        color: #c2410c;
-        background-color: #ffedd5;
+        color: $orange-700;
+        background-color: $orange-100;
 
         font-weight: 400;
     }

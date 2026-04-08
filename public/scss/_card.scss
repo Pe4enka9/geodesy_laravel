@@ -5,9 +5,9 @@
 
     @include flex($fd: column, $g: 1.5rem);
 
-    background-color: $color-white;
+    background-color: $white;
 
-    border: .1rem solid $color-gray3;
+    border: .1rem solid $gray-200;
     -webkit-border-radius: $rounded-lg;
     -moz-border-radius: $rounded-lg;
     border-radius: $rounded-lg;
@@ -39,14 +39,14 @@
 
         @include flex(center, center);
 
-        background-color: #f0fdfa;
+        background-color: $teal-50;
 
         -webkit-border-radius: $rounded-md;
         -moz-border-radius: $rounded-md;
         border-radius: $rounded-md;
 
         &--purple {
-            background-color: #eef2ff;
+            background-color: $purple-50;
         }
     }
 
@@ -55,11 +55,11 @@
         height: 2rem;
 
         &--models {
-            color: #0d9488;
+            color: $teal-600;
         }
 
         &--types {
-            color: #4f46e5;
+            color: $purple-600;
         }
     }
 
@@ -81,11 +81,11 @@
         width: 4.8rem;
         height: 4.8rem;
 
-        color: #d1d5db;
+        color: $gray-300;
     }
 
     &__empty-text {
-        color: $color-table-th;
+        color: $gray-500;
 
         font-size: $fs-lg;
     }
@@ -96,25 +96,25 @@
     }
 
     &__updated-at {
-        color: $color-table-th;
+        color: $gray-500;
 
         font-size: $fs-sm;
         font-weight: 400;
 
         &--light {
-            color: #9ca3af;
+            color: $gray-400;
         }
     }
 
     &__code {
-        color: $color-table-th;
+        color: $gray-500;
 
         font-size: $fs-sm;
         font-weight: 400;
     }
 
     &__description {
-        color: $color-disabled;
+        color: #4b5563;
 
         font-size: $fs-md;
         font-weight: 400;
@@ -123,13 +123,13 @@
     }
 
     &__sender, &__receiver, &__created-at, &__resolved-at {
-        color: $color-disabled;
+        color: #4b5563;
 
         font-size: $fs-md;
         font-weight: 400;
 
         span {
-            color: #9ca3af;
+            color: $gray-400;
 
             font-size: inherit;
             font-weight: inherit;
@@ -139,8 +139,8 @@
     &__transfer-comment {
         padding: .5em .7em;
 
-        color: $color-disabled;
-        background-color: $color-bg;
+        color: #4b5563;
+        background-color: $gray-50;
 
         -webkit-border-radius: .4rem;
         -moz-border-radius: .4rem;

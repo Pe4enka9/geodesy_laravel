@@ -1,7 +1,7 @@
 @use "variables" as *;
 
 .table-wrapper {
-    background-color: $color-white;
+    background-color: $white;
 
     -webkit-border-radius: $rounded-lg;
     -moz-border-radius: $rounded-lg;
@@ -18,13 +18,13 @@
 
     &__thead {
         .table-wrapper__tr {
-            background-color: $color-bg;
+            background-color: $gray-50;
 
-            border-bottom: .1rem solid $color-gray3;
+            border-bottom: .1rem solid $gray-200;
         }
 
         .table-wrapper__th {
-            color: $color-table-th;
+            color: $gray-500;
 
             font-size: $fs-sm;
             font-weight: 600;
@@ -42,15 +42,15 @@
         transition: background-color $transition-sm ease;
 
         &:hover {
-            background-color: $color-bg;
+            background-color: $gray-50;
         }
 
         &:not(:last-child) {
-            border-bottom: .1rem solid $color-gray3;
+            border-bottom: .1rem solid $gray-200;
         }
 
         &--error {
-            background-color: #fef8f8;
+            background-color: $red-25;
         }
     }
 
@@ -59,7 +59,7 @@
     }
 
     &__td {
-        color: $color-disabled;
+        color: #4b5563;
 
         font-size: $fs-md;
         font-weight: 400;
@@ -68,12 +68,14 @@
             @include flex($fd: column, $g: .4rem);
 
             div:first-child {
+                color: $gray-950;
+
                 font-size: $fs-lg;
                 font-weight: 500;
             }
 
             div:last-child {
-                color: $color-table-th;
+                color: $gray-500;
 
                 font-size: $fs-sm;
                 font-weight: 400;
@@ -81,13 +83,13 @@
         }
 
         &--users .user__name {
-            color: #111827;
+            color: $gray-900;
 
             font-size: $fs-lg;
         }
 
         &--calibrations-equipment {
-            color: $color-text;
+            color: $gray-950;
 
             font-size: $fs-lg;
             font-weight: 500;
@@ -101,7 +103,7 @@
     &__empty {
         padding: 3rem;
 
-        color: $color-table-th;
+        color: $gray-500;
 
         font-size: $fs-lg;
 
@@ -109,7 +111,7 @@
     }
 
     &__certificate {
-        color: $color-text;
+        color: $gray-950;
 
         font-size: $fs-lg;
         font-weight: 500;
@@ -118,7 +120,7 @@
     &__link {
         @include flex($ai: center, $g: .5rem);
 
-        color: $color-primary;
+        color: $teal-600;
 
         font-size: $fs-sm;
         font-weight: 400;

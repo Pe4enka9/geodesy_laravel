@@ -71,6 +71,7 @@ label .required {
 input, textarea, select, option {
   padding: 0.6em 0.8em;
   background: transparent;
+  color: #0f1729;
   outline: none;
   border: 0.1rem solid #e1e7ef;
   -webkit-border-radius: 0.8rem;
@@ -365,6 +366,7 @@ textarea {
   gap: 0.4rem;
 }
 .table-wrapper__td--equipments div:first-child {
+  color: #0f1729;
   font-size: 1.6rem;
   font-weight: 500;
 }
@@ -630,7 +632,6 @@ textarea {
 .actions__btn {
   margin-left: auto;
   padding: 0.8rem 1rem;
-  color: #0f1729;
   background: none;
   display: flex;
   justify-content: center;
@@ -1190,11 +1191,16 @@ body {
   flex-direction: row;
   gap: 0;
   background-color: #f9fafb;
+  color: #0f1729;
 }
 
 main {
   margin-left: 25rem;
   flex-grow: 1;
+}
+
+button {
+  color: #0f1729;
 }
 
 .img {

@@ -20,7 +20,7 @@
             width: 1.6rem;
             height: 1.6rem;
 
-            background-color: #9ca3af;
+            background-color: $gray-400;
             mask: url("/icons/lens.svg") no-repeat center / contain;
 
             content: '';
@@ -39,14 +39,14 @@
     &--equipment {
         padding: 1.5rem;
 
-        background-color: $color-bg;
+        background-color: $gray-50;
 
         -webkit-border-radius: $rounded-md;
         -moz-border-radius: $rounded-md;
         border-radius: $rounded-md;
 
         label {
-            color: $color-table-th;
+            color: $gray-500;
         }
 
         div {
@@ -56,7 +56,7 @@
     }
 
     &__password {
-        color: #9ca3af;
+        color: $gray-400;
 
         font-size: $fs-md;
         font-weight: 500;
@@ -70,7 +70,7 @@ label {
     font-weight: 500;
 
     .required {
-        color: $color-red;
+        color: #ef4444;
 
         font-size: inherit;
         font-weight: inherit;
@@ -81,9 +81,10 @@ input, textarea, select, option {
     padding: .6em .8em;
 
     background: transparent;
+    color: $gray-950;
 
     outline: none;
-    border: .1rem solid $color-border;
+    border: .1rem solid #e1e7ef;
     -webkit-border-radius: $rounded-sm;
     -moz-border-radius: $rounded-sm;
     border-radius: $rounded-sm;
@@ -94,11 +95,11 @@ input, textarea, select, option {
     transition: border-color $transition-md ease;
 
     &:focus {
-        border-color: $color-border-secondary;
+        border-color: $teal-650;
     }
 
     &.invalid {
-        border-color: $color-red;
+        border-color: #ef4444;
     }
 }
 

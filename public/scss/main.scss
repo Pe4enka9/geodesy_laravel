@@ -24,8 +24,6 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
-    //color: $color-text;
-
     font: 10px "Inter", sans-serif;
 }
 
@@ -34,13 +32,18 @@ body {
 
     @include flex();
 
-    background-color: $color-bg;
+    background-color: $gray-50;
+    color: $gray-950;
 }
 
 main {
     margin-left: 25rem;
 
     flex-grow: 1;
+}
+
+button {
+    color: $gray-950;
 }
 
 .img {
@@ -53,7 +56,7 @@ main {
 }
 
 .error {
-    color: $color-red;
+    color: #ef4444;
 
     font-size: $fs-md;
     font-weight: 400;

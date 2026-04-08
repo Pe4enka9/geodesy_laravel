@@ -13,7 +13,7 @@
     }
 
     &__subtitle {
-        color: $color-table-th;
+        color: $gray-500;
 
         font-size: $fs-lg;
         font-weight: 400;
@@ -29,7 +29,7 @@
         @include flex(space-between, center);
         flex: 1;
 
-        background-color: $color-white;
+        background-color: $white;
 
         -webkit-border-radius: $rounded-lg;
         -moz-border-radius: $rounded-lg;
@@ -48,7 +48,7 @@
     }
 
     &__card-title {
-        color: $color-table-th;
+        color: $gray-500;
 
         font-size: $fs-md;
         font-weight: 500;
@@ -59,19 +59,19 @@
         font-weight: 700;
 
         &--blue {
-            color: #2563eb;
+            color: $blue-600;
         }
 
         &--green {
-            color: $color-success;
+            color: $green-600;
         }
 
         &--purple {
-            color: #4f46e5;
+            color: $purple-600;
         }
 
         &--red {
-            color: #dc2626;
+            color: $red-600;
         }
     }
 
@@ -85,19 +85,19 @@
         border-radius: $rounded-lg;
 
         &--blue {
-            background-color: #eff6ff;
+            background-color: $blue-50;
         }
 
         &--green {
-            background-color: #f0fdf4;
+            background-color: $green-50;
         }
 
         &--purple {
-            background-color: #eef2ff;
+            background-color: $purple-50;
         }
 
         &--red {
-            background-color: #fef2f2;
+            background-color: $red-50;
         }
     }
 
@@ -106,19 +106,19 @@
         height: 2.4rem;
 
         &--blue {
-            stroke: #2563eb;
+            stroke: $blue-600;
         }
 
         &--green {
-            stroke: #15803d;
+            stroke: $green-700;
         }
 
         &--purple {
-            stroke: #4f46e5;
+            stroke: $purple-600;
         }
 
         &--red {
-            stroke: #dc2626;
+            stroke: $red-600;
         }
     }
 
@@ -127,7 +127,7 @@
 
         @include flex($fd: column, $g: 2rem);
 
-        background-color: $color-white;
+        background-color: $white;
 
         -webkit-border-radius: $rounded-lg;
         -moz-border-radius: $rounded-lg;
@@ -153,7 +153,7 @@
         width: 2rem;
         height: 2rem;
 
-        color: #0d9488;
+        color: $teal-600;
     }
 
     &__transfers-link {
@@ -161,7 +161,7 @@
 
         @include flex($ai: center, $g: .5rem);
 
-        color: $color-primary;
+        color: $teal-600;
 
         -webkit-border-radius: $rounded-sm;
         -moz-border-radius: $rounded-sm;
@@ -173,8 +173,8 @@
         transition: background-color $transition-sm ease, color $transition-sm ease;
 
         &:hover {
-            color: $color-white;
-            background-color: $color-border-secondary;
+            color: $white;
+            background-color: $teal-650;
         }
     }
 
@@ -194,7 +194,7 @@
 
         @include flex(space-between, center);
 
-        background-color: $color-bg;
+        background-color: $gray-50;
 
         -webkit-border-radius: $rounded-md;
         -moz-border-radius: $rounded-md;
@@ -215,7 +215,7 @@
     }
 
     &__transfers-card-arrow {
-        color: #9ca3af;
+        color: $gray-400;
 
         font-size: $fs-lg;
         font-weight: 400;
@@ -229,7 +229,7 @@
     }
 
     &__transfers-card-updated-at {
-        color: #6b7280;
+        color: $gray-500;
 
         font-size: $fs-sm;
         font-weight: 400;

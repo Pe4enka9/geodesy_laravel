@@ -9,7 +9,6 @@
         margin-left: auto;
         padding: .8rem 1rem;
 
-        color: $color-text;
         background: none;
 
         @include flex(center, center);
@@ -24,10 +23,10 @@
         transition: background-color $transition-sm ease;
 
         &:hover {
-            background-color: $color-border-secondary;
+            background-color: $teal-650;
 
             .actions__btn-icon {
-                stroke: $color-white;
+                stroke: $white;
             }
         }
 
@@ -46,9 +45,9 @@
 
         @include flex($fd: column);
 
-        background-color: $color-white;
+        background-color: $white;
 
-        border: .1rem solid $color-border;
+        border: .1rem solid #e1e7ef;
         -webkit-border-radius: $rounded-sm;
         -moz-border-radius: $rounded-sm;
         border-radius: $rounded-sm;
@@ -89,21 +88,21 @@
         transition: background-color $transition-sm ease, color $transition-sm ease;
 
         &:hover {
-            color: $color-white;
-            background-color: $color-border-secondary;
+            color: $white;
+            background-color: $teal-650;
 
             .actions__icon {
-                color: $color-white;
+                color: $white;
             }
         }
 
         &--delete {
-            color: $color-danger;
+            color: $red-600;
         }
     }
 
     &__icon {
-        color: #65758b;
+        color: $gray-600;
         transition: color $transition-sm ease;
     }
 }

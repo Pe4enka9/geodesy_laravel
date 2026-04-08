@@ -6,7 +6,7 @@
 
     @include flex($fd: column);
 
-    background: linear-gradient(to bottom, #1e3a5f, #152a45);
+    background: $gradient-dark-short;
 
     position: fixed;
     top: 0;
@@ -17,7 +17,7 @@
 
         @include flex($ai: center, $g: 1rem);
 
-        border-bottom: .1rem solid rgba(255, 255, 255, .1);
+        border-bottom: .1rem solid $white-10;
     }
 
     &__title-wrapper {
@@ -25,14 +25,14 @@
     }
 
     &__title {
-        color: $color-white;
+        color: $white;
 
         font-size: $fs-xl;
         font-weight: 700;
     }
 
     &__subtitle {
-        color: $color-text-secondary;
+        color: $white-60;
 
         font-size: $fs-sm;
         font-weight: 400;
@@ -44,6 +44,6 @@
 
         @include flex($fd: column, $g: 1rem);
 
-        border-top: .1rem solid rgba(255, 255, 255, .1);
+        border-top: .1rem solid $white-10;
     }
 }

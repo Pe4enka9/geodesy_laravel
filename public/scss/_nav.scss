@@ -10,7 +10,7 @@
 
         @include flex($ai: center, $g: 1rem);
 
-        color: $color-link;
+        color: $white-70;
 
         -webkit-border-radius: $rounded-md;
         -moz-border-radius: $rounded-md;
@@ -20,9 +20,9 @@
         cursor: pointer;
 
         &--active {
-            background-color: rgba(255, 255, 255, .1);
+            background-color: $white-10;
 
-            border-left: .3rem solid $color-link-border;
+            border-left: .3rem solid $teal-500;
 
             position: relative;
 
@@ -30,7 +30,7 @@
                 width: 1.6rem;
                 height: 1.6rem;
 
-                background-color: $color-link-border;
+                background-color: $teal-500;
                 mask: url("/icons/arrow.svg") no-repeat center / contain;
 
                 content: '';
@@ -42,16 +42,16 @@
             }
 
             .nav__link-icon {
-                color: $color-link-border;
+                color: $teal-500;
             }
         }
 
         &:hover:not(&--active) {
-            background-color: rgba(255, 255, 255, .05);
+            background-color: $white-05;
         }
 
         &:hover:not(&--active) {
-            color: $color-white;
+            color: $white;
         }
     }
 
@@ -69,7 +69,7 @@
         transition: color $transition-md ease;
 
         &--active {
-            color: $color-white;
+            color: $white;
         }
     }
 }
