@@ -5,7 +5,7 @@ namespace App\Livewire\Forms;
 use App\Models\Users\Enums\UserPositionEnum;
 use App\Models\Users\Enums\UserRoleEnum;
 use App\Models\Users\User;
-use App\Services\User\Actions\ChangePasswordAction;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
@@ -54,10 +54,7 @@ class UserForm extends Form
         ]);
     }
 
-    public function update(
-        User                 $user,
-        ChangePasswordAction $changePasswordAction,
-    ): User
+    public function update(User $user): User
     {
         $this->validate($this->rules($user));
 
@@ -70,7 +67,8 @@ class UserForm extends Form
         ]);
 
         if ($this->password) {
-            $changePasswordAction($user, $this->password);
+            DB::table('sessions')->where('user_id', $user->id)->delete();
+            $user->update(['password' => Hash::make($this->password)]);
         }
 
         return $user;
