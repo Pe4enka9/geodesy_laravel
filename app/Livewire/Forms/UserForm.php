@@ -15,17 +15,17 @@ use Livewire\Form;
 class UserForm extends Form
 {
     public ?int $editId = null;
-    #[Validate]
+    #[Validate(as: 'фамилия')]
     public string $last_name = '';
-    #[Validate]
+    #[Validate(as: 'имя')]
     public string $first_name = '';
-    #[Validate]
+    #[Validate(as: 'логин')]
     public string $login = '';
-    #[Validate]
+    #[Validate(as: 'пароль')]
     public string $password = '';
-    #[Validate]
+    #[Validate(as: 'должность')]
     public ?UserPositionEnum $position = null;
-    #[Validate]
+    #[Validate(as: 'роль')]
     public UserRoleEnum $role = UserRoleEnum::EMPLOYEE;
 
     protected function rules(?User $user = null): array

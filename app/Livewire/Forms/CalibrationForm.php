@@ -13,15 +13,15 @@ use Livewire\Form;
 class CalibrationForm extends Form
 {
     public ?int $editId = null;
-    #[Validate]
+    #[Validate(as: 'оборудование')]
     public int $equipment_id = 0;
-    #[Validate]
+    #[Validate(as: 'номер сертификата')]
     public string $certificate_number = '';
-    #[Validate]
+    #[Validate(as: 'ссылка на сертификат')]
     public ?string $verification_url = null;
-    #[Validate]
+    #[Validate(as: 'дата получения')]
     public string $issued_at = '';
-    #[Validate]
+    #[Validate(as: 'действует до')]
     public string $expires_at = '';
 
     protected function rules(): array

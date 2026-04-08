@@ -26,7 +26,7 @@
         id="{{ $id }}"
         @class(['invalid' => $errors->has($name)])
         placeholder="{{ $placeholder }}"
-        wire:model.live.blur="{{ $name }}"
+        wire:model.live.debounce.250ms="{{ $name }}"
     >
 
     @error($name)

@@ -14,15 +14,15 @@ use Livewire\Form;
 class EquipmentForm extends Form
 {
     public ?int $editId = null;
-    #[Validate]
+    #[Validate(as: 'тип оборудования')]
     public int $type = 0;
-    #[Validate]
+    #[Validate(as: 'инвентарный номер')]
     public string $inventory_number = '';
-    #[Validate]
+    #[Validate(as: 'серийный номер')]
     public ?string $serial_number = null;
-    #[Validate]
+    #[Validate(as: 'модель')]
     public ?int $model = null;
-    #[Validate]
+    #[Validate(as: 'статус')]
     public EquipmentStatusEnum $status = EquipmentStatusEnum::INACTIVE;
 
     protected function rules(?Equipment $equipment = null): array

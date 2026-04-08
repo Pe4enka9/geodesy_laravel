@@ -9,7 +9,7 @@ use Livewire\Form;
 class ModelForm extends Form
 {
     public ?int $editId = null;
-    #[Validate]
+    #[Validate(as: 'название')]
     public string $name = '';
 
     protected function rules(): array

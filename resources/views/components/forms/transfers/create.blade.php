@@ -11,6 +11,7 @@
         name="form.user"
         placeholder="Выберите получателя"
         hidden-placeholder
+        required
     >
         @foreach($users as $user)
             <option value="{{ $user->id }}">{{ $user->getFullName() }}</option>

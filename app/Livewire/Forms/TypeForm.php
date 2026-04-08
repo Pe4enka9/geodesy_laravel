@@ -10,11 +10,11 @@ use Livewire\Form;
 class TypeForm extends Form
 {
     public ?int $editId = null;
-    #[Validate]
+    #[Validate(as: 'название')]
     public string $name = '';
-    #[Validate]
+    #[Validate(as: 'код')]
     public string $code = '';
-    #[Validate]
+    #[Validate(as: 'описание')]
     public ?string $description = null;
 
     protected function rules(?EquipmentType $type = null): array

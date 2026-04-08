@@ -11,11 +11,11 @@ use Livewire\Form;
 
 class TransferForm extends Form
 {
-    #[Validate]
+    #[Validate(as: 'оборудование')]
     public int $equipmentId = 0;
-    #[Validate]
+    #[Validate(as: 'получатель')]
     public int $user = 0;
-    #[Validate]
+    #[Validate(as: 'комментарий')]
     public ?string $comment = null;
 
     protected function rules(): array
