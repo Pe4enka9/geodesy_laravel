@@ -5,6 +5,7 @@ namespace App\Livewire\Calibrations;
 use App\Livewire\Forms\CalibrationForm;
 use App\Models\Calibrations\Calibration;
 use App\Models\Calibrations\Enums\CalibrationStatusEnum;
+use App\Models\Equipments\Enums\EquipmentStatusEnum;
 use App\Models\Equipments\Equipment;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
@@ -32,6 +33,10 @@ class Create extends Component
                         $q->where('status', CalibrationStatusEnum::EXPIRED);
                     });
             })
+            ->whereIn('status', [
+                EquipmentStatusEnum::INACTIVE,
+                EquipmentStatusEnum::CALIBRATION_EXPIRED
+            ])
             ->latest()
             ->get();
     }

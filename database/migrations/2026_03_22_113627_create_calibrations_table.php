@@ -14,7 +14,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Equipment::class)->constrained()->cascadeOnDelete();
             $table->string('certificate_number');
-            $table->string('verification_url');
+            $table->text('verification_url');
             $table->date('issued_at');
             $table->date('expires_at');
             $table->string('status')->default(CalibrationStatusEnum::ACTIVE);
