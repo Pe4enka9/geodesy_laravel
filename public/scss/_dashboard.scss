@@ -1,0 +1,223 @@
+@use "variables" as *;
+
+.dashboard {
+    @include flex($fd: column, $g: 2rem);
+
+    &__title-wrapper {
+        @include flex($fd: column, $g: .5rem);
+    }
+
+    &__title {
+        font-size: 2.4rem;
+        font-weight: 700;
+    }
+
+    &__subtitle {
+        color: $color-table-th;
+
+        font-size: $fs-lg;
+        font-weight: 400;
+    }
+
+    &__cards {
+        @include flex($g: 1.5rem);
+    }
+
+    &__card {
+        padding: 4rem 2rem;
+
+        @include flex(space-between, center);
+        flex: 1;
+
+        background-color: $color-white;
+
+        -webkit-border-radius: $rounded-lg;
+        -moz-border-radius: $rounded-lg;
+        border-radius: $rounded-lg;
+
+        box-shadow: $shadow-sm;
+        transition: box-shadow $transition-md ease;
+
+        &:hover {
+            box-shadow: $shadow-lg;
+        }
+    }
+
+    &__card-title-wrapper {
+        @include flex($fd: column, $g: .5rem);
+    }
+
+    &__card-title {
+        color: $color-table-th;
+
+        font-size: $fs-md;
+        font-weight: 500;
+    }
+
+    &__card-count {
+        font-size: 3rem;
+        font-weight: 700;
+
+        &--blue {
+            color: #2563eb;
+        }
+
+        &--green {
+            color: $color-success;
+        }
+
+        &--purple {
+            color: #4f46e5;
+        }
+
+        &--red {
+            color: #dc2626;
+        }
+    }
+
+    &__card-icon-wrapper {
+        padding: 1.2rem;
+
+        @include flex(center, center);
+
+        -webkit-border-radius: $rounded-lg;
+        -moz-border-radius: $rounded-lg;
+        border-radius: $rounded-lg;
+
+        &--blue {
+            background-color: #eff6ff;
+        }
+
+        &--green {
+            background-color: #f0fdf4;
+        }
+
+        &--purple {
+            background-color: #eef2ff;
+        }
+
+        &--red {
+            background-color: #fef2f2;
+        }
+    }
+
+    &__card-icon {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+
+    &__transfers {
+        padding: 2rem;
+
+        @include flex($fd: column, $g: 2rem);
+
+        background-color: $color-white;
+
+        -webkit-border-radius: $rounded-lg;
+        -moz-border-radius: $rounded-lg;
+        border-radius: $rounded-lg;
+
+        box-shadow: $shadow-sm;
+    }
+
+    &__transfers-header {
+        @include flex(space-between, center);
+    }
+
+    &__transfers-title-wrapper {
+        @include flex($ai: center, $g: 1rem);
+    }
+
+    &__transfers-title {
+        font-size: $fs-lg;
+        font-weight: 600;
+    }
+
+    &__transfers-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    &__transfers-link {
+        padding: .7rem 1rem;
+
+        @include flex($ai: center, $g: .5rem);
+
+        color: $color-primary;
+
+        -webkit-border-radius: $rounded-sm;
+        -moz-border-radius: $rounded-sm;
+        border-radius: $rounded-sm;
+
+        font-size: $fs-md;
+        font-weight: 500;
+
+        transition: background-color $transition-sm ease, color $transition-sm ease;
+
+        &:hover {
+            color: $color-white;
+            background-color: $color-border-secondary;
+
+            .dashboard__transfers-link-icon {
+                stroke: $color-white;
+            }
+        }
+    }
+
+    &__transfers-link-icon {
+        width: 1.6rem;
+        height: 1.6rem;
+
+        transition: stroke $transition-sm ease;
+    }
+
+    &__transfers-cards {
+        @include flex($fd: column, $g: 1rem);
+    }
+
+    &__transfers-card {
+        padding: 1rem;
+
+        @include flex(space-between, center);
+
+        background-color: $color-bg;
+
+        -webkit-border-radius: $rounded-md;
+        -moz-border-radius: $rounded-md;
+        border-radius: $rounded-md;
+    }
+
+    &__transfers-card-content {
+        @include flex($fd: column, $g: .5rem);
+    }
+
+    &__transfers-card-left {
+        @include flex($ai: center, $g: 1rem);
+    }
+
+    &__transfers-card-equipment {
+        font-size: $fs-lg;
+        font-weight: 500;
+    }
+
+    &__transfers-card-arrow {
+        color: #9ca3af;
+
+        font-size: $fs-lg;
+        font-weight: 400;
+    }
+
+    &__transfers-card-user {
+        color: #4b5563;
+
+        font-size: $fs-md;
+        font-weight: 400;
+    }
+
+    &__transfers-card-updated-at {
+        color: #6b7280;
+
+        font-size: $fs-sm;
+        font-weight: 400;
+    }
+}
