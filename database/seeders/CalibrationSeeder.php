@@ -42,7 +42,6 @@ class CalibrationSeeder extends Seeder
             'issued_at' => $issuedAt,
             'expires_at' => $expiresAt,
             'status' => $status,
-            'created_by' => $user->id,
         ]);
     }
 }

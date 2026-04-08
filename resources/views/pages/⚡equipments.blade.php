@@ -2,6 +2,7 @@
 
 use App\Models\Equipments\Enums\EquipmentStatusEnum;
 use App\Models\Equipments\Equipment;
+use App\Models\TransferRequests\Enums\TransferRequestStatusEnum;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
@@ -45,14 +46,35 @@ class extends Component {
     {
         $equipment = Equipment::findOrFail($id);
         $this->authorize('take', $equipment);
-        $equipment->update(['current_holder_id' => auth()->id()]);
+        $userId = auth()->id();
+
+        $equipment->update([
+            'current_holder_id' => $userId,
+            'status' => EquipmentStatusEnum::ACTIVE,
+        ]);
+
+        $equipment->transfers()->create([
+            'receiver_id' => $userId,
+            'status' => TransferRequestStatusEnum::ACCEPTED,
+            'resolved_at' => now(),
+        ]);
     }
 
     public function release(int $id): void
     {
         $equipment = Equipment::findOrFail($id);
         $this->authorize('release', $equipment);
-        $equipment->update(['current_holder_id' => null]);
+
+        $equipment->update([
+            'current_holder_id' => null,
+            'status' => EquipmentStatusEnum::INACTIVE,
+        ]);
+
+        $equipment->transfers()->create([
+            'sender_id' => auth()->id(),
+            'status' => TransferRequestStatusEnum::ACCEPTED,
+            'resolved_at' => now(),
+        ]);
     }
 
     public function setFilter(?EquipmentStatusEnum $currentFilter): void

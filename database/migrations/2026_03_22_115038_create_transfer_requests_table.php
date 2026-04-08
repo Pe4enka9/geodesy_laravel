@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Equipment::class)->constrained();
 
-            $table->foreignIdFor(User::class, 'sender_id')->constrained();
-            $table->foreignIdFor(User::class, 'receiver_id')->constrained();
+            $table->foreignIdFor(User::class, 'sender_id')->nullable()->constrained();
+            $table->foreignIdFor(User::class, 'receiver_id')->nullable()->constrained();
 
             $table->string('status')->default(TransferRequestStatusEnum::PENDING);
 

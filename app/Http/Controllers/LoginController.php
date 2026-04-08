@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginDto;
+use App\Http\Requests\LoginDto;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -25,9 +24,7 @@ class LoginController extends Controller
         ]);
 
         if (!$user) {
-            return redirect()->back()
-                ->withErrors(['auth' => 'Неверный логин или пароль.'])
-                ->withInput();
+            return back()->withErrors(['auth' => 'Неверный логин или пароль.'])->withInput();
         }
 
         return redirect()->intended(route('dashboard'));

@@ -1,5 +1,5 @@
 @props([
-    'filters',
+    'filters' => null,
     'currentFilter' => null,
     'placeholder' => 'Поиск...',
     'hasBtn' => true,

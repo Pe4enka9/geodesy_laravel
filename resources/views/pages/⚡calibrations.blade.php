@@ -39,6 +39,7 @@ class extends Component {
         $calibration = Calibration::findOrFail($id);
         $this->authorize('delete', $calibration);
         $calibration->delete();
+        $this->dispatch('calibration-updated');
     }
 
     public function setFilter(?CalibrationStatusEnum $currentFilter): void

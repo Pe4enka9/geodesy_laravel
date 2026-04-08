@@ -1,6 +1,6 @@
 <aside class="aside">
     <div class="aside__header">
-        @include('components.logo')
+        <x-logo/>
 
         <div class="aside__title-wrapper">
             <h1 class="aside__title">ГеоКонтроль</h1>
@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    @include('components.nav')
+    <x-nav/>
 
     <div class="aside__actions">
         <x-user :user="auth()->user()" mod="padding" initials role/>

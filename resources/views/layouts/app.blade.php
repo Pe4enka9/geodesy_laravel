@@ -12,9 +12,7 @@
 </head>
 <body>
 
-@auth
-    @include('components.aside')
-@endauth
+<x-aside/>
 
 <main>{{ $slot }}</main>
 

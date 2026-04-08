@@ -133,13 +133,17 @@ class extends Component {
                     </x-slot>
 
                     <x-slot name="body">
-                        <div class="card__sender">
-                            <span>От:</span> {{ $transfer->sender->getInitials() }}
-                        </div>
+                        @if($transfer->sender_id)
+                            <div class="card__sender">
+                                <span>От:</span> {{ $transfer->sender->getInitials() }}
+                            </div>
+                        @endif
 
-                        <div class="card__receiver">
-                            <span>Кому:</span> {{ $transfer->receiver->getInitials() }}
-                        </div>
+                        @if($transfer->receiver_id)
+                            <div class="card__receiver">
+                                <span>Кому:</span> {{ $transfer->receiver->getInitials() }}
+                            </div>
+                        @endif
 
                         <div class="card__created-at">
                             <span>Создано:</span> {{ $transfer->created_at->format('d.m.Y H:i') }}

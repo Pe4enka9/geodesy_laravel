@@ -15,7 +15,7 @@
     <div class="login">
         <div class="login__wrapper">
             <div class="login__title-wrapper">
-                @include('components.logo', ['class' => 'logo--lg'])
+                <x-logo mod="lg"/>
 
                 <h1 class="login__title">ГеоКонтроль</h1>
                 <div class="login__description">Система учёта геодезического оборудования</div>

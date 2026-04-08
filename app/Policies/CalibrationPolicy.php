@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Calibrations\Calibration;
+use App\Models\Equipments\Enums\EquipmentStatusEnum;
 use App\Models\Users\User;
 
 class CalibrationPolicy
@@ -24,7 +25,11 @@ class CalibrationPolicy
 
     public function update(User $user, Calibration $calibration): bool
     {
-        return $user->isAdmin();
+        return $user->isAdmin()
+            && (
+                $calibration->equipment->status === EquipmentStatusEnum::INACTIVE
+                || $calibration->equipment->status === EquipmentStatusEnum::CALIBRATION_EXPIRED
+            );
     }
 
     public function delete(User $user, Calibration $calibration): bool

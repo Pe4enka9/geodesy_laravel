@@ -1,4 +1,7 @@
-@props(['key' => '', 'mod' => ''])
+@props([
+    'key' => '',
+    'mod' => '',
+])
 
 <tr
     @class(['table-wrapper__tr', "table-wrapper__tr--$mod" => $mod])

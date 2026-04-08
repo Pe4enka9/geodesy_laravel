@@ -1,5 +1,7 @@
-<a href="{{ $route }}" @class(['nav__link', 'nav__link--active' => request()->routeIs($routeName)])>
-    @switch($icon)
+@props(['name'])
+
+<a href="{{ route($name) }}" @class(['nav__link', 'nav__link--active' => request()->routeIs($name)])>
+    @switch($name)
         @case('dashboard')
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                  stroke="#ffffffb3" class="nav__link-icon" stroke-width="2" stroke-linecap="round"
@@ -69,5 +71,5 @@
             @break
     @endswitch
 
-    <span @class(['nav__link-text', 'nav__link-text--active' => request()->routeIs($routeName)])>{{ $name }}</span>
+    <span @class(['nav__link-text', 'nav__link-text--active' => request()->routeIs($name)])>{{ $slot }}</span>
 </a>

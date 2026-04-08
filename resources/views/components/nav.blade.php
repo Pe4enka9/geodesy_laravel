@@ -1,15 +1,15 @@
 <nav class="nav">
     @auth
-        @include('components.nav-link', ['route' => route('dashboard'), 'routeName' => 'dashboard', 'name' => 'Дашборд', 'icon' => 'dashboard'])
-        @include('components.nav-link', ['route' => route('equipments.index'), 'routeName' => 'equipments.*', 'name' => 'Оборудование', 'icon' => 'equipments'])
+        <x-nav-link name="dashboard">Дашборд</x-nav-link>
+        <x-nav-link name="equipments">Оборудование</x-nav-link>
 
         @adminOrOwner
-        @include('components.nav-link', ['route' => route('users.index'), 'routeName' => 'users.*', 'name' => 'Персонал', 'icon' => 'users'])
+        <x-nav-link name="users">Персонал</x-nav-link>
         @endadminOrOwner
 
-        @include('components.nav-link', ['route' => route('models.index'), 'routeName' => 'models.*', 'name' => 'Модели', 'icon' => 'models'])
-        @include('components.nav-link', ['route' => route('types.index'), 'routeName' => 'types.*', 'name' => 'Типы', 'icon' => 'types'])
-        @include('components.nav-link', ['route' => route('calibrations.index'), 'routeName' => 'calibrations.*', 'name' => 'Поверки', 'icon' => 'calibrations'])
-        @include('components.nav-link', ['route' => route('transfers.index'), 'routeName' => 'transfers.*', 'name' => 'Передачи', 'icon' => 'transfers'])
+        <x-nav-link name="models">Модели</x-nav-link>
+        <x-nav-link name="types">Типы</x-nav-link>
+        <x-nav-link name="calibrations">Поверки</x-nav-link>
+        <x-nav-link name="transfers">Передачи</x-nav-link>
     @endauth
 </nav>

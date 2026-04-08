@@ -1,13 +1,13 @@
 <x-forms.modal-edit-form title="Редактировать поверку">
     <x-forms.select
         label="Оборудование"
-        id="edit_equipment"
-        name="form.equipment"
+        id="edit_equipment_id"
+        name="form.equipment_id"
         placeholder="Выберите оборудование"
         hidden-placeholder
         required
     >
-        @foreach($equipments as $equipment)
+        @foreach($this->equipments as $equipment)
             <option value="{{ $equipment->id }}">
                 {{ $equipment->inventory_number }}
             </option>

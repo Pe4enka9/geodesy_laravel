@@ -1,4 +1,10 @@
-@props(['label', 'id', 'name', 'placeholder', 'required' => false])
+@props([
+    'label',
+    'id',
+    'name',
+    'placeholder',
+    'required' => false,
+])
 
 <div class="input-wrapper">
     <label for="{{ $id }}">

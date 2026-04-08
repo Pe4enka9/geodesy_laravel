@@ -1,4 +1,9 @@
-@props(['items', 'emptyIcon', 'emptyText', 'column' => false])
+@props([
+    'items',
+    'emptyIcon',
+    'emptyText',
+    'column' => false,
+])
 
 <div @class(['cards', 'cards--column' => $column])>
     @if($items->isEmpty())

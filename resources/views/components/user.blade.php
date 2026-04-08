@@ -1,4 +1,9 @@
-@props(['user', 'initials' => false, 'role' => false, 'mod' => ''])
+@props([
+    'user',
+    'initials' => false,
+    'role' => false,
+    'mod' => '',
+])
 
 <div @class(['user', "user--$mod" => $mod])>
     <div class="user__img-wrapper">

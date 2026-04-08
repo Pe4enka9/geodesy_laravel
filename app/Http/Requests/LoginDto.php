@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests;
 
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;

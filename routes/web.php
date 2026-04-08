@@ -1,12 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\CalibrationController;
-use App\Http\Controllers\EquipmentController;
-use App\Http\Controllers\EquipmentModelController;
-use App\Http\Controllers\EquipmentTypeController;
-use App\Http\Controllers\MainController;
-use App\Http\Controllers\TransferRequestController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -21,7 +15,7 @@ Route::middleware('guest')->group(function () {
 // Владелец и админ
 Route::middleware('owner_or_admin')->group(function () {
     // Персонал
-    Route::livewire('/users', 'pages::users')->name('users.index');
+    Route::livewire('/users', 'pages::users')->name('users');
 });
 
 // Авторизованный пользователь
@@ -30,38 +24,20 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     // Дашборд
-    Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
+    Route::livewire('/dashboard', 'pages::dashboard')->name('dashboard');
 
     // Оборудование
-    Route::livewire('/equipments', 'pages::equipments')->name('equipments.index');
+    Route::livewire('/equipments', 'pages::equipments')->name('equipments');
 
     // Модели оборудования
-    Route::livewire('/models', 'pages::models')->name('models.index');
+    Route::livewire('/models', 'pages::models')->name('models');
 
     // Типы оборудования
-    Route::livewire('/types', 'pages::types')->name('types.index');
+    Route::livewire('/types', 'pages::types')->name('types');
 
     // Поверки
-    Route::livewire('/calibrations', 'pages::calibrations')->name('calibrations.index');
+    Route::livewire('/calibrations', 'pages::calibrations')->name('calibrations');
 
     // Передачи
-    Route::livewire('/transfers', 'pages::transfers')->name('transfers.index');
-    Route::post('/transfers/{transfer}/accept', [TransferRequestController::class, 'accept'])->name('transfers.accept');
-    Route::post('/transfers/{transfer}/cancel', [TransferRequestController::class, 'cancel'])->name('transfers.cancel');
-    Route::post('/transfers/{transfer}/reject', [TransferRequestController::class, 'reject'])->name('transfers.reject');
-});
-
-// Админ
-Route::middleware('admin')->group(function () {
-    // Оборудование
-    Route::resource('/equipments', EquipmentController::class)->except(['index', 'show']);
-
-    // Модели оборудования
-    Route::resource('/models', EquipmentModelController::class)->except(['index', 'show']);
-
-    // Типы оборудования
-    Route::resource('/types', EquipmentTypeController::class)->except(['index', 'show']);
-
-    // Поверки
-    Route::resource('/calibrations', CalibrationController::class)->except(['index', 'show']);
+    Route::livewire('/transfers', 'pages::transfers')->name('transfers');
 });

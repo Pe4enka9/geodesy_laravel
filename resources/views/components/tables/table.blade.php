@@ -1,4 +1,8 @@
-@props(['headers', 'items', 'emptyText' => 'Ничего не найдено'])
+@props([
+    'headers',
+    'items',
+    'emptyText' => 'Ничего не найдено',
+])
 
 <div class="table-wrapper">
     <table class="table-wrapper__table">

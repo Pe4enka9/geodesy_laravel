@@ -8,13 +8,10 @@ use App\Models\Equipments\Enums\EquipmentStatusEnum;
 use App\Models\EquipmentType;
 use App\Models\TransferRequests\TransferRequest;
 use App\Models\Users\User;
-use App\QueryBuilders\EquipmentQueryBuilder;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Guarded(['id'])]
 class Equipment extends Model
@@ -42,22 +39,12 @@ class Equipment extends Model
 
     public function currentHolder(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'current_holder_id');
+        return $this->belongsTo(User::class);
     }
 
     public function isCurrentHolder(User $user): bool
     {
         return $this->current_holder_id === $user->id;
-    }
-
-    public function lastCalibration(): HasOne
-    {
-        return $this->hasOne(Calibration::class)->latest();
-    }
-
-    public function newEloquentBuilder($query): Builder
-    {
-        return new EquipmentQueryBuilder($query);
     }
 
     public function transfers(): HasMany

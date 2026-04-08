@@ -1,4 +1,7 @@
-@props(['customEvent' => 'create', 'title' => 'Добавить'])
+@props([
+    'customEvent' => 'create',
+    'title' => 'Добавить',
+])
 
 <div
     class="modal"

@@ -1,13 +1,13 @@
 <x-forms.modal-create-form title="Добавить поверку">
     <x-forms.select
         label="Оборудование"
-        id="create_equipment"
-        name="form.equipment"
+        id="create_equipment_id"
+        name="form.equipment_id"
         placeholder="Выберите оборудование"
         hidden-placeholder
         required
     >
-        @foreach($equipments as $equipment)
+        @foreach($this->equipments as $equipment)
             <option value="{{ $equipment->id }}">
                 {{ $equipment->inventory_number }}
             </option>
