@@ -107,7 +107,7 @@ class extends Component {
 
         <x-cards.cards
             :items="$this->transfers"
-            :empty-icon="asset('icons/transfers-gray.svg')"
+            empty-icon="transfers"
             empty-text="Передачи не найдены"
             column
         >
@@ -165,7 +165,12 @@ class extends Component {
                             @can('cancel', $transfer)
                                 <button type="button" class="btn btn--outline-disabled btn--sm"
                                         wire:click="cancel({{ $transfer->id }})">
-                                    <img src="{{ asset('icons/cancel.svg') }}" alt="" class="btn__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                         fill="none" stroke="currentColor" class="btn__icon" stroke-width="2"
+                                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M4.929 4.929 19.07 19.071"/>
+                                        <circle cx="12" cy="12" r="10"/>
+                                    </svg>
                                     Отменить
                                 </button>
                             @endcan
@@ -173,7 +178,12 @@ class extends Component {
                             @can('accept', $transfer)
                                 <button type="button" class="btn btn--success btn--sm"
                                         wire:click="accept({{ $transfer->id }})">
-                                    <img src="{{ asset('icons/success-white.svg') }}" alt="" class="btn__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                         fill="none" stroke="currentColor" class="btn__icon" stroke-width="2"
+                                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="m9 12 2 2 4-4"/>
+                                    </svg>
                                     Принять
                                 </button>
                             @endcan
@@ -181,7 +191,13 @@ class extends Component {
                             @can('reject', $transfer)
                                 <button type="button" class="btn btn--outline-danger btn--sm"
                                         wire:click="reject({{ $transfer->id }})">
-                                    <img src="{{ asset('icons/decline.svg') }}" alt="" class="btn__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                         fill="none" stroke="currentColor" class="btn__icon" stroke-width="2"
+                                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="m15 9-6 6"/>
+                                        <path d="m9 9 6 6"/>
+                                    </svg>
                                     Отклонить
                                 </button>
                             @endcan

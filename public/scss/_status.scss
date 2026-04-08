@@ -16,6 +16,8 @@
         width: 1.2rem;
         height: 1.2rem;
 
+        background-color: currentColor;
+
         content: '';
         transform: translateY(-50%);
 
@@ -31,7 +33,7 @@
         border: .1rem solid #fed7aa;
 
         &::before {
-            background: url("/icons/pending.svg") no-repeat center / contain;
+            mask: url("/icons/pending.svg") no-repeat center / contain;
         }
     }
 
@@ -42,7 +44,7 @@
         border: .1rem solid #fecaca;
 
         &::before {
-            background: url("/icons/decline.svg") no-repeat center / contain;
+            mask: url("/icons/decline.svg") no-repeat center / contain;
         }
     }
 
@@ -53,7 +55,7 @@
         border: .1rem solid #fecaca;
 
         &::before {
-            background: url("/icons/error.svg") no-repeat center / contain;
+            mask: url("/icons/error.svg") no-repeat center / contain;
         }
     }
 
@@ -64,7 +66,7 @@
         border: .1rem solid #bbf7d0;
 
         &::before {
-            background: url("/icons/success.svg") no-repeat center / contain;
+            mask: url("/icons/success.svg") no-repeat center / contain;
         }
     }
 
@@ -75,7 +77,7 @@
         border: .1rem solid #d1d5db;
 
         &::before {
-            background: url("/icons/voided.svg") no-repeat center / contain;
+            mask: url("/icons/voided.svg") no-repeat center / contain;
         }
     }
 
@@ -86,7 +88,7 @@
         border: .1rem solid #d1d5db;
 
         &::before {
-            background: url("/icons/cancel.svg") no-repeat center / contain;
+            mask: url("/icons/cancel.svg") no-repeat center / contain;
         }
     }
 
@@ -97,7 +99,7 @@
         border: .1rem solid #bfdbfe;
 
         &::before {
-            background: url("/icons/inactive.svg") no-repeat center / contain;
+            mask: url("/icons/box.svg") no-repeat center / contain;
         }
     }
 
@@ -108,7 +110,7 @@
         border: .1rem solid #fef08a;
 
         &::before {
-            background: url("/icons/maintenance.svg") no-repeat center / contain;
+            mask: url("/icons/wrench.svg") no-repeat center / contain;
         }
     }
 
@@ -119,7 +121,7 @@
         border: .1rem solid #7f1d1d;
 
         &::before {
-            background: url("/icons/lost.svg") no-repeat center / contain;
+            mask: url("/icons/lens.svg") no-repeat center / contain;
         }
     }
 }

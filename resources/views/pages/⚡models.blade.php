@@ -49,7 +49,7 @@ class extends Component {
 
         <x-cards.cards
             :items="$this->models"
-            :empty-icon="asset('icons/models-gray.svg')"
+            empty-icon="models"
             empty-text="Модели не найдены"
         >
             @php /** @var EquipmentModel $model */ @endphp
@@ -58,7 +58,7 @@ class extends Component {
                 <x-cards.card
                     :key="$model->id"
                     :item="$model"
-                    :img="asset('icons/models-primary.svg')"
+                    img="models"
                 >
                     <x-slot name="content">
                         <h3 class="card__title">{{ $model->name }}</h3>

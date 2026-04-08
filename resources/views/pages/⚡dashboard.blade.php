@@ -38,43 +38,49 @@ class extends Component {
                 <x-cards.dashboard
                     title="Всего оборудования"
                     :count="$this->allEquipments"
-                    :icon="asset('icons/dashboard-equipment.svg')"
                     style="blue"
+                    icon="box"
                 />
 
                 <x-cards.dashboard
                     title="В работе"
                     :count="$this->activeEquipments"
-                    :icon="asset('icons/success.svg')"
                     style="green"
+                    icon="success"
                 />
 
                 <x-cards.dashboard
                     title="На складе"
                     :count="$this->inactiveEquipments"
-                    :icon="asset('icons/dashboard-equipment-purple.svg')"
                     style="purple"
+                    icon="box"
                 />
 
                 <x-cards.dashboard
                     title="Просрочена поверка"
                     :count="$this->expiredEquipments"
-                    :icon="asset('icons/danger.svg')"
                     style="red"
+                    icon="danger"
                 />
             </div>
 
             <div class="dashboard__transfers">
                 <div class="dashboard__transfers-header">
                     <div class="dashboard__transfers-title-wrapper">
-                        <img src="{{ asset('icons/cloak.svg') }}" alt="" class="dashboard__transfers-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" class="dashboard__transfers-icon" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 6v6l4 2"/>
+                            <circle cx="12" cy="12" r="10"/>
+                        </svg>
+
                         <div class="dashboard__transfers-title">Последние передачи</div>
                     </div>
 
                     <a href="{{ route('transfers') }}" class="dashboard__transfers-link">
                         Все передачи
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="#0d9488" class="dashboard__transfers-link-icon" stroke-width="2"
+                             stroke="currentColor" class="dashboard__transfers-link-icon" stroke-width="2"
                              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h14"/>
                             <path d="m12 5 7 7-7 7"/>

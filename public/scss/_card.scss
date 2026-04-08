@@ -53,6 +53,14 @@
     &__img {
         width: 2rem;
         height: 2rem;
+
+        &--models {
+            color: #0d9488;
+        }
+
+        &--types {
+            color: #4f46e5;
+        }
     }
 
     &__content {
@@ -72,6 +80,8 @@
     &__empty-icon {
         width: 4.8rem;
         height: 4.8rem;
+
+        color: #d1d5db;
     }
 
     &__empty-text {

@@ -10,6 +10,8 @@
 
         @include flex($ai: center, $g: 1rem);
 
+        color: $color-link;
+
         -webkit-border-radius: $rounded-md;
         -moz-border-radius: $rounded-md;
         border-radius: $rounded-md;
@@ -28,7 +30,8 @@
                 width: 1.6rem;
                 height: 1.6rem;
 
-                background: url("/icons/arrow.svg") no-repeat center / contain;
+                background-color: $color-link-border;
+                mask: url("/icons/arrow.svg") no-repeat center / contain;
 
                 content: '';
                 transform: translateY(-50%);
@@ -39,7 +42,7 @@
             }
 
             .nav__link-icon {
-                stroke: $color-link-border;
+                color: $color-link-border;
             }
         }
 
@@ -47,12 +50,8 @@
             background-color: rgba(255, 255, 255, .05);
         }
 
-        &:hover:not(&--active) &-text {
+        &:hover:not(&--active) {
             color: $color-white;
-        }
-
-        &:hover:not(&--active) &-icon {
-            stroke: $color-white;
         }
     }
 
@@ -60,12 +59,10 @@
         width: 2rem;
         height: 2rem;
 
-        transition: stroke $transition-md ease;
+        transition: color $transition-md ease;
     }
 
     &__link-text {
-        color: $color-link;
-
         font-size: $fs-md;
         font-weight: 500;
 

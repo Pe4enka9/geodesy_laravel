@@ -104,6 +104,22 @@
     &__card-icon {
         width: 2.4rem;
         height: 2.4rem;
+
+        &--blue {
+            stroke: #2563eb;
+        }
+
+        &--green {
+            stroke: #15803d;
+        }
+
+        &--purple {
+            stroke: #4f46e5;
+        }
+
+        &--red {
+            stroke: #dc2626;
+        }
     }
 
     &__transfers {
@@ -136,6 +152,8 @@
     &__transfers-icon {
         width: 2rem;
         height: 2rem;
+
+        color: #0d9488;
     }
 
     &__transfers-link {
@@ -157,10 +175,6 @@
         &:hover {
             color: $color-white;
             background-color: $color-border-secondary;
-
-            .dashboard__transfers-link-icon {
-                stroke: $color-white;
-            }
         }
     }
 

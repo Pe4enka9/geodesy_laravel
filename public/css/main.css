@@ -22,7 +22,8 @@
 .input-wrapper--search::after {
   width: 1.6rem;
   height: 1.6rem;
-  background: url("/icons/search.svg") no-repeat center/contain;
+  background-color: #9ca3af;
+  mask: url("/icons/lens.svg") no-repeat center/contain;
   content: "";
   transform: translateY(-50%);
   position: absolute;
@@ -224,6 +225,7 @@ textarea {
 .logo__img {
   width: 50%;
   height: 50%;
+  color: #fff;
 }
 .logo--lg {
   width: 8rem;
@@ -248,6 +250,7 @@ textarea {
   align-items: center;
   flex-direction: row;
   gap: 1rem;
+  color: rgba(255, 255, 255, 0.7019607843);
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
   border-radius: 1rem;
@@ -262,7 +265,8 @@ textarea {
 .nav__link--active::after {
   width: 1.6rem;
   height: 1.6rem;
-  background: url("/icons/arrow.svg") no-repeat center/contain;
+  background-color: #14b8a6;
+  mask: url("/icons/arrow.svg") no-repeat center/contain;
   content: "";
   transform: translateY(-50%);
   position: absolute;
@@ -270,24 +274,20 @@ textarea {
   right: 0.8rem;
 }
 .nav__link--active .nav__link-icon {
-  stroke: #14b8a6;
+  color: #14b8a6;
 }
 .nav__link:hover:not(.nav__link--active) {
   background-color: rgba(255, 255, 255, 0.05);
 }
-.nav__link:hover:not(.nav__link--active) .nav__link-text {
+.nav__link:hover:not(.nav__link--active) {
   color: #fff;
-}
-.nav__link:hover:not(.nav__link--active) .nav__link-icon {
-  stroke: #fff;
 }
 .nav__link-icon {
   width: 2rem;
   height: 2rem;
-  transition: stroke 0.3s ease;
+  transition: color 0.3s ease;
 }
 .nav__link-text {
-  color: rgba(255, 255, 255, 0.7019607843);
   font-size: 1.4rem;
   font-weight: 500;
   transition: color 0.3s ease;
@@ -484,6 +484,12 @@ textarea {
   width: 2rem;
   height: 2rem;
 }
+.card__img--models {
+  color: #0d9488;
+}
+.card__img--types {
+  color: #4f46e5;
+}
 .card__content {
   display: flex;
   justify-content: flex-start;
@@ -509,6 +515,7 @@ textarea {
 .card__empty-icon {
   width: 4.8rem;
   height: 4.8rem;
+  color: #d1d5db;
 }
 .card__empty-text {
   color: #6b7280;
@@ -623,6 +630,7 @@ textarea {
 .actions__btn {
   margin-left: auto;
   padding: 0.8rem 1rem;
+  color: #0f1729;
   background: none;
   display: flex;
   justify-content: center;
@@ -693,13 +701,14 @@ textarea {
   background-color: #1dafa1;
 }
 .actions__item:hover .actions__icon {
-  stroke: #fff;
+  color: #fff;
 }
 .actions__item--delete {
   color: #dc2626;
 }
 .actions__icon {
-  transition: stroke 0.2s ease;
+  color: #65758b;
+  transition: color 0.2s ease;
 }
 
 .status {
@@ -715,6 +724,7 @@ textarea {
 .status::before {
   width: 1.2rem;
   height: 1.2rem;
+  background-color: currentColor;
   content: "";
   transform: translateY(-50%);
   position: absolute;
@@ -727,7 +737,7 @@ textarea {
   border: 0.1rem solid #fed7aa;
 }
 .status--pending::before {
-  background: url("/icons/pending.svg") no-repeat center/contain;
+  mask: url("/icons/pending.svg") no-repeat center/contain;
 }
 .status--decline {
   color: #b91c1c;
@@ -735,7 +745,7 @@ textarea {
   border: 0.1rem solid #fecaca;
 }
 .status--decline::before {
-  background: url("/icons/decline.svg") no-repeat center/contain;
+  mask: url("/icons/decline.svg") no-repeat center/contain;
 }
 .status--error {
   color: #b91c1c;
@@ -743,7 +753,7 @@ textarea {
   border: 0.1rem solid #fecaca;
 }
 .status--error::before {
-  background: url("/icons/error.svg") no-repeat center/contain;
+  mask: url("/icons/error.svg") no-repeat center/contain;
 }
 .status--success {
   color: #15803d;
@@ -751,7 +761,7 @@ textarea {
   border: 0.1rem solid #bbf7d0;
 }
 .status--success::before {
-  background: url("/icons/success.svg") no-repeat center/contain;
+  mask: url("/icons/success.svg") no-repeat center/contain;
 }
 .status--voided {
   color: #4b5563;
@@ -759,7 +769,7 @@ textarea {
   border: 0.1rem solid #d1d5db;
 }
 .status--voided::before {
-  background: url("/icons/voided.svg") no-repeat center/contain;
+  mask: url("/icons/voided.svg") no-repeat center/contain;
 }
 .status--cancel {
   color: #4b5563;
@@ -767,7 +777,7 @@ textarea {
   border: 0.1rem solid #d1d5db;
 }
 .status--cancel::before {
-  background: url("/icons/cancel.svg") no-repeat center/contain;
+  mask: url("/icons/cancel.svg") no-repeat center/contain;
 }
 .status--inactive {
   color: #1d4ed8;
@@ -775,7 +785,7 @@ textarea {
   border: 0.1rem solid #bfdbfe;
 }
 .status--inactive::before {
-  background: url("/icons/inactive.svg") no-repeat center/contain;
+  mask: url("/icons/box.svg") no-repeat center/contain;
 }
 .status--maintenance {
   color: #a16207;
@@ -783,7 +793,7 @@ textarea {
   border: 0.1rem solid #fef08a;
 }
 .status--maintenance::before {
-  background: url("/icons/maintenance.svg") no-repeat center/contain;
+  mask: url("/icons/wrench.svg") no-repeat center/contain;
 }
 .status--lost {
   color: #fee2e2;
@@ -791,7 +801,7 @@ textarea {
   border: 0.1rem solid #7f1d1d;
 }
 .status--lost::before {
-  background: url("/icons/lost.svg") no-repeat center/contain;
+  mask: url("/icons/lens.svg") no-repeat center/contain;
 }
 
 .badge {
@@ -877,6 +887,7 @@ textarea {
   width: 1.6rem;
   height: 1.6rem;
   background: none;
+  color: #575c69;
   outline: none;
   border: none;
   cursor: pointer;
@@ -1037,6 +1048,18 @@ textarea {
   width: 2.4rem;
   height: 2.4rem;
 }
+.dashboard__card-icon--blue {
+  stroke: #2563eb;
+}
+.dashboard__card-icon--green {
+  stroke: #15803d;
+}
+.dashboard__card-icon--purple {
+  stroke: #4f46e5;
+}
+.dashboard__card-icon--red {
+  stroke: #dc2626;
+}
 .dashboard__transfers {
   padding: 2rem;
   display: flex;
@@ -1071,6 +1094,7 @@ textarea {
 .dashboard__transfers-icon {
   width: 2rem;
   height: 2rem;
+  color: #0d9488;
 }
 .dashboard__transfers-link {
   padding: 0.7rem 1rem;
@@ -1090,9 +1114,6 @@ textarea {
 .dashboard__transfers-link:hover {
   color: #fff;
   background-color: #1dafa1;
-}
-.dashboard__transfers-link:hover .dashboard__transfers-link-icon {
-  stroke: #fff;
 }
 .dashboard__transfers-link-icon {
   width: 1.6rem;
@@ -1158,7 +1179,6 @@ textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  color: #0f1729;
   font: 10px "Inter", sans-serif;
 }
 

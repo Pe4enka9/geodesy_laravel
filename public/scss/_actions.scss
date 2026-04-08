@@ -9,6 +9,7 @@
         margin-left: auto;
         padding: .8rem 1rem;
 
+        color: $color-text;
         background: none;
 
         @include flex(center, center);
@@ -92,7 +93,7 @@
             background-color: $color-border-secondary;
 
             .actions__icon {
-                stroke: $color-white;
+                color: $color-white;
             }
         }
 
@@ -102,6 +103,7 @@
     }
 
     &__icon {
-        transition: stroke $transition-sm ease;
+        color: #65758b;
+        transition: color $transition-sm ease;
     }
 }
