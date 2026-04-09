@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Equipments\Equipment;
+use App\Models\TransferRequests\Enums\TransferRequestStatusEnum;
 use App\Models\TransferRequests\TransferRequest;
+use App\Models\Users\Enums\UserRoleEnum;
 use App\Models\Users\User;
 use Illuminate\Database\Seeder;
 
@@ -11,8 +13,7 @@ class TransferRequestSeeder extends Seeder
 {
     public function run(): void
     {
-        // Создадим 2-3 активные заявки на передачу
-        $employees = User::where('role', 'employee')->get();
+        $employees = User::where('role', UserRoleEnum::EMPLOYEE)->get();
         $equipmentWithHolder = Equipment::whereNotNull('current_holder_id')->get();
 
         if ($equipmentWithHolder->count() < 2 || $employees->count() < 2) return;
@@ -26,7 +27,7 @@ class TransferRequestSeeder extends Seeder
                 'equipment_id' => $equipment->id,
                 'sender_id' => $sender->id,
                 'receiver_id' => $receiver->id,
-                'status' => 'pending',
+                'status' => TransferRequestStatusEnum::PENDING,
                 'comment' => 'Передача инструмента на смежный участок',
             ]);
         }

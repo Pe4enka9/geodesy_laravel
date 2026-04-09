@@ -16,7 +16,7 @@ class EquipmentSeeder extends Seeder
     {
         $types = EquipmentType::all();
         $models = EquipmentModel::all();
-        $holders = User::whereNot('role', UserRoleEnum::ADMIN)->get();
+        $holders = User::where('role', UserRoleEnum::EMPLOYEE)->get();
         $statuses = EquipmentStatusEnum::cases();
 
         $equipments = [
@@ -50,15 +50,20 @@ class EquipmentSeeder extends Seeder
 
         foreach ($equipments as $data) {
             $modelId = rand(1, 100) <= 30 ? null : $models->random()->id;
-            $holderId = rand(1, 100) <= 40 ? null : $holders->random()->id;
+            $holderId = null;
             $serialNumber = rand(1, 100) <= 10 ? null : $data['serial_number'];
+            $status = $statuses[array_rand($statuses)];
+
+            if ($status === EquipmentStatusEnum::ACTIVE) {
+                $holderId = $holders->random()->id;
+            }
 
             Equipment::create([
                 'type_id' => $types->random()->id,
                 'inventory_number' => $data['inventory_number'],
                 'serial_number' => $serialNumber,
                 'model_id' => $modelId,
-                'status' => $statuses[array_rand($statuses)],
+                'status' => $status,
                 'current_holder_id' => $holderId,
             ]);
         }

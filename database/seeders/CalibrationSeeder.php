@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Calibrations\Calibration;
 use App\Models\Equipments\Equipment;
-use App\Models\Users\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -13,20 +12,19 @@ class CalibrationSeeder extends Seeder
     public function run(): void
     {
         $equipments = Equipment::all();
-        $admin = User::where('role', 'admin')->first();
 
         foreach ($equipments as $equipment) {
             // Создаем историю: 1 старая (просроченная) и 1 текущая
-            $this->createCalibration($equipment, $admin, -2, -1); // Просрочена год назад
+            $this->createCalibration($equipment, -2, -1); // Просрочена год назад
 
             // Текущая поверка
             // 30% инструментов сделаем с истекающим сроком (через 10 дней), остальные на год вперед
             $daysValid = rand(1, 100) < 30 ? 10 : 365;
-            $this->createCalibration($equipment, $admin, 0, $daysValid, true);
+            $this->createCalibration($equipment, 0, $daysValid, true);
         }
     }
 
-    private function createCalibration($equipment, $user, int $startOffsetDays, int $durationDays, bool $isActive = false): void
+    private function createCalibration($equipment, int $startOffsetDays, int $durationDays, bool $isActive = false): void
     {
         $issuedAt = Carbon::today()->addDays($startOffsetDays);
         $expiresAt = $issuedAt->copy()->addDays($durationDays);

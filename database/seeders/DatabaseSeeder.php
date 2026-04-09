@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
             EquipmentModelSeeder::class,
             UserSeeder::class,
             EquipmentSeeder::class,
-            CalibrationSeeder::class,
-            TransferRequestSeeder::class,
+//            CalibrationSeeder::class,
+//            TransferRequestSeeder::class,
         ]);
     }
 }
