@@ -15,6 +15,7 @@ class extends Component {
     public array $statuses;
     public string $search = '';
     public ?EquipmentStatusEnum $currentFilter = null;
+    public bool $isMyEquipment = false;
 
     #[On('equipment-updated')]
     public function refreshList(): void
@@ -30,6 +31,9 @@ class extends Component {
             })
             ->when($this->currentFilter, function (Builder $query) {
                 $query->where('status', $this->currentFilter);
+            })
+            ->when($this->isMyEquipment, function (Builder $query) {
+                $query->where('current_holder_id', auth()->id());
             })
             ->latest()
             ->get();
@@ -80,6 +84,13 @@ class extends Component {
     public function setFilter(?EquipmentStatusEnum $currentFilter): void
     {
         $this->currentFilter = $currentFilter;
+        $this->isMyEquipment = false;
+    }
+
+    public function setMyEquipment(): void
+    {
+        $this->currentFilter = null;
+        $this->isMyEquipment = true;
     }
 
     public function mount(): void
@@ -107,6 +118,8 @@ class extends Component {
             :filters="EquipmentStatusEnum::cases()"
             placeholder="Поиск по номеру..."
             :model="Equipment::class"
+            show-my-equipment-filter
+            :is-my-equipment="$this->isMyEquipment"
         />
 
         <x-tables.table

@@ -5,6 +5,8 @@
     'hasBtn' => true,
     'btn' => 'Добавить',
     'model' => null,
+    'showMyEquipmentFilter' => false,
+    'isMyEquipment' => false,
 ])
 
 <div class="tab-actions" x-data>
@@ -13,11 +15,22 @@
             <div class="tab-actions__sort-wrapper">
                 <button
                     type="button"
-                    @class(['tab-actions__sort', 'tab-actions__sort--active' => $currentFilter === null])
+                    @class(['tab-actions__sort', 'tab-actions__sort--active' => $currentFilter === null && !$isMyEquipment])
                     wire:click="setFilter(null)"
                 >
                     Все
                 </button>
+
+                @if($showMyEquipmentFilter)
+                    <button
+                        type="button"
+                        @class(['tab-actions__sort', 'tab-actions__sort--active' => $isMyEquipment])
+                        wire:click="setMyEquipment"
+                    >
+                        Моё оборудование
+                    </button>
+                @endif
+
                 @foreach($filters as $filter)
                     <button
                         type="button"
