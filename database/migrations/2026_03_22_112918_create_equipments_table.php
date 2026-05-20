@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(EquipmentType::class, 'type_id')->constrained();
             $table->string('inventory_number')->unique();
             $table->string('serial_number')->nullable();
-            $table->foreignIdFor(EquipmentModel::class, 'model_id')->nullable();
+            $table->foreignIdFor(EquipmentModel::class, 'model_id')->nullable()->constrained();
             $table->string('status')->default(EquipmentStatusEnum::ACTIVE);
             $table->foreignIdFor(User::class, 'current_holder_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
