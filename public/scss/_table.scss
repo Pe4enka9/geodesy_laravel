@@ -120,7 +120,7 @@
     &__link {
         @include flex($ai: center, $g: .5rem);
 
-        color: $teal-600;
+        color: $primary-600;
 
         font-size: $fs-sm;
         font-weight: 400;

@@ -95,7 +95,7 @@ input, textarea, select, option {
     transition: border-color $transition-md ease;
 
     &:focus {
-        border-color: $teal-650;
+        border-color: $primary-700;
     }
 
     &.invalid {

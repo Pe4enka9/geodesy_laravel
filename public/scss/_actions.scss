@@ -23,7 +23,7 @@
         transition: background-color $transition-sm ease;
 
         &:hover {
-            background-color: $teal-650;
+            background-color: $primary-700;
 
             .actions__btn-icon {
                 stroke: $white;
@@ -89,7 +89,7 @@
 
         &:hover {
             color: $white;
-            background-color: $teal-650;
+            background-color: $primary-700;
 
             .actions__icon {
                 color: $white;
