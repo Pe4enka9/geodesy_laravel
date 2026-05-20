@@ -1,6 +1,6 @@
 <nav class="nav">
     @auth
-        <x-nav-link name="dashboard">Дашборд</x-nav-link>
+        <x-nav-link name="dashboard">Главная</x-nav-link>
         <x-nav-link name="equipments">Оборудование</x-nav-link>
 
         @adminOrOwner

@@ -36,10 +36,10 @@
 
     &--primary {
         color: $white;
-        background-color: $teal-600;
+        background-color: $primary-600;
 
         &:hover {
-            background-color: #0f766e;
+            background-color: #1d4fd8;
         }
     }
 
@@ -50,7 +50,7 @@
 
         &:hover {
             color: $white;
-            background-color: $teal-650;
+            background-color: $primary-700;
         }
     }
 

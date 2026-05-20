@@ -22,7 +22,7 @@
         &--active {
             background-color: $white-10;
 
-            border-left: .3rem solid $teal-500;
+            border-left: .3rem solid $primary-500;
 
             position: relative;
 
@@ -30,7 +30,7 @@
                 width: 1.6rem;
                 height: 1.6rem;
 
-                background-color: $teal-500;
+                background-color: $primary-500;
                 mask: url("/icons/arrow.svg") no-repeat center / contain;
 
                 content: '';
@@ -42,7 +42,7 @@
             }
 
             .nav__link-icon {
-                color: $teal-500;
+                color: $primary-500;
             }
         }
 

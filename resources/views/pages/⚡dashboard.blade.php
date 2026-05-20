@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Дашборд')]
+new #[Title('Главная')]
 class extends Component {
     public int $allEquipments;
     public int $activeEquipments;
@@ -26,14 +26,9 @@ class extends Component {
 };
 ?>
 
-<x-tab title="Дашборд">
+<x-tab title="Главная">
     <x-tab-content>
         <div class="dashboard">
-            <div class="dashboard__title-wrapper">
-                <h2 class="dashboard__title">Добро пожаловать, {{ auth()->user()->first_name }}!</h2>
-                <p class="dashboard__subtitle">Обзор состояния геодезического оборудования</p>
-            </div>
-
             <div class="dashboard__cards">
                 <x-cards.dashboard
                     title="Всего оборудования"

@@ -39,7 +39,7 @@
 
         @include flex(center, center);
 
-        background-color: $teal-50;
+        background-color: $primary-50;
 
         -webkit-border-radius: $rounded-md;
         -moz-border-radius: $rounded-md;
@@ -55,7 +55,7 @@
         height: 2rem;
 
         &--models {
-            color: $teal-600;
+            color: $primary-600;
         }
 
         &--types {
