@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,4 +41,6 @@ Route::middleware('auth')->group(function () {
 
     // Передачи
     Route::livewire('/transfers', 'pages::transfers')->name('transfers');
+    Route::get('/transfers/{transfer}/print', [DocumentController::class, 'printAct'])->name('print-act');
+    Route::post('/transfers/{transfer}/upload', [DocumentController::class, 'uploadAct'])->name('upload-act');
 });

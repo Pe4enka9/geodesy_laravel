@@ -203,6 +203,22 @@ class extends Component {
                             @endcan
                         </div>
                     @endif
+
+                    @if($transfer->receiver && $transfer->sender && $transfer->isAccepted())
+                        <div class="card__actions">
+                            <a class="btn btn--primary" href="{{ route('print-act', $transfer) }}" target="_blank">
+                                Скачать акт
+                            </a>
+
+{{--                            <form action="{{ route('upload-act', $transfer) }}" method="post"--}}
+{{--                                  enctype="multipart/form-data">--}}
+{{--                                @csrf--}}
+
+{{--                                <input type="file" name="act_file" id="act_file">--}}
+{{--                                <button type="submit" class="btn btn--outline-primary">Загрузить скан</button>--}}
+{{--                            </form>--}}
+                        </div>
+                    @endif
                 </x-cards.card>
             @endforeach
         </x-cards.cards>

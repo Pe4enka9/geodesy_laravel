@@ -47,6 +47,11 @@ class TransferRequest extends Model
         return $this->status === TransferRequestStatusEnum::PENDING;
     }
 
+    public function isAccepted(): bool
+    {
+        return $this->status === TransferRequestStatusEnum::ACCEPTED;
+    }
+
     public function canAction(): bool
     {
         return ($this->isSender() || $this->isReceiver()) && $this->isPending();
