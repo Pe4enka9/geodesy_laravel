@@ -6,16 +6,11 @@ use App\Models\TransferRequests\TransferRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
     public function printAct(TransferRequest $transfer)
     {
-        if ($transfer->act_path) {
-            return Storage::disk('public')->download($transfer->act_path, "Акт приема-передачи геодезического оборудования_$transfer->id.pdf");
-        }
-
         $data = [
             'city' => 'Абакан',
             'date' => $transfer->created_at,
