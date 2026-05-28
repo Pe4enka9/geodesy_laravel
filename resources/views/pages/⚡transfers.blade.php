@@ -105,6 +105,8 @@ class extends Component {
             :has-btn="false"
         />
 
+        <a href="{{ route('full-inventory-export') }}" class="btn btn--primary">Скачать отчет по оборудованию</a>
+
         <x-cards.cards
             :items="$this->transfers"
             empty-icon="transfers"

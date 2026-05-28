@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\FullInventoryExport;
+use App\Models\Equipments\Equipment;
 use App\Models\TransferRequests\TransferRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DocumentController extends Controller
@@ -48,5 +52,12 @@ class DocumentController extends Controller
     public function downloadAct(TransferRequest $transfer): StreamedResponse
     {
         return Storage::disk('public')->response($transfer->act_path);
+    }
+
+    public function exportEquipment(): BinaryFileResponse
+    {
+        $equipments = Equipment::with(['type', 'model', 'currentHolder', 'calibrations'])->get();
+
+        return Excel::download(new FullInventoryExport($equipments), 'inventory_full_report.xlsx');
     }
 }
