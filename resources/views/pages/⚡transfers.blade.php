@@ -210,13 +210,29 @@ class extends Component {
                                 Скачать акт
                             </a>
 
-{{--                            <form action="{{ route('upload-act', $transfer) }}" method="post"--}}
-{{--                                  enctype="multipart/form-data">--}}
-{{--                                @csrf--}}
+                            <form action="{{ route('upload-act', $transfer) }}" method="post"
+                                  enctype="multipart/form-data" class="file-upload-form">
+                                @csrf
 
-{{--                                <input type="file" name="act_file" id="act_file">--}}
-{{--                                <button type="submit" class="btn btn--outline-primary">Загрузить скан</button>--}}
-{{--                            </form>--}}
+                                <label class="btn btn--outline-primary file-upload__label">
+                                    <input type="file" name="act_file" class="file-upload__input" accept=".pdf"
+                                           required>
+
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                         stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="17 8 12 3 7 8"/>
+                                        <line x1="12" y1="3" x2="12" y2="15"/>
+                                    </svg>
+
+                                    <span class="file-upload__text">Загрузить скан</span>
+                                </label>
+                            </form>
+
+                            @if($transfer->act_path)
+                                <a href="{{ route('download-act', $transfer) }}" class="btn btn--success"
+                                   target="_blank">Посмотреть скан</a>
+                            @endif
                         </div>
                     @endif
                 </x-cards.card>
@@ -224,3 +240,19 @@ class extends Component {
         </x-cards.cards>
     </x-tab-content>
 </x-tab>
+
+@push('scripts')
+    <script>
+        document.addEventListener('change', (e) => {
+            if (!e.target.matches('.file-upload__input')) return;
+
+            const form = e.target.closest('form');
+            const textEl = e.target.closest('.file-upload__label').querySelector('.file-upload__text');
+
+            if (e.target.files.length && form) {
+                if (textEl) textEl.textContent = 'Загрузка...';
+                form.requestSubmit();
+            }
+        });
+    </script>
+@endpush

@@ -43,4 +43,5 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/transfers', 'pages::transfers')->name('transfers');
     Route::get('/transfers/{transfer}/print', [DocumentController::class, 'printAct'])->name('print-act');
     Route::post('/transfers/{transfer}/upload', [DocumentController::class, 'uploadAct'])->name('upload-act');
+    Route::get('/transfers/{transfer}/download', [DocumentController::class, 'downloadAct'])->name('download-act');
 });

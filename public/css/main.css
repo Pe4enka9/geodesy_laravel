@@ -92,6 +92,27 @@ textarea {
   resize: vertical;
 }
 
+.file-upload {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.file-upload__input {
+  width: 0.1rem;
+  height: 0.1rem;
+  margin: -0.1rem;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  position: absolute;
+}
+.file-upload__text {
+  font-size: 1.4rem;
+}
+
 .btn {
   width: fit-content;
   padding: 0.7em 1em;
