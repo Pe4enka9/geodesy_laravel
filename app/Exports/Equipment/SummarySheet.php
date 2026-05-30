@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports;
+namespace App\Exports\Equipment;
 
 use App\Models\Equipments\Enums\EquipmentStatusEnum;
 use Illuminate\Support\Collection;

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\FullInventoryExport;
+use App\Exports\Equipment\FullInventoryExport;
+use App\Exports\Transfer\TransferReportExport;
 use App\Models\Equipments\Equipment;
 use App\Models\TransferRequests\TransferRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -59,5 +60,12 @@ class DocumentController extends Controller
         $equipments = Equipment::with(['type', 'model', 'currentHolder', 'calibrations'])->get();
 
         return Excel::download(new FullInventoryExport($equipments), 'inventory_full_report.xlsx');
+    }
+
+    public function exportTransfers(): BinaryFileResponse
+    {
+        $transfers = TransferRequest::with(['equipment', 'sender', 'receiver'])->latest()->get();
+
+        return Excel::download(new TransferReportExport($transfers), 'transfers_report.xlsx');
     }
 }

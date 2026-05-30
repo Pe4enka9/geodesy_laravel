@@ -47,4 +47,6 @@ Route::middleware('auth')->group(function () {
 
     // Отчет по оборудованию
     Route::get('/full-inventory-export', [DocumentController::class, 'exportEquipment'])->name('full-inventory-export');
+    // Отчет по передачам оборудования
+    Route::get('/full-transfers-export', [DocumentController::class, 'exportTransfers'])->name('full-transfers-export');
 });
