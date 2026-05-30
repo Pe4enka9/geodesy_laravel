@@ -5,12 +5,14 @@ namespace App\Exports\Equipment;
 use App\Models\Equipments\Enums\EquipmentStatusEnum;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Maatwebsite\Excel\Events\AfterSheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 
-class SummarySheet implements FromCollection, WithHeadings, WithTitle, WithStyles
+class SummarySheet implements FromCollection, WithHeadings, WithTitle, WithEvents
 {
     protected Collection $equipment;
 
@@ -50,13 +52,29 @@ class SummarySheet implements FromCollection, WithHeadings, WithTitle, WithStyle
         ]);
     }
 
-    public function styles(Worksheet $sheet): array
+    public function registerEvents(): array
     {
         return [
-            1 => ['font' => ['bold' => true]],
+            AfterSheet::class => function (AfterSheet $event) {
+                $sheet = $event->sheet;
+                $range = $sheet->calculateWorksheetDimension();
 
-            'A' => ['width' => 25],
-            'B' => ['width' => 10],
+                $sheet->getStyle('A1:B1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+
+                $sheet->getColumnDimension('A')->setAutoSize(true);
+                $sheet->getColumnDimension('B')->setAutoSize(true);
+
+                $sheet->getStyle('A1:B1')->getFont()->setBold(true);
+
+                $sheet->getStyle($range)->applyFromArray([
+                    'borders' => [
+                        'allBorders' => [
+                            'borderStyle' => Border::BORDER_THIN,
+                            'color' => ['argb' => '222222'],
+                        ],
+                    ],
+                ]);
+            },
         ];
     }
 }

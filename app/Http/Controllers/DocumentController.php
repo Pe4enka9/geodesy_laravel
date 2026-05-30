@@ -61,14 +61,14 @@ class DocumentController extends Controller
     {
         $equipments = Equipment::with(['type', 'model', 'currentHolder', 'calibrations'])->get();
 
-        return Excel::download(new FullInventoryExport($equipments), 'inventory_full_report.xlsx');
+        return Excel::download(new FullInventoryExport($equipments), 'Отчет по оборудованию.xlsx');
     }
 
     public function exportTransfers(): BinaryFileResponse
     {
         $transfers = TransferRequest::with(['equipment', 'sender', 'receiver'])->latest()->get();
 
-        return Excel::download(new TransferReportExport($transfers), 'transfers_report.xlsx');
+        return Excel::download(new TransferReportExport($transfers), 'Отчет по передачам оборудования.xlsx');
     }
 
     public function exportCalibrations(): BinaryFileResponse
@@ -77,6 +77,6 @@ class DocumentController extends Controller
             ->latest('issued_at')
             ->get();
 
-        return Excel::download(new CalibrationReportExport($calibrations), 'calibrations_report.xlsx');
+        return Excel::download(new CalibrationReportExport($calibrations), 'Отчет по поверкам.xlsx');
     }
 }

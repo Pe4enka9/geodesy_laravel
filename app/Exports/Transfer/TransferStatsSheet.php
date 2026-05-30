@@ -6,12 +6,14 @@ use App\Models\TransferRequests\Enums\TransferRequestStatusEnum;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Enumerable;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Maatwebsite\Excel\Events\AfterSheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 
-class TransferStatsSheet implements FromCollection, WithHeadings, WithTitle, WithStyles
+class TransferStatsSheet implements FromCollection, WithHeadings, WithTitle, WithEvents
 {
     protected Collection $transfers;
 
@@ -44,36 +46,49 @@ class TransferStatsSheet implements FromCollection, WithHeadings, WithTitle, Wit
             return [
                 'label' => $label,
                 'count' => $count,
-                'percent' => $percent . '%'
+                'percent' => $percent . '%',
             ];
         });
 
         $rows = $stats->values()->map(fn($item) => [
             $item['label'],
             $item['count'],
-            $item['percent']
+            $item['percent'],
         ]);
 
         $rows->push([
             'Итого',
             $total,
-            '100%'
+            '100%',
         ]);
 
         return $rows;
     }
 
-    public function styles(Worksheet $sheet): array
+    public function registerEvents(): array
     {
-        $lastRow = $this->transfers->count() + 2;
-
         return [
-            1 => ['font' => ['bold' => true]],
-            $lastRow => ['font' => ['bold' => true]],
+            AfterSheet::class => function (AfterSheet $event) {
+                $sheet = $event->sheet;
+                $range = $sheet->calculateWorksheetDimension();
 
-            'A' => ['width' => 20],
-            'B' => ['width' => 15],
-            'C' => ['width' => 15],
+                $sheet->getStyle('A1:C1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+
+                $sheet->getColumnDimension('A')->setAutoSize(true);
+                $sheet->getColumnDimension('B')->setAutoSize(true);
+                $sheet->getColumnDimension('C')->setAutoSize(true);
+
+                $sheet->getStyle('A1:C1')->getFont()->setBold(true);
+
+                $sheet->getStyle($range)->applyFromArray([
+                    'borders' => [
+                        'allBorders' => [
+                            'borderStyle' => Border::BORDER_THIN,
+                            'color' => ['argb' => '222222'],
+                        ],
+                    ],
+                ]);
+            },
         ];
     }
 }

@@ -6,12 +6,14 @@ use App\Models\TransferRequests\TransferRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Maatwebsite\Excel\Events\AfterSheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 
-class TransferListSheet implements FromCollection, WithHeadings, WithTitle, WithStyles
+class TransferListSheet implements FromCollection, WithHeadings, WithTitle, WithEvents
 {
     protected Collection $transfers;
 
@@ -48,28 +50,42 @@ class TransferListSheet implements FromCollection, WithHeadings, WithTitle, With
                 $transfer->sender?->getFullName() ?? '—',
                 $transfer->receiver?->getFullName() ?? '—',
                 $transfer->status->label(),
-
                 $transfer->created_at ? Carbon::parse($transfer->created_at)->format('d.m.Y H:i') : '—',
                 $transfer->resolved_at ? Carbon::parse($transfer->resolved_at)->format('d.m.Y H:i') : '—',
-
                 $transfer->comment ?? '—',
             ];
         });
     }
 
-    public function styles(Worksheet $sheet): array
+    public function registerEvents(): array
     {
         return [
-            1 => ['font' => ['bold' => true]],
+            AfterSheet::class => function (AfterSheet $event) {
+                $sheet = $event->sheet;
+                $range = $sheet->calculateWorksheetDimension();
 
-            'A' => ['width' => 12],
-            'B' => ['width' => 15],
-            'C' => ['width' => 20],
-            'D' => ['width' => 20],
-            'E' => ['width' => 15],
-            'F' => ['width' => 18],
-            'G' => ['width' => 18],
-            'H' => ['width' => 30],
+                $sheet->getStyle('A1:H1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+
+                $sheet->getColumnDimension('A')->setAutoSize(true);
+                $sheet->getColumnDimension('B')->setAutoSize(true);
+                $sheet->getColumnDimension('C')->setAutoSize(true);
+                $sheet->getColumnDimension('D')->setAutoSize(true);
+                $sheet->getColumnDimension('E')->setAutoSize(true);
+                $sheet->getColumnDimension('F')->setAutoSize(true);
+                $sheet->getColumnDimension('G')->setAutoSize(true);
+                $sheet->getColumnDimension('H')->setAutoSize(true);
+
+                $sheet->getStyle('A1:H1')->getFont()->setBold(true);
+
+                $sheet->getStyle($range)->applyFromArray([
+                    'borders' => [
+                        'allBorders' => [
+                            'borderStyle' => Border::BORDER_THIN,
+                            'color' => ['argb' => '222222'],
+                        ],
+                    ],
+                ]);
+            },
         ];
     }
 }
