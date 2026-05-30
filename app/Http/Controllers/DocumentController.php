@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\Calibration\CalibrationReportExport;
 use App\Exports\Equipment\FullInventoryExport;
 use App\Exports\Transfer\TransferReportExport;
+use App\Models\Calibrations\Calibration;
 use App\Models\Equipments\Equipment;
 use App\Models\TransferRequests\TransferRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -67,5 +69,14 @@ class DocumentController extends Controller
         $transfers = TransferRequest::with(['equipment', 'sender', 'receiver'])->latest()->get();
 
         return Excel::download(new TransferReportExport($transfers), 'transfers_report.xlsx');
+    }
+
+    public function exportCalibrations(): BinaryFileResponse
+    {
+        $calibrations = Calibration::with(['equipment', 'equipment.type'])
+            ->latest('issued_at')
+            ->get();
+
+        return Excel::download(new CalibrationReportExport($calibrations), 'calibrations_report.xlsx');
     }
 }

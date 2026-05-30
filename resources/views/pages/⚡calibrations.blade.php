@@ -70,6 +70,8 @@ class extends Component {
             :model="Calibration::class"
         />
 
+        <a href="{{ route('full-calibrations-export') }}" class="btn btn--primary">Скачать отчет по поверкам</a>
+
         <x-tables.table
             :headers="['Оборудование', 'Сертификат', 'Получен', 'Действует до', 'Статус']"
             :items="$this->calibrations"
