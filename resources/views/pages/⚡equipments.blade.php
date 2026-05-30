@@ -122,6 +122,8 @@ class extends Component {
             :is-my-equipment="$this->isMyEquipment"
         />
 
+        <a href="{{ route('full-inventory-export') }}" class="btn btn--primary">Скачать отчет по оборудованию</a>
+
         <x-tables.table
             :headers="['Инв. номер', 'Тип', 'Модель', 'Статус', 'Держатель']"
             :items="$this->equipments"

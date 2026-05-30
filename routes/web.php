@@ -44,5 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/transfers/{transfer}/print', [DocumentController::class, 'printAct'])->name('print-act');
     Route::post('/transfers/{transfer}/upload', [DocumentController::class, 'uploadAct'])->name('upload-act');
     Route::get('/transfers/{transfer}/download', [DocumentController::class, 'downloadAct'])->name('download-act');
+
+    // Отчет по оборудованию
     Route::get('/full-inventory-export', [DocumentController::class, 'exportEquipment'])->name('full-inventory-export');
 });
